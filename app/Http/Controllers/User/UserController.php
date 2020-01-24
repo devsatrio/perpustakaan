@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\models\UserModel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use DataTables;
+use DataTables; 
 
 class UserController extends Controller
 {

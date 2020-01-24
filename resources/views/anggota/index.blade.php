@@ -128,7 +128,7 @@
                         <div class="col-md-9">
                             <input type="text" id="edit_nama" name="edit_nama" class="form-control">
                             <input type="hidden" name="_method" value="PUT">
-                            <input type="text" id="kode_edit" name="kode_edit">
+                            <input type="hidden" id="kode_edit" name="kode_edit">
                         </div>
                     </div>
                     <div class="form-group">
@@ -141,7 +141,7 @@
                         <label class="col-md-3 control-label" for="example-hf-email">No. Telfon</label>
                         <div class="col-md-9">
                             <input type="number" min="0" id="edit_notelp" name="edit_notelp" class="form-control">
-                            <input type="text" id="edit_fotolama" name="edit_fotolama">
+                            <input type="hidden" id="edit_fotolama" name="edit_fotolama">
                         </div>
                     </div>
                     <div class="form-group">
@@ -161,8 +161,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email"></label>
                         <div class="col-md-9">
-
-                            <img id="imageuser" src="{{asset('img/default/noimage.jpg')}}" alt="">
+                            <img id="imageuser" src="{{asset('img/default/noimage.jpg')}}"  style="max-width:100%;">
                         </div>
                     </div>
                     <div class="form-group">
@@ -175,8 +174,8 @@
 
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
-                            <button type="submit" class="btn btn-effect-ripple btn-primary" id="btnedit">Simpan</button>
-                            <button type="reset" class="btn btn-effect-ripple btn-danger"
+                            <button type="button" class="btn btn-effect-ripple btn-primary" id="btnedit">Simpan</button>
+                            <button type="button" class="btn btn-effect-ripple btn-danger"
                                 id="kembaliedit">Kembali</button>
                         </div>
                     </div>

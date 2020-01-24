@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Waktu pembuatan: 24 Jan 2020 pada 03.28
+
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -66,15 +68,48 @@ CREATE TABLE `buku` (
   `panjang` varchar(20) DEFAULT NULL,
   `tipe` enum('Ebook','book') DEFAULT 'book' COMMENT 'tipe untuk setiap buku',
   `gambar` varchar(250) DEFAULT 'n'
+  `deskripsi` text DEFAULT NULL,
+  `tipe` enum('Ebook','Book') DEFAULT 'Book' COMMENT 'tipe untuk setiap buku',
+  `gambar` varchar(250) DEFAULT 'n',
+  `id_kategori` int(11) DEFAULT NULL,
+  `dibaca` int(11) DEFAULT 0,
+  `dipinjam` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
+<<<<<<< HEAD
 INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `panjang`, `tipe`, `gambar`) VALUES
 (6, 'the true wireless', 'erik lind', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'book', 'n'),
 (8, 'the tesla papers', 'kim jerry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'Ebook', 'n');
+=======
+INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `deskripsi`, `tipe`, `gambar`, `id_kategori`, `dibaca`, `dipinjam`) VALUES
+(8, 'the tesla papers', 'kim jerry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ebook', 'n', NULL, 0, 0),
+(18, 'coba', 'coba', 100, '2020-01-30', 'asdfas', 'asdfs', 'doni', '18', '10', 'safda asadfsfd asdfsadfkj sadlkfjsakdf', 'Book', '1579852136-flat-thinking-concept_23-2148163823.jpg', 5, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori_buku`
+--
+
+CREATE TABLE `kategori_buku` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(200) DEFAULT NULL,
+  `slug` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `kategori_buku`
+--
+
+INSERT INTO `kategori_buku` (`id`, `nama`, `slug`) VALUES
+(2, 'berita', 'berita'),
+(5, 'aslkdfjkls', 'aslkdfjkls'),
+(6, 'aaa', 'aaa');
+>>>>>>> 328f0e9e07449937349980a5c8feb3ccbab0a870
 
 -- --------------------------------------------------------
 
@@ -153,6 +188,15 @@ ALTER TABLE `buku`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
+=======
+-- Indeks untuk tabel `kategori_buku`
+--
+ALTER TABLE `kategori_buku`
+  ADD PRIMARY KEY (`id`);
+
+--
+>>>>>>> 328f0e9e07449937349980a5c8feb3ccbab0a870
 -- Indeks untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
@@ -178,7 +222,17 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori_buku`
+--
+ALTER TABLE `kategori_buku`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+>>>>>>> 328f0e9e07449937349980a5c8feb3ccbab0a870
 
 --
 -- AUTO_INCREMENT untuk tabel `pinjam`
