@@ -176,7 +176,7 @@
                                         class="sidebar-nav-mini-hide">Buku</span></a>
                                 <ul>
                                     <li>
-                                        <a href="#">Kategori Buku</a>
+                                        <a href="{{url('/kategori')}}">Kategori Buku</a>
                                     </li>
                                     <li>
                                         <a href="#">Ebook</a>

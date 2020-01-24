@@ -181,7 +181,7 @@
                         <label class="col-md-3 control-label" for="example-hf-email">No. Telfon</label>
                         <div class="col-md-9">
                             <input type="number" min="0" id="edit_notelp" name="edit_notelp" class="form-control">
-                            <input type="text" id="edit_fotolama" name="edit_fotolama">
+                            <input type="hidden" id="edit_fotolama" name="edit_fotolama">
                         </div>
                     </div>
                     <div class="form-group">
@@ -200,7 +200,7 @@
                         <label class="col-md-3 control-label" for="example-hf-email"></label>
                         <div class="col-md-9">
 
-                            <img id="imageuser" src="{{asset('img/default/noimage.jpg')}}" alt="">
+                            <img id="imageuser" src="{{asset('img/default/noimage.jpg')}}" style="max-width:100%;">
                         </div>
                     </div>
                     <div class="form-group">

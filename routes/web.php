@@ -7,12 +7,18 @@ Auth::routes();
 //================================================home
 Route::get('/home','Home\HomeController@index');
 
+//================================================Kategori
+
+Route::get('kategori/get/json','Kategori\Kategori@json');
+Route::resource('/kategori','Kategori\Kategori');
+
 //================================================user
 
 Route::get('user/get/json','User\UserController@json');
 Route::resource('/user','User\UserController');
 
 //================================================buku
+Route::get('buku/get/json','Buku\BukuController@json');
 Route::resource('/buku','Buku\BukuController');
 
 //================================================buku
