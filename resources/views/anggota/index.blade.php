@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="header-section">
-                    <h1>User</h1>
+                    <h1>Anggota</h1>
                 </div>
             </div>
             <div class="col-sm-6 hidden-xs">
@@ -26,24 +26,22 @@
         <div class="col-md-12">
             <div class="block full">
                 <div class="block-title">
-                    <h2>Daftar User</h2>
-
+                    <h2>Daftar Anggota</h2>
                 </div>
                 <button type="button" class="btn btn-effect-ripple btn-primary"
                     style="overflow: hidden; position: relative;" id="tambah"><i class="fa fa-pencil"></i> Tambah
                     Data</button>
                 <br><br>
                 <div class="table-responsive" id="listdata">
-                    <table id="user-datatable" class="table table-striped table-bordered table-vcenter">
+                    <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Telfon</th>
+                                <th>Username</th>
                                 <th>Alamat</th>
-                                <th>Level</th>
-                                <th>Email</th>
-                                <th class="text-center" style="width: 100px;"><i class="fa fa-flash"></i></th>
+                                <th>No. Telp</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                     </table>
@@ -51,18 +49,12 @@
             </div>
         </div>
     </div>
-
     <div class="row loading-div" style="display: none;" id="halinput">
         <div class="col-md-12">
             <div class="block">
-                <!-- Horizontal Form Title -->
                 <div class="block-title">
-
-                    <h2>Tambah Data User</h2>
+                    <h2>Tambah Data Anggota</h2>
                 </div>
-                <!-- END Horizontal Form Title -->
-
-                <!-- Horizontal Form Content -->
                 <form method="POST" class="form-horizontal form-bordered" id="forminput" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">Nama</label>
@@ -77,24 +69,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-hf-email">Email</label>
-                        <div class="col-md-9">
-                            <input type="text" id="input_email" name="input_email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">No. Telfon</label>
                         <div class="col-md-9">
                             <input type="number" min="0" id="input_notelp" name="input_notelp" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-hf-email">Level</label>
-                        <div class="col-md-9">
-                            <select name="input_level" id="input_level" class="form-control">
-                                <option value="Admin">Admin</option>
-                                <option value="Super Admin">Super Admin</option>
-                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -128,11 +105,9 @@
                         </div>
                     </div>
                 </form>
-                <!-- END Horizontal Form Content -->
             </div>
         </div>
     </div>
-
     <div class="row loading-div" style="display: none;" id="haledit">
         <div class="col-md-12">
             <div class="block">
@@ -153,28 +128,13 @@
                         <div class="col-md-9">
                             <input type="text" id="edit_nama" name="edit_nama" class="form-control">
                             <input type="hidden" name="_method" value="PUT">
-                            <input type="hidden" id="kode_edit" name="kode_edit">
+                            <input type="text" id="kode_edit" name="kode_edit">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">Alamat</label>
                         <div class="col-md-9">
                             <input type="text" id="edit_alamat" name="edit_alamat" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-hf-email">Level</label>
-                        <div class="col-md-9">
-                            <select name="edit_level" id="edit_level" class="form-control">
-                                <option value="Admin">Admin</option>
-                                <option value="Super Admin">Super Admin</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-hf-email">Email</label>
-                        <div class="col-md-9">
-                            <input type="text" id="edit_email" name="edit_email" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
@@ -187,13 +147,15 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">*Password Baru</label>
                         <div class="col-md-9">
-                            <input type="password" id="edit_password" name="edit_password" class="form-control" placeholder="Isi apabila ingin mengganti password lama">
+                            <input type="password" id="edit_password" name="edit_password" class="form-control"
+                                placeholder="Isi apabila ingin mengganti password lama">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">*Konfirmasi Password Baru</label>
                         <div class="col-md-9">
-                            <input type="password" id="edit_kpassword" name="edit_kpassword" class="form-control" placeholder="Isi apabila ingin mengganti password lama">
+                            <input type="password" id="edit_kpassword" name="edit_kpassword" class="form-control"
+                                placeholder="Isi apabila ingin mengganti password lama">
                         </div>
                     </div>
                     <div class="form-group">
@@ -219,19 +181,16 @@
                         </div>
                     </div>
                 </form>
-                <!-- END Horizontal Form Content -->
             </div>
         </div>
     </div>
-
-    <!-- END Datatables Block -->
 </div>
 @endsection
 @section('js')
 <script src="{{asset('assets/js/plugins/loading.js')}}"></script>
 <script src="{{asset('assets/js/custom/sweetalert.min.js')}}"></script>
-<script src="{{asset('assets/js/custom/userTables.js')}}"></script>
-<script src="{{asset('assets/js/custom/user.js')}}"></script>
+<script src="{{asset('assets/js/custom/anggotaTables.js')}}"></script>
+<script src="{{asset('assets/js/custom/anggota.js')}}"></script>
 <script>
 $(function() {
     UiTables.init();

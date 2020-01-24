@@ -1,84 +1,133 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Anggota;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\models\AnggotaModel;
+use Illuminate\Support\Facades\File;
+use DataTables;
 
 class AnggotaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    //=================================================================================
+    public function json(){
+        return Datatables::of(AnggotaModel::all())->make(true);
+    }
+
+    //=================================================================================
     public function index()
     {
-        //
+        return view('anggota.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //=================================================================================
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('input_foto')){
+            $nameland=$request->file('input_foto')->
+            getClientOriginalname();
+            $lower_file_name=strtolower($nameland);
+            $replace_space=str_replace(' ', '-', $lower_file_name);
+            $finalname=time().'-'.$replace_space;
+            $destination=public_path('img/anggota');
+            $request->file('input_foto')->move($destination,$finalname);
+                AnggotaModel::create([
+                    'nama'=>$request->input_nama,
+                    'password'=>Hash::make($request->input_pass),
+                    'username'=>$request->input_user,
+                    'alamat'=>$request->input_alamat,
+                    'notelp'=>$request->input_notelp,
+                    'gambar'=>$finalname
+                ]);
+            }else{
+                AnggotaModel::create([
+                    'nama'=>$request->input_nama,
+                    'password'=>Hash::make($request->input_pass),
+                    'username'=>$request->input_user,
+                    'alamat'=>$request->input_alamat,
+                    'notelp'=>$request->input_notelp,
+                ]);
+            }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //=================================================================================
     public function show($id)
     {
-        //
+        $data = AnggotaModel::where('id',$id)->get();
+        return response()->json($data);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    //=================================================================================
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasFile('edit_foto')){
+            if($request->edit_fotolama!='n'){
+                File::delete('img/anggota/'.$request->edit_fotolama);
+            }
+            
+            $nameland=$request->file('edit_foto')->
+            getClientOriginalname();
+            $lower_file_name=strtolower($nameland);
+            $replace_space=str_replace(' ', '-', $lower_file_name);
+            $finalname=time().'-'.$replace_space;
+            $destination=public_path('img/anggota');
+            $request->file('edit_foto')->move($destination,$finalname);
+
+            if($request->edit_password==''){
+                $data = AnggotaModel::where('id',$request->kode_edit)
+                ->update([
+                    'username'=>$request->edit_username,
+                    'nama'=>$request->edit_nama,
+                    'alamat'=>$request->edit_alamat,
+                    'notelp'=>$request->edit_notelp,
+                    'gambar'=>$finalname
+                ]);
+            }else{
+                $data = AnggotaModel::where('id',$request->kode_edit)
+                ->update([
+                    'username'=>$request->edit_username,
+                    'nama'=>$request->edit_nama,
+                    'alamat'=>$request->edit_alamat,
+                    'notelp'=>$request->edit_notelp,
+                    'password'=>Hash::make($request->edit_password),
+                    'gambar'=>$finalname
+                ]);
+            }
+            
+        }else{
+            if($request->edit_password==''){
+                $data = AnggotaModel::where('id',$request->kode_edit)
+                ->update([
+                    'username'=>$request->edit_username,
+                    'nama'=>$request->edit_nama,
+                    'alamat'=>$request->edit_alamat,
+                    'notelp'=>$request->edit_notelp
+                ]);
+            }else{
+                $data = AnggotaModel::where('id',$request->kode_edit)
+                ->update([
+                    'username'=>$request->edit_username,
+                    'nama'=>$request->edit_nama,
+                    'notelp'=>$request->edit_notelp,
+                    'alamat'=>$request->edit_alamat,
+                    'password'=>Hash::make($request->edit_password)
+                ]);
+            }
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //=================================================================================
     public function destroy($id)
     {
-        //
+        $data = AnggotaModel::find($id);
+        if($data->gambar !='n'){
+            File::delete('img/anggota/'.$data->gambar);
+        }
+        AnggotaModel::destroy($id);  
     }
 }

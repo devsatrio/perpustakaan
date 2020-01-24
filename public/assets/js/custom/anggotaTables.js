@@ -13,6 +13,26 @@ var UiTables = function() {
 
             /* Initialize Datatables */
             $('#example-datatable').dataTable({
+                processing: true,
+                serverSide: true,
+                order: [[0, "desc" ]],
+                ajax: 'anggota/json',
+                columns: [
+                    { data: 'id', render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    { data: 'nama', name: 'nama' },
+                    { data: 'username', name: 'username' },
+                    { data: 'alamat', name: 'alamat' },
+                    { data: 'notelp', name: 'notelp' },
+                    { render: function (data, type, row) {
+                        return '<button class="btn btn-success" onclick="editdata('+ row['id'] +')"><i class="fa fa-wrench"></i></button> <button class="btn btn-danger" onclick="hapusdata('+ row['id'] +')"><i class="fa fa-trash"></i></button>'
+                    },
+                        "className": 'text-center',
+                        "orderable": false,
+                        "data": null,
+                    },
+                ],
                 pageLength: 10,
                 lengthMenu: [[5, 10, 20], [5, 10, 20]]
             });
