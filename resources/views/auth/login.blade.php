@@ -90,7 +90,7 @@
                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}><span></span> Ingat Saya?
                             </label> -->
                         </div>
-                        <div class="col-xs-4 text-right">
+                        <div class="col-md-4 text-right">
                             <button type="submit" class="btn btn-effect-ripple btn-sm btn-success">Log In</button>
                         </div>
                     </div>

@@ -1,7 +1,8 @@
 <?php
-
+//===============================================landing
+Route::get('/','Landing\LandingController@index');
 //===============================================auth
-Route::get('/', ['as'=>'/','uses'=>'Auth\LoginController@showLoginForm']);
+Route::get('/login', ['as'=>'/','uses'=>'Auth\LoginController@showLoginForm']);
 Auth::routes();
 
 //================================================home
