@@ -7,7 +7,7 @@
 var ReadyDashboard = function() {
 
     return {
-        init: function() {
+        init: function(tgl) {
             /* With CountTo, Check out examples and documentation at https://github.com/mhuggins/jquery-countTo */
             $('[data-toggle="counter"]').each(function(){
                 var $this = $(this);
@@ -57,7 +57,7 @@ var ReadyDashboard = function() {
             // Data for the chart
             var dataEarnings        = [[1, 1900], [2, 2300], [3, 3200], [4, 2500], [5, 4200], [6, 3100], [7, 3600]];
             
-            var dataMonths          = [[1, 'Jan'], [2, 'Feb'], [3, 'Mar'], [4, 'Apr'], [5, 'May'], [6, 'Jun'], [7, 'Jul']];
+            var dataMonths          = [[1, tgl], [2, 'Feb'], [3, 'Mar'], [4, 'Apr'], [5, 'May'], [6, 'Jun'], [7, 'Jul']];
 
             // Classic Chart
             $.plot(chartClassicDash,

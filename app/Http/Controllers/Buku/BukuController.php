@@ -17,7 +17,7 @@ class BukuController extends Controller
     }
     //=================================================================================
     public function json(){
-        return Datatables::of(BukuModel::select(DB::raw('buku.*,kategori_buku.nama as namakategori'))->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')->where('buku.tipe','book')->get())->make(true);
+        return Datatables::of(BukuModel::select(DB::raw('buku.*,kategori_buku.nama as namakategori'))->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')->where('buku.tipe','Book')->get())->make(true);
     }
     
     //=================================================================================
@@ -123,7 +123,6 @@ class BukuController extends Controller
             ]);
         }
     }
-
     
     //=================================================================================
     public function destroy($id)
@@ -131,6 +130,9 @@ class BukuController extends Controller
         $data = BukuModel::find($id);
         if($data->gambar !='n'){
             File::delete('img/buku/'.$data->gambar);
+        }
+        if($data->ebook !='n'){
+            File::delete('fileebook/'.$data->ebook);
         }
         BukuModel::destroy($id);
     }

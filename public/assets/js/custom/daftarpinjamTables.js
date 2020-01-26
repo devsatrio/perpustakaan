@@ -16,17 +16,28 @@ var UiTables = function() {
                 processing: true,
                 serverSide: true,
                 order: [[0, "desc" ]],
-                ajax: 'anggota/get/json',
+                ajax: 'daftarpinjam/get/json',
                 columns: [
                     { data: 'id', render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     { data: 'nama', name: 'nama' },
+                    { data: 'judul', name: 'judul' },
                     { data: 'username', name: 'username' },
-                    { data: 'alamat', name: 'alamat' },
-                    { data: 'notelp', name: 'notelp' },
-                    { render: function (data, type, row) {
-                        return '<button class="btn btn-success" onclick="editdata('+ row['id'] +')"><i class="fa fa-wrench"></i></button> <button class="btn btn-danger" onclick="hapusdata('+ row['id'] +')"><i class="fa fa-trash"></i></button>'
+                    { data: 'tgl_pinjam', name: 'tgl_pinjam' },
+                    { data: 'tgl_harus_kembali', name: 'tgl_harus_kembali' },
+                    { data: 'tgl_kembali', name: 'tgl_kembali' },
+                    { render: function (row,data) {
+                        if(row['tgl_kembali']==null){
+                            if(new Date() <= new Date(row['tgl_harus_kembali'])){
+                                return '<button class="btn btn-success" onclick="updatestatus('+row['id']+')"><i class="fa fa-check"></i></button>';
+                            }else{
+                                return '<button class="btn btn-danger" onclick="updatedenda('+row['id']+','+row['id_anggota']+')"><i class="fa fa-check"></i></button>';
+                            }
+                                    
+                        }else{
+                            return '<i class="fa fa-check text-success"></i>';
+                        }
                     },
                         "className": 'text-center',
                         "orderable": false,

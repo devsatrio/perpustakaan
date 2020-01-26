@@ -16,17 +16,18 @@ var UiTables = function() {
                 processing: true,
                 serverSide: true,
                 order: [[0, "desc" ]],
-                ajax: 'anggota/get/json',
+                ajax: 'ebook/get/json',
                 columns: [
                     { data: 'id', render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
-                    { data: 'nama', name: 'nama' },
-                    { data: 'username', name: 'username' },
-                    { data: 'alamat', name: 'alamat' },
-                    { data: 'notelp', name: 'notelp' },
+                    { data: 'isbn', name: 'isbn' },
+                    { data: 'judul', name: 'judul' },
+                    { data: 'namakategori', name: 'namakategori'},
+                    { data: 'penerbit', name: 'penerbit' },
+                    { data: 'tanggal_terbit', name: 'tanggal_terbit' },
                     { render: function (data, type, row) {
-                        return '<button class="btn btn-success" onclick="editdata('+ row['id'] +')"><i class="fa fa-wrench"></i></button> <button class="btn btn-danger" onclick="hapusdata('+ row['id'] +')"><i class="fa fa-trash"></i></button>'
+                        return '<button class="btn btn-success btn-sm" onclick="editdata('+ row['id'] +')"><i class="fa fa-wrench"></i></button> <button class="btn btn-danger btn-sm" onclick="hapusdata('+ row['id'] +')"><i class="fa fa-trash"></i></button>'
                     },
                         "className": 'text-center',
                         "orderable": false,

@@ -177,7 +177,7 @@
                                         <a href="{{url('/kategori')}}">Kategori Buku</a>
                                     </li>
                                     <li>
-                                        <a href="#">Ebook</a>
+                                        <a href="{{url('/ebook')}}">Ebook</a>
                                     </li>
                                     <li>
                                         <a href="{{url('/buku')}}">Buku</a>
@@ -208,6 +208,10 @@
                                     <li>
                                         <a href="{{url('/daftarfavorit')}}">Buku Favorit</a>
                                     </li>
+                                    <li>
+                                        <a href="{{url('/daftarebookfavorit')}}">Ebook Favorit</a>
+                                    </li>
+                                    
                                     <li>
                                         <a href="{{url('/peminjamaktif')}}">Peminjam Teraktif</a>
                                     </li>

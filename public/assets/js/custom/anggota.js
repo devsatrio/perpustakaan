@@ -152,11 +152,6 @@ $(document).ready(function () {
         });
     }
     //================================================================
-    $("#kembaliedit").click(function (e) {
-        $("#tabelnya").show(700);
-        $("#haledit").hide(700);
-    });
-    //===================================================================
     $('#btnedit').click(function (e) {
         var username = $('#edit_username').val();
         var nama = $("#edit_nama").val();
@@ -165,6 +160,7 @@ $(document).ready(function () {
         var kode = $('#kode_edit').val();
         var password = $('#edit_password').val();
         var kpassword = $('#edit_kpassword').val();
+
         if (username == '' || nama == '' || alamat == '' || notelp == '') {
             $.bootstrapGrowl('<h4><strong>Pemberitahuan</strong></h4> <p>Maaf, Data tidak boleh kosong</p>', {
                 type: 'danger',
@@ -173,11 +169,10 @@ $(document).ready(function () {
                 offset: { from: 'top', amount: 20 }
             });
             return false;
-
         } else {
             if (password == '') {
                 $('#haledit').loading('toggle');
-                $("#formedit").submit(function (e) {
+                $('#formedit').submit(function (e) {
                     e.preventDefault();
                     e.stopImmediatePropagation();
                     var formData = new FormData(this);
@@ -187,7 +182,7 @@ $(document).ready(function () {
                         }
                     });
                     $.ajax({
-                        url: 'anggota/' + kode,
+                        url: '/anggota/' + kode,
                         type: 'POST',
                         data: formData,
                         cache: false,
@@ -204,11 +199,13 @@ $(document).ready(function () {
                             $("#tabelnya").show(700);
                             $("#haledit").hide(700);
                             $('#edit_foto').val('');
+                            $('#edit_password').val('');
+                            $('#edit_kpassword').val('');
                         }, complete: function () {
                             $('#haledit').loading('stop');
                         }
                     });
-                });
+                })
             } else {
                 if (password == kpassword) {
                     $('#haledit').loading('toggle');
@@ -222,7 +219,7 @@ $(document).ready(function () {
                             }
                         });
                         $.ajax({
-                            url: '/user/' + kode,
+                            url: '/anggota/' + kode,
                             type: 'POST',
                             data: formData,
                             cache: false,
@@ -235,12 +232,12 @@ $(document).ready(function () {
                                     allow_dismiss: true,
                                     offset: { from: 'top', amount: 20 }
                                 });
-                                $('#user-datatable').DataTable().ajax.reload();
+                                $('#example-datatable').DataTable().ajax.reload();
                                 $("#tabelnya").show(700);
                                 $("#haledit").hide(700);
                                 $('#edit_foto').val('');
-                                $('#edit_password').val();
-                                $('#edit_kpassword').val();
+                                $('#edit_password').val('');
+                                $('#edit_kpassword').val('');
                             }, complete: function () {
                                 $('#haledit').loading('stop');
                             }
@@ -260,4 +257,11 @@ $(document).ready(function () {
         }
 
     });
+    //================================================================
+    $("#kembaliedit").click(function (e) {
+        $("#tabelnya").show(700);
+        $("#haledit").hide(700);
+    });
+
+
 });

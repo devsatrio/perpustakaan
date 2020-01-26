@@ -2,7 +2,6 @@
 
 @section('content')
 <div id="page-content">
-    <!-- Table Styles Header -->
     <div class="content-header">
         <div class="row">
             <div class="col-sm-6">
@@ -11,27 +10,25 @@
                 </div>
             </div>
             <div class="col-sm-6 hidden-xs">
-
             </div>
         </div>
     </div>
-    <!-- END Table Styles Header -->
     <div class="row loading-div" id="tabelnya">
         <div class="col-md-12">
             <div class="block full">
                 <div class="block-title">
-                    <h2>Peminjam Teraktif</h2>
-
+                    <h2>EBook Favorit</h2>
                 </div>
                 <div class="table-responsive">
                     <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 50px;">No</th>
-                                <th>Nama</th>
-                                <th>No. Telp</th>
-                                <th>Alamat</th>
-                                <th>Jumlah Meminjam</th>
+                                <th>ISBN</th>
+                                <th>Judul</th>
+                                <th>Penerbit</th>
+                                <th>Penulis</th>
+                                <th>Jumlah Dibaca</th>
                             </tr>
                         </thead>
                         <tbody id="isitabel">
@@ -41,10 +38,11 @@
                             @foreach ($data as $value)
                             <tr>
                                 <td>{{$nomer++}}</td>
-                                <td>{{ $value->nama }}</td>
-                                <td>{{$value->notelp}}</td>
-                                <td>{{$value->alamat}}</td>
-                                <td>{{ $value->jumlah }} Kali Meminjam Buku</td>
+                                <td>{{ $value->isbn }}</td>
+                                <td>{{ $value->judul }}</td>
+                                <td>{{ $value->penerbit}}</td>
+                                <td>{{ $value->penulis}}</td>
+                                <td>{{ $value->dibaca}} Kali Dibaca</td>
                             </tr>
                             @endforeach
                         </tbody>

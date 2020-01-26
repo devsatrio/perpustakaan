@@ -1,6 +1,7 @@
 <?php
 //===============================================landing
 Route::get('/','Landing\LandingController@index');
+
 //===============================================auth
 Route::get('/login', ['as'=>'/','uses'=>'Auth\LoginController@showLoginForm']);
 Auth::routes();
@@ -9,21 +10,23 @@ Auth::routes();
 Route::get('/home','Home\HomeController@index');
 
 //================================================Kategori
-
 Route::get('kategori/get/json','Kategori\Kategori@json');
 Route::resource('/kategori','Kategori\Kategori');
 
 //================================================user
-
 Route::get('user/get/json','User\UserController@json');
 Route::resource('/user','User\UserController');
+
+//================================================ebuku
+Route::get('ebook/get/json','ebook\ebookcontroller@json');
+Route::resource('/ebook','ebook\ebookcontroller');
 
 //================================================buku
 Route::get('buku/get/json','Buku\BukuController@json');
 Route::resource('/buku','Buku\BukuController');
 
-//================================================buku
-Route::get('anggota/json','Anggota\AnggotaController@json');
+//================================================Anggota
+Route::get('anggota/get/json','Anggota\AnggotaController@json');
 Route::resource('/anggota','Anggota\AnggotaController');
 
 //=================================================peminjaman
@@ -36,7 +39,9 @@ Route::get('/carihasilbuku/{id}','Pinjam\PinjamController@carihasilbuku');
 
 //======================================================daftar pinjam
 Route::get('/daftarpinjam','Pinjam\PinjamController@daftarpinjam');
+Route::get('/daftarpinjam/get/json','Pinjam\PinjamController@json');
 Route::get('/updatestatus/{id}','Pinjam\PinjamController@updatestatus');
 Route::get('/daftarfavorit','Pinjam\PinjamController@daftarfavorit');
+Route::get('/daftarebookfavorit','Pinjam\PinjamController@daftarebookfavorit');
 Route::post('/simpandenda','Pinjam\PinjamController@simpandenda');
 Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');

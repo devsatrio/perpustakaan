@@ -79,7 +79,7 @@ class AnggotaController extends Controller
             $request->file('edit_foto')->move($destination,$finalname);
 
             if($request->edit_password==''){
-                $data = AnggotaModel::where('id',$request->kode_edit)
+                AnggotaModel::where('id',$request->kode_edit)
                 ->update([
                     'username'=>$request->edit_username,
                     'nama'=>$request->edit_nama,
@@ -88,7 +88,7 @@ class AnggotaController extends Controller
                     'gambar'=>$finalname
                 ]);
             }else{
-                $data = AnggotaModel::where('id',$request->kode_edit)
+                AnggotaModel::where('id',$request->kode_edit)
                 ->update([
                     'username'=>$request->edit_username,
                     'nama'=>$request->edit_nama,
@@ -101,7 +101,7 @@ class AnggotaController extends Controller
             
         }else{
             if($request->edit_password==''){
-                $data = AnggotaModel::where('id',$request->kode_edit)
+                AnggotaModel::where('id',$request->kode_edit)
                 ->update([
                     'username'=>$request->edit_username,
                     'nama'=>$request->edit_nama,
@@ -109,7 +109,7 @@ class AnggotaController extends Controller
                     'notelp'=>$request->edit_notelp
                 ]);
             }else{
-                $data = AnggotaModel::where('id',$request->kode_edit)
+                AnggotaModel::where('id',$request->kode_edit)
                 ->update([
                     'username'=>$request->edit_username,
                     'nama'=>$request->edit_nama,

@@ -96,7 +96,6 @@ $(document).ready(function () {
         var kode = $('#kode_edit').val();
         var password = $('#edit_password').val();
         var kpassword = $('#edit_kpassword').val();
-        var level = $('#edit_level').val();
         if (username == '' || nama == '' || alamat == '' || notelp == '' || email == '') {
             $.bootstrapGrowl('<h4><strong>Pemberitahuan</strong></h4> <p>Maaf, Data tidak boleh kosong</p>', {
                 type: 'danger',
@@ -136,8 +135,8 @@ $(document).ready(function () {
                             $("#tabelnya").show(700);
                             $("#haledit").hide(700);
                             $('#edit_foto').val('');
-                            $('#edit_password').val();
-                            $('#edit_kpassword').val();
+                            $('#edit_password').val('');
+                            $('#edit_kpassword').val('');
                         }, complete: function () {
                             $('#haledit').loading('stop');
                         }
