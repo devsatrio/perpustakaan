@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'anggota' => [
+            'driver' => 'session',
+            'provider' => 'anggotas',
+        ],
     ],
 
     /*
@@ -69,11 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'anggotas' => [
+            'driver' => 'eloquent',
+            'model' => App\models\AnggotaModel::class,
+        ],
     ],
 
     /*
@@ -94,6 +98,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'anggotas' => [
+            'provider' => 'anggotas',
             'table' => 'password_resets',
             'expire' => 60,
         ],

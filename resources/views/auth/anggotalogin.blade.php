@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Login Admin</title>
+    <title>Login Anggota</title>
 
     <meta name="description"
         content="AppUI is a Web App Bootstrap Admin Template created by pixelcave and published on Themeforest">
@@ -63,9 +63,9 @@
             <!-- END Login Title -->
 
             <!-- Login Form -->
-            <form method="POST" id="form-login" class="form-horizontal" action="{{ route('login') }}">
+            <form method="POST" id="form-login" class="form-horizontal" action="{{ route('login-anggota') }}">
                 @csrf
-                @if ($errors->has('email') || $errors->has('password'))
+                @if ($errors->has('username')||$errors->has('email') || $errors->has('password'))
                 <div class="alert alert-danger alert-dismissible alert-mg-b-0" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> Oops ! Username

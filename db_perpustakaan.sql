@@ -3,9 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Waktu pembuatan: 24 Jan 2020 pada 03.28
-
+-- Waktu pembuatan: 27 Jan 2020 pada 03.10
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -37,16 +35,19 @@ CREATE TABLE `anggota` (
   `notelp` varchar(50) DEFAULT NULL,
   `username` varchar(150) DEFAULT NULL,
   `password` text DEFAULT NULL,
-  `gambar` text DEFAULT 'n'
+  `gambar` text DEFAULT 'n',
+  `remember_token` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `anggota`
 --
 
-INSERT INTO `anggota` (`id`, `nama`, `alamat`, `notelp`, `username`, `password`, `gambar`) VALUES
-(10, 'asdfsafd', 'asdfsaf', '324234', 'aaaaa1', '$2y$10$YKPOBjcEWbLYDRbn41yh9uX0feN4lWnqznXyHy6hFfAUj44uELv/.', '1579791129-9.jpg'),
-(11, 'asdfsadf', 'sadfsadf', '43582', 'satasdfds', '$2y$10$TjCOHrEamZnACEBuatCr6exrAj.MluA9Aq/sLGMztnX8KDAa89c8a', '1579828872-6.jpg');
+INSERT INTO `anggota` (`id`, `nama`, `alamat`, `notelp`, `username`, `password`, `gambar`, `remember_token`) VALUES
+(11, 'mirna sumarsih', 'mojoroto kota kediri', '0854321', 'mirna', '$2y$10$1b7HEeFGDDusMIFYpI6ZveJ4zeXlkKaO02uwbVqgoLPh0rebrf12O', '1579828872-6.jpg', NULL),
+(13, 'doni pradana', 'gurah', '14045', 'doni', '$2y$10$y7MCbVDREt/v.4HRpwzu.eOYKvzeWHL.NPVFnbuhb5hoZ5xlcsH/.', '1579925583-5.jpg', NULL),
+(14, 'satrio damara', 'gurah', '0324838', 'satrio', '$2y$10$bBxU6nwe1BJbJ/GF450U/eejlxAxZGPrDGDJb0/N3Knee/kF/izxy', '1580037097-user.png', 'LF5X3HBP3nh8mrcOdgks6vVcJlqGPtRFj0xvPtVh29p68jbvgB6OZ8PYxCHp'),
+(15, 'cok', 'cok', '302483290', 'username', NULL, '1580038850-user.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,29 +66,21 @@ CREATE TABLE `buku` (
   `penerbit` varchar(40) DEFAULT NULL,
   `berat` varchar(20) DEFAULT NULL,
   `lebar` varchar(20) DEFAULT NULL,
-  `panjang` varchar(20) DEFAULT NULL,
-  `tipe` enum('Ebook','book') DEFAULT 'book' COMMENT 'tipe untuk setiap buku',
-  `gambar` varchar(250) DEFAULT 'n'
   `deskripsi` text DEFAULT NULL,
   `tipe` enum('Ebook','Book') DEFAULT 'Book' COMMENT 'tipe untuk setiap buku',
-  `gambar` varchar(250) DEFAULT 'n',
   `id_kategori` int(11) DEFAULT NULL,
   `dibaca` int(11) DEFAULT 0,
-  `dipinjam` int(11) DEFAULT 0
+  `dipinjam` int(11) DEFAULT 0,
+  `gambar` varchar(400) DEFAULT 'n',
+  `ebook` varchar(250) DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
-<<<<<<< HEAD
-INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `panjang`, `tipe`, `gambar`) VALUES
-(6, 'the true wireless', 'erik lind', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'book', 'n'),
-(8, 'the tesla papers', 'kim jerry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'Ebook', 'n');
-=======
-INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `deskripsi`, `tipe`, `gambar`, `id_kategori`, `dibaca`, `dipinjam`) VALUES
-(8, 'the tesla papers', 'kim jerry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ebook', 'n', NULL, 0, 0),
-(18, 'coba', 'coba', 100, '2020-01-30', 'asdfas', 'asdfs', 'doni', '18', '10', 'safda asadfsfd asdfsadfkj sadlkfjsakdf', 'Book', '1579852136-flat-thinking-concept_23-2148163823.jpg', 5, 0, 0);
+INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `deskripsi`, `tipe`, `id_kategori`, `dibaca`, `dipinjam`, `gambar`, `ebook`) VALUES
+(24, 'komik naruto', 'harmoko', 25, '2020-01-01', 'id123', 'indonesia', 'gramedia', '1', '20', 'buku mantab mantab', 'Book', 2, 0, 3, '1579928566-building-apps-app-builder.jpg', 'n');
 
 -- --------------------------------------------------------
 
@@ -107,9 +100,7 @@ CREATE TABLE `kategori_buku` (
 
 INSERT INTO `kategori_buku` (`id`, `nama`, `slug`) VALUES
 (2, 'berita', 'berita'),
-(5, 'aslkdfjkls', 'aslkdfjkls'),
-(6, 'aaa', 'aaa');
->>>>>>> 328f0e9e07449937349980a5c8feb3ccbab0a870
+(5, 'halo', 'halo');
 
 -- --------------------------------------------------------
 
@@ -141,7 +132,12 @@ INSERT INTO `pinjam` (`id`, `id_user`, `id_anggota`, `id_buku`, `tgl_pinjam`, `t
 (15, 10, 2, 8, '2019-02-01', '2019-01-01', '2018-11-01', 2000),
 (16, 10, 1, 7, '2019-01-01', '2019-01-01', '2018-11-02', 3000),
 (17, 10, 3, 8, '2019-01-01', '2019-01-01', '2018-11-08', 4000),
-(18, 10, 1, 8, '2020-01-23', NULL, '2020-01-24', NULL);
+(18, 10, 1, 8, '2020-01-23', NULL, '2020-01-24', NULL),
+(19, 41, 13, 24, '2020-01-25', '2020-01-25', '2020-01-31', NULL),
+(20, 41, 11, 24, '2020-01-25', '2020-01-25', '2020-01-31', NULL),
+(21, 41, 11, 24, '2020-01-25', '2020-01-25', '2020-01-22', 40000),
+(22, 41, 11, 24, '2020-01-25', '2020-01-25', '2020-01-31', NULL),
+(23, 41, 13, 24, '2020-01-25', '2020-01-25', '2020-01-01', 20000);
 
 -- --------------------------------------------------------
 
@@ -169,7 +165,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `username`, `remember_token`, `alamat`, `notelp`, `level`, `foto`) VALUES
-(41, 'deva satrio', 'satriosuklusn@gmail.com', '$2y$10$MTevkOlRRT/y/CQxDInEp.2VBkD0rICDsB3ynGSCP2LgrRYzCdX7W', '2020-01-23 02:27:38', '2020-01-23 07:10:32', 'devasatrio', '3yXRRTuH184fmzQXUwix1AwzlM0iytc9uKeHfxi2pQfcKKDY1FFnpyHrYsBh', 'gurah kediri', '203984902', 'Super Admin', '1579785455-7.jpg');
+(41, 'deva satrio', 'satriosuklusn@gmail.com', '$2y$10$MTevkOlRRT/y/CQxDInEp.2VBkD0rICDsB3ynGSCP2LgrRYzCdX7W', '2020-01-23 02:27:38', '2020-01-24 21:58:59', 'devasatrio', 'zxTl0xuxLGsP5LjQ9bT5c13FEyTAlyUcZF544PYfiWkPg8hacFHAAMmeEbkD', 'gurah kediri pga', '203984902', 'Super Admin', '1579928339-13.jpg');
 
 --
 -- Indexes for dumped tables
@@ -188,15 +184,12 @@ ALTER TABLE `buku`
   ADD PRIMARY KEY (`id`);
 
 --
-<<<<<<< HEAD
-=======
 -- Indeks untuk tabel `kategori_buku`
 --
 ALTER TABLE `kategori_buku`
   ADD PRIMARY KEY (`id`);
 
 --
->>>>>>> 328f0e9e07449937349980a5c8feb3ccbab0a870
 -- Indeks untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
@@ -216,35 +209,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-<<<<<<< HEAD
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_buku`
 --
 ALTER TABLE `kategori_buku`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
->>>>>>> 328f0e9e07449937349980a5c8feb3ccbab0a870
 
 --
 -- AUTO_INCREMENT untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

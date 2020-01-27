@@ -218,18 +218,8 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="sidebar-nav-menu"><i
-                                        class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i
-                                        class="fa fa-bomb sidebar-nav-icon"></i><span
-                                        class="sidebar-nav-mini-hide">Daftar Denda</span></a>
-                                <ul>
-                                    <li>
-                                        <a href="{{url('/pinjam')}}">Bulan Ini</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/daftarpinjam')}}">Semua Bulan</a>
-                                    </li>
-                                </ul>
+                                <a href="{{url('/denda')}}"><i class="fa fa-bomb sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Denda</span></a>
                             </li>
                         </ul>
                         <!-- END Sidebar Navigation -->

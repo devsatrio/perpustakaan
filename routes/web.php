@@ -1,9 +1,15 @@
 <?php
+
+//==============================================auth anggota
+Route::get('login-anggota', 'Auth\anggotaLoginController@showLoginForm');
+Route::post('login-anggota', ['as'=>'login-anggota','uses'=>'Auth\anggotaLoginController@login']);
+Route::post('logout-anggota', 'Auth\anggotaLoginController@logout');
+
 //===============================================landing
 Route::get('/','Landing\LandingController@index');
 
 //===============================================auth
-Route::get('/login', ['as'=>'/','uses'=>'Auth\LoginController@showLoginForm']);
+Route::get('/login', ['as'=>'/login','uses'=>'Auth\LoginController@showLoginForm']);
 Auth::routes();
 
 //================================================home
@@ -45,3 +51,7 @@ Route::get('/daftarfavorit','Pinjam\PinjamController@daftarfavorit');
 Route::get('/daftarebookfavorit','Pinjam\PinjamController@daftarebookfavorit');
 Route::post('/simpandenda','Pinjam\PinjamController@simpandenda');
 Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');
+
+//=======================================================denda
+Route::get('/denda','Denda\dendacontroller@index');
+Route::post('/caridenda','Denda\dendacontroller@cari');
