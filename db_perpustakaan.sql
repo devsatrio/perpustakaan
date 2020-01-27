@@ -22,6 +22,9 @@ SET time_zone = "+00:00";
 -- Database: `db_perpustakaan`
 --
 
+CREATE DATABASE db_perpustakaan;
+USE `db_perpustakaan`;
+
 -- --------------------------------------------------------
 
 --
