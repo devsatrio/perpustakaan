@@ -65,6 +65,7 @@ $(document).ready(function () {
                         $("#input_penerbit").val('');
                         $("#input_deskripsi").val('');
                         $("#input_foto").val('');
+                        $('#input_pdf').val('');
                     },
                     complete: function (data) {
                         $('#halinput').loading('stop');
@@ -194,6 +195,7 @@ $(document).ready(function () {
                             offset: { from: 'top', amount: 20 }
                         });
                         $('#edit_foto').val('');
+                        $('#edit_pdf').val('');
                         $("#tabelnya").show(700);
                         $("#haledit").hide(700);
                     }, complete: function () {

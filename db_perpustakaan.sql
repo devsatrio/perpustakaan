@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Jan 2020 pada 03.10
+-- Waktu pembuatan: 28 Jan 2020 pada 07.02
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -21,9 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_perpustakaan`
 --
-
-CREATE DATABASE db_perpustakaan;
-USE `db_perpustakaan`;
 
 -- --------------------------------------------------------
 
@@ -75,15 +72,19 @@ CREATE TABLE `buku` (
   `dibaca` int(11) DEFAULT 0,
   `dipinjam` int(11) DEFAULT 0,
   `gambar` varchar(400) DEFAULT 'n',
-  `ebook` varchar(250) DEFAULT 'n'
+  `ebook` varchar(250) DEFAULT 'n',
+  `link` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
-INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `deskripsi`, `tipe`, `id_kategori`, `dibaca`, `dipinjam`, `gambar`, `ebook`) VALUES
-(24, 'komik naruto', 'harmoko', 25, '2020-01-01', 'id123', 'indonesia', 'gramedia', '1', '20', 'buku mantab mantab', 'Book', 2, 0, 3, '1579928566-building-apps-app-builder.jpg', 'n');
+INSERT INTO `buku` (`id`, `judul`, `penulis`, `halaman`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `deskripsi`, `tipe`, `id_kategori`, `dibaca`, `dipinjam`, `gambar`, `ebook`, `link`) VALUES
+(24, 'komik naruto', 'harmoko', 25, '2020-01-01', 'id123', 'indonesia', 'gramedia', '1', '20', 'buku mantab mantab', 'Book', 2, 0, 3, '1579928566-building-apps-app-builder.jpg', 'n', NULL),
+(25, 'ebook satu', NULL, NULL, '2020-01-01', 'eb123', NULL, 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis!', 'Ebook', 2, 0, 0, '1580184622-satu.jpg', '1580184622-satu.pdf', 'ebook-satu'),
+(26, 'ebook dua', NULL, NULL, '2020-01-03', '23432kjfksf', NULL, 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 5, 0, 0, '1580185306-dua.jpg', '1580185306-dua.pdf', 'ebook-dua'),
+(27, 'ebook tiga', NULL, NULL, '2020-01-30', 'sadfsadf', NULL, 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 5, 0, 0, '1580191280-tiga.jpg', '1580191280-tiga.pdf', 'ebook-tiga');
 
 -- --------------------------------------------------------
 
@@ -218,7 +219,7 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_buku`
