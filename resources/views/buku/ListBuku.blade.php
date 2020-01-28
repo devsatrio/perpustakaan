@@ -7,84 +7,73 @@
 
 <section class="site-section site-section-top site-section-light themed-background-dark">
     <div class="container">
-        <h1 class="text-center animation-fadeInQuickInv"><strong>The best features in one template.</strong></h1>
+        <h1 class="text-center animation-fadeInQuickInv"><strong>Daftar Semua Buku</strong></h1>
     </div>
 </section>
-            <!-- END Intro -->
-
-            <!-- Features #1 -->
-<section class="site-content site-section border-bottom">
-    <div class="container text-center">
-                	
-        <div class="row row-items">
-         @foreach($list as $row)
-            <div class="col-sm-4">
-                <a href="javascript:void(0)" data-element-offset="-100">
-                    <img src="{{asset('img/buku/'.$row->gambar)}}" style="max-width:100%;max-height:150px;">
-                                <!-- <i class="fa fa-fire"></i> -->
-                </a>
-                <br>
-                <br>
-                <div class="visibility-none" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick2Inv" data-element-offset="-100">
-                    <h4 class="site-heading feature-heading"><strong>Bootstrap Powered</strong></h4>
-                    <p class="feature-text text-muted">Bootstrap is a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development. <strong>AppUI</strong> was built on top, extending it to a large degree.</p>
-                </div>
-            </div>
-        @endforeach
-        </div>
-    </div>
-</section>
-            <!-- END Features #1 -->
-
-            <!-- Quick Stats -->
-            <section class="site-content site-section themed-background-dark">
+<section class="site-content site-section-mini themed-background-default">
                 <div class="container">
                     <!-- Stats Row -->
-                    <!-- CountTo (initialized in js/app.js), for more examples you can check out https://github.com/mhuggins/jquery-countTo -->
                     <div class="row">
-                        <div class="col-sm-4">
+                    	<div></div>
+                    	<div></div>
+                        <!-- <div class="col-xs-6">
                             <div class="counter site-block">
-                                <span data-toggle="countTo" data-to="2120" data-after="+"></span>
-                                <small>Sales</small>
+                                <span>30</span>
+                                <small>Pages</small>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-xs-6">
                             <div class="counter site-block">
-                                <span data-toggle="countTo" data-to="530" data-after="+"></span>
-                                <small>Services</small>
+                                <span>27</span>
+                                <small>Customers</small>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="counter site-block">
-                                <span data-toggle="countTo" data-to="3200" data-after="+"></span>
-                                <small>Projects</small>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- END Stats Row -->
                 </div>
             </section>
-            <!-- END Quick Stats -->
-
-            <!-- Sign Up Action -->
-            <section class="site-content site-section">
+<section class="site-content site-section themed-background-muted">
                 <div class="container">
-                    <h2 class="site-heading text-center">Sign up today and receive <strong>30% discount</strong>!</h2>
-                    <div class="site-block text-center">
-                        <form action="features.html" method="post" class="form-inline" onsubmit="return false;">
-                            <div class="form-group">
-                                <label class="sr-only" for="register-username">Username</label>
-                                <input type="text" id="register-username" name="register-username" class="form-control input-lg" placeholder="Choose a username..">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="register-password">Password</label>
-                                <input type="password" id="register-password" name="register-password" class="form-control input-lg" placeholder="..and a password!">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-lg btn-success">Get Started!</button>
+                    <div class="site-block">
+                        <form action="search_results.html" method="post">
+                            <div class="input-group input-group-lg">
+                                <input type="text" id="site-search" name="site-search" class="form-control" placeholder="Search Site..">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </section>
+
+<section class="site-content site-section overflow-hidden border-bottom">
+	
+    <div class="container">
+    	
+        <div class="row row-items">
+        	@foreach($list as $row)
+            <div class="col-md-2 col-md-offset-2 text-center visibility-none" data-toggle="animation-appear" data-animation-class="animation-fadeInRight" data-element-offset="-20">
+                <!-- <img src="img/placeholders/avatars/avatar7@2x.jpg" alt="" class="img-circle img-thumbnail img-thumbnail-avatar-2x"> -->
+                <img src="{{asset('img/buku/'.$row->gambar)}}" style="max-width:100%;max-height:150px;">
+            </div>
+            <div class="col-md-6 visibility-none" data-toggle="animation-appear" data-animation-class="animation-fadeInLeft" data-element-offset="-20">
+                <h4>
+                    <span class="text-muted text-uppercase pull-right">{{$row->tanggal_terbit}}</span>
+                    <strong>{{ ucwords("$row->judul") }}</strong>
+                </h4>
+                    <p>{{$row->deskripsi}}</p>
+                    <a href=""><button class="btn btn-success">Detail</button></a>
+
+            </div>
+            @endforeach
+            <hr>
+            <div class="text-center visibility-none" data-toggle="animation-appear" data-animation-class="animation-fadeInRight" data-element-offset="-20">
+				<ul class="pagination">
+   					<li class="active">{{ $list->links() }}</li>
+				</ul>
+			</div>
+        </div>
+    </div>
+</section>
 @endsection

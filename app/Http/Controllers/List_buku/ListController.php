@@ -11,7 +11,8 @@ use DataTables;
 class ListController extends Controller
 {
 	public function index(){
-		$list =  DB::table('buku')->where('tipe','=','Book')->get();
+		
+		$list =  DB::table('buku')->where('tipe','=','Book')->paginate(8);
 		$page = 'buku';
 		return view('buku/ListBuku',['list'=>$list,'page'=>$page]);
 	}	

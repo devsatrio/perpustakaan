@@ -57,7 +57,7 @@
             <div class="container">
                 <!-- Site Logo -->
                 <a href="index.html" class="site-logo">
-                    <i class="fa fa-cube"></i> PERPUSTAKAAN<strong></strong>
+                    <i class="fa fa-book"></i>&nbsp;&nbsp;PERPUSTAKAAN<strong></strong>
                 </a>
                 <!-- END Site Logo -->
 
@@ -82,11 +82,11 @@
                         <!--//=========================================================-->
                         <?php if($page=='buku') {?>
                         <li>
-                            <a href="{{url('/list')}}" class="active" >Buku</a>
+                            <a href="{{url('/daftarbuku')}}" class="active" >Buku</a>
                         </li>
                         <?php } else { ?>
                         <li>
-                            <a href="{{url('/list')}}" >Buku</a> 
+                            <a href="{{url('/daftarbuku')}}" >Buku</a> 
                         </li>   
                         <?php } ?>
                         <!--==========================================================-->

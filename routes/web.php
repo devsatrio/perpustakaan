@@ -30,7 +30,7 @@ Route::resource('/ebook','ebook\ebookcontroller');
 //================================================buku
 Route::get('buku/get/json','Buku\BukuController@json');
 Route::resource('/buku','Buku\BukuController');
-Route::resource('/list','List_buku\ListController');
+Route::get('/daftarbuku','List_buku\ListController@index');
 
 //================================================Anggota
 Route::get('anggota/get/json','Anggota\AnggotaController@json');
