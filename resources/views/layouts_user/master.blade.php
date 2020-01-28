@@ -92,11 +92,11 @@
                         <!--==========================================================-->
                         <?php if($page=='ebook') {?>
                         <li>
-                            <a href="{{url('/')}}" class="active" >E-book</a>
+                            <a href="{{url('/daftar-ebook')}}" class="active" >E-book</a>
                         </li>
                         <?php } else { ?>
                         <li>
-                            <a href="{{url('/')}}" >E-book</a> 
+                            <a href="{{url('/daftar-ebook')}}" >E-book</a> 
                         </li>   
                         <?php } ?>
                         <!--==========================================================-->

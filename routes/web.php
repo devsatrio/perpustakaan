@@ -1,4 +1,7 @@
 <?php
+//===============================================frontend
+Route::resource('/list','List_buku\ListController');
+Route::get('/daftar-ebook','List_buku\ListController@ebook');
 
 //==============================================auth anggota
 Route::get('login-anggota', 'Auth\anggotaLoginController@showLoginForm');

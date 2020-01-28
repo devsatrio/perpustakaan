@@ -30,6 +30,9 @@ class BukuController extends Controller
     //=================================================================================
     public function store(Request $request)
     {
+        $judulasli = $request->input_judul;
+        $judul_lower_name=strtolower($judulasli);
+        $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
         if($request->hasFile('input_foto')){
             $nameland=$request->file('input_foto')->
             getClientOriginalname();
@@ -51,7 +54,8 @@ class BukuController extends Controller
                 'lebar'=>$request->input_lebar,
                 'deskripsi'=>$request->input_deskripsi,
                 'id_kategori'=>$request->input_kategori,
-                'gambar'=>$finalname
+                'gambar'=>$finalname,
+                'link'=>$judul_replace_space
             ]);
         }else{
             BukuModel::insert([
@@ -66,6 +70,7 @@ class BukuController extends Controller
                 'lebar'=>$request->input_lebar,
                 'id_kategori'=>$request->input_kategori,
                 'deskripsi'=>$request->input_deskripsi,
+                'link'=>$judul_replace_space
             ]);
         }
     }
@@ -81,6 +86,10 @@ class BukuController extends Controller
     //=================================================================================
     public function update(Request $request, $id)
     {
+        $judulasli = $request->edit_judul;
+        $judul_lower_name=strtolower($judulasli);
+        $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
+
          if($request->hasFile('edit_foto')){
             File::delete('img/buku/'.$request->edit_fotolama);
             $nameland=$request->file('edit_foto')->
@@ -104,7 +113,8 @@ class BukuController extends Controller
                 'lebar'=>$request->edit_lebar,
                 'deskripsi'=>$request->edit_deskripsi,
                 'id_kategori'=>$request->edit_kategori,
-                'gambar'=>$finalname
+                'gambar'=>$finalname,
+                'link'=>$judul_replace_space
             ]);
         }else{
             $data = BukuModel::where('id',$request->kode_edit)
@@ -119,7 +129,8 @@ class BukuController extends Controller
                 'berat'=>$request->edit_berat,
                 'lebar'=>$request->edit_lebar,
                 'id_kategori'=>$request->edit_kategori,
-                'deskripsi'=>$request->edit_deskripsi
+                'deskripsi'=>$request->edit_deskripsi,
+                'link'=>$judul_replace_space
             ]);
         }
     }

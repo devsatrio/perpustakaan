@@ -30,6 +30,10 @@ class ebookcontroller extends Controller
     //=================================================================================
     public function store(Request $request)
     {
+        $judulasli = $request->input_judul;
+        $judul_lower_name=strtolower($judulasli);
+        $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
+
         if($request->hasFile('input_pdf')){
             $namepdfland=$request->file('input_pdf')->
             getClientOriginalname();
@@ -59,7 +63,8 @@ class ebookcontroller extends Controller
                 'id_kategori'=>$request->input_kategori,
                 'tipe'=>'Ebook',
                 'gambar'=>$finalname,
-                'ebook'=>$finalpdfname
+                'ebook'=>$finalpdfname,
+                'link'=>$judul_replace_space
             ]);
         }else{
             BukuModel::insert([
@@ -70,7 +75,8 @@ class ebookcontroller extends Controller
                 'deskripsi'=>$request->input_deskripsi,
                 'id_kategori'=>$request->input_kategori,
                 'tipe'=>'Ebook',
-                'ebook'=>$finalpdfname
+                'ebook'=>$finalpdfname,
+                'link'=>$judul_replace_space
             ]);
         }
     }
@@ -79,6 +85,10 @@ class ebookcontroller extends Controller
     //=================================================================================
     public function update(Request $request, $id) 
     {
+        $judulasli = $request->edit_judul;
+        $judul_lower_name=strtolower($judulasli);
+        $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
+
         if($request->hasFile('edit_pdf')){
             File::delete('fileebook/'.$request->edit_filelama);
             $namepdfland=$request->file('edit_pdf')->
@@ -109,7 +119,8 @@ class ebookcontroller extends Controller
                     'deskripsi'=>$request->edit_deskripsi,
                     'id_kategori'=>$request->edit_kategori,
                     'gambar'=>$finalname,
-                    'ebook'=>$finalpdfname
+                    'ebook'=>$finalpdfname,
+                    'link'=>$judul_replace_space
                 ]);
             }else{
                 $data = BukuModel::where('id',$request->kode_edit)
@@ -120,7 +131,8 @@ class ebookcontroller extends Controller
                     'penerbit'=>$request->edit_penerbit,
                     'id_kategori'=>$request->edit_kategori,
                     'deskripsi'=>$request->edit_deskripsi,
-                    'ebook'=>$finalpdfname
+                    'ebook'=>$finalpdfname,
+                    'link'=>$judul_replace_space
                 ]);
             }
         }else{
@@ -143,7 +155,8 @@ class ebookcontroller extends Controller
                     'penerbit'=>$request->edit_penerbit,
                     'deskripsi'=>$request->edit_deskripsi,
                     'id_kategori'=>$request->edit_kategori,
-                    'gambar'=>$finalname
+                    'gambar'=>$finalname,
+                    'link'=>$judul_replace_space
                 ]);
             }else{
                 $data = BukuModel::where('id',$request->kode_edit)
@@ -153,7 +166,8 @@ class ebookcontroller extends Controller
                     'isbn'=>$request->edit_isbn,
                     'penerbit'=>$request->edit_penerbit,
                     'id_kategori'=>$request->edit_kategori,
-                    'deskripsi'=>$request->edit_deskripsi
+                    'deskripsi'=>$request->edit_deskripsi,
+                    'link'=>$judul_replace_space
                 ]);
             }
         }

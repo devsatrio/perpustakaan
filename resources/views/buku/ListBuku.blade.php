@@ -73,7 +73,9 @@
    					<li class="active">{{ $list->links() }}</li>
 				</ul>
 			</div>
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
+
+
 @endsection
