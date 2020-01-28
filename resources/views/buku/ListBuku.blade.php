@@ -63,7 +63,7 @@
                     <strong>{{ ucwords("$row->judul") }}</strong>
                 </h4>
                     <p>{{$row->deskripsi}}</p>
-                    <a href=""><button class="btn btn-success">Detail</button></a>
+                    <a href="{{url('/detailbuku/'.$row->link.'/detail')}}"><button class="btn btn-success">Detail</button></a>
 
             </div>
             @endforeach

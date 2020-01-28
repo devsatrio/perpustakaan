@@ -80,7 +80,7 @@
                         </li>    
                         <?php } ?>
                         <!--//=========================================================-->
-                        <?php if($page=='buku') {?>
+                        <?php if($page=='buku' or $page=='detail') {?>
                         <li>
                             <a href="{{url('/daftarbuku')}}" class="active" >Buku</a>
                         </li>
@@ -216,22 +216,22 @@
                 <!-- Footer Links -->
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="footer-heading">Company</h4>
+                       <!--  <h4 class="footer-heading">Company</h4>
                         <ul class="footer-nav ul-breath list-unstyled">
                             <li><a href="javascript:void(0)">About Us</a></li>
                             <li><a href="javascript:void(0)">Our Team</a></li>
                             <li><a href="javascript:void(0)">Memberships</a></li>
                             <li><a href="javascript:void(0)">Terms &amp; Conditions</a></li>
                             <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div class="col-sm-4">
-                        <h4 class="footer-heading">Need support?</h4>
+                       <!--  <h4 class="footer-heading">Need support?</h4>
                         <ul class="footer-nav footer-nav-links list-inline">
                             <li><a href="javascript:void(0)"><i class="fa fa-fw fa-book"></i> Knowledge Base</a></li>
                             <li><a href="javascript:void(0)"><i class="fa fa-fw fa-support"></i> FAQ</a></li>
-                        </ul>
-                        <h4 class="footer-heading">We are social!</h4>
+                        </ul> -->
+                        <!-- <h4 class="footer-heading">We are social!</h4>
                         <ul class="footer-nav footer-nav-links list-inline">
                             <li><a href="javascript:void(0)" class="social-facebook" data-toggle="tooltip"
                                     title="Like our Facebook page"><i class="fa fa-fw fa-facebook"></i></a></li>
@@ -244,9 +244,9 @@
                             <li><a href="javascript:void(0)" class="social-youtube" data-toggle="tooltip"
                                     title="Subscribe to our Youtube channel"><i
                                         class="fa fa-fw fa-youtube-play"></i></a></li>
-                        </ul>
+                        </ul> -->
                     </div>
-                    <div class="col-sm-4">
+                   <!--  <div class="col-sm-4">
                         <h4 class="footer-heading">Newsletter</h4>
                         <form action="index.html" method="post" class="form-inline" onsubmit="return false;">
                             <div class="form-group">
@@ -263,7 +263,7 @@
                         <h4 class="footer-heading"><a href="http://goo.gl/RcsdAh">AppUI - Frontend</a></h4>
                         <em><span id="year-copy"></span></em> &copy; Crafted with <i
                             class="fa fa-heart text-danger"></i> by <a href="http://goo.gl/vNS3I">pixelcave</a>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- END Footer Links -->
             </div>

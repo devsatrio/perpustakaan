@@ -15,6 +15,13 @@ class ListController extends Controller
 		$page = 'buku';
 		return view('buku/ListBuku',['list'=>$list,'page'=>$page]);
 	}
+	//==================================================================
+	public function detail($link)
+    {
+   	$view = DB::table('buku')->where('link','=',$link)->first();
+   	$page = 'detail';
+    return view('buku/DetailBuku',['view'=>$view,'page'=>$page]);
+    }
 
 	//===================================================================	
 	public function ebook(){
