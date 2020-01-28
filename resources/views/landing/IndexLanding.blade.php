@@ -6,13 +6,13 @@
             <section class="site-section site-section-top site-section-light themed-background-dark-default">
                 <div class="container">
                     <div class="push text-center">
-                        <h1 class="animation-fadeInQuick2Inv"><strong>A powerful template for your new project.</strong></h1>
-                        <h2 class="text-light-op animation-fadeInQuickInv push-bit"><strong>Build something amazing.</strong></h2>
+                        <h1 class="animation-fadeInQuick2Inv"><strong>Selamat Datang Di Perpustakaan Online</strong></h1>
+                       <!--  <h2 class="text-light-op animation-fadeInQuickInv push-bit"><strong>Build something amazing.</strong></h2>
                         <a href="http://goo.gl/RcsdAh" class="btn btn-lg btn-success push-right-left"><strong>Purchase</strong></a>
-                        <a href="http://demo.pixelcave.com/appui" class="btn btn-lg btn-info push-right-left"><strong>Live Preview</strong></a>
+                        <a href="http://demo.pixelcave.com/appui" class="btn btn-lg btn-info push-right-left"><strong>Live Preview</strong></a> -->
                     </div>
-                    <div class="site-promo-img visibility-none" data-toggle="animation-appear" data-animation-class="animation-slideUpQuick" data-element-offset="0">
-                        <img src="{{asset('assets_user/img/placeholders/screenshots/promo_welcome.png')}}" alt="">
+                    <div class="site-promo-img visibility-none" data-toggle="animation-appear" data-animation-class="animation-slideUpQuick" data-element-offset="0" align="center">
+                        <img src="{{asset('assets_user/img/placeholders/screenshots/public-library-interior-stack-book-bookshelf-flat_7081-838.jpg')}}" alt="">
                     </div>
                 </div>
             </section>
