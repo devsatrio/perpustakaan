@@ -18,6 +18,7 @@ class ListController extends Controller
 
 	//===================================================================	
 	public function ebook(){
+		$kategori = DB::table('kategori_buku')->orderby('id','desc')->get();
 		$data = DB::table('buku')
 		->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
 		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
@@ -25,7 +26,24 @@ class ListController extends Controller
 		->orderby('buku.id','desc')
 		->paginate(10);
 		$page = 'ebook';
-		return view('buku.ListEbook',['data'=>$data,'page'=>$page]);
+		return view('buku.ListEbook',['data'=>$data,'kategori'=>$kategori,'page'=>$page]);
+	}
+	
+	//========================================================================
+	public function showebook($detail){
+		$data = DB::table('buku')
+		->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+		->where([['buku.tipe','Ebook'],['buku.link',$detail]])
+		->orderby('buku.id','desc')
+		->first();
+		$datalain = DB::table('buku')
+		->where('buku.tipe','Ebook')
+		->inRandomOrder()
+		->inRandomOrder()
+		->get();
+		$page = 'ebook';
+		return view('buku.Detailebook',['datalain'=>$datalain,'data'=>$data,'page'=>$page]);
 	}
 }
 

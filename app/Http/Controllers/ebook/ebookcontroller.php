@@ -64,7 +64,9 @@ class ebookcontroller extends Controller
                 'tipe'=>'Ebook',
                 'gambar'=>$finalname,
                 'ebook'=>$finalpdfname,
-                'link'=>$judul_replace_space
+                'link'=>$judul_replace_space,
+                'bahasa'=>$request->input_bahasa,
+                'halaman'=>$request->input_halaman,
             ]);
         }else{
             BukuModel::insert([
@@ -76,7 +78,9 @@ class ebookcontroller extends Controller
                 'id_kategori'=>$request->input_kategori,
                 'tipe'=>'Ebook',
                 'ebook'=>$finalpdfname,
-                'link'=>$judul_replace_space
+                'link'=>$judul_replace_space,
+                'bahasa'=>$request->input_bahasa,
+                'halaman'=>$request->input_halaman,
             ]);
         }
     }
@@ -120,7 +124,9 @@ class ebookcontroller extends Controller
                     'id_kategori'=>$request->edit_kategori,
                     'gambar'=>$finalname,
                     'ebook'=>$finalpdfname,
-                    'link'=>$judul_replace_space
+                    'link'=>$judul_replace_space,
+                    'bahasa'=>$request->edit_bahasa,
+                    'halaman'=>$request->edit_halaman,
                 ]);
             }else{
                 $data = BukuModel::where('id',$request->kode_edit)
@@ -132,12 +138,13 @@ class ebookcontroller extends Controller
                     'id_kategori'=>$request->edit_kategori,
                     'deskripsi'=>$request->edit_deskripsi,
                     'ebook'=>$finalpdfname,
-                    'link'=>$judul_replace_space
+                    'link'=>$judul_replace_space,
+                    'bahasa'=>$request->edit_bahasa,
+                    'halaman'=>$request->edit_halaman,
                 ]);
             }
         }else{
             if($request->hasFile('edit_foto')){
-            
                 File::delete('img/buku/'.$request->edit_fotolama);
                 $nameland=$request->file('edit_foto')->
                 getClientOriginalname();
@@ -156,7 +163,9 @@ class ebookcontroller extends Controller
                     'deskripsi'=>$request->edit_deskripsi,
                     'id_kategori'=>$request->edit_kategori,
                     'gambar'=>$finalname,
-                    'link'=>$judul_replace_space
+                    'link'=>$judul_replace_space,
+                    'bahasa'=>$request->edit_bahasa,
+                    'halaman'=>$request->edit_halaman,
                 ]);
             }else{
                 $data = BukuModel::where('id',$request->kode_edit)
@@ -167,7 +176,9 @@ class ebookcontroller extends Controller
                     'penerbit'=>$request->edit_penerbit,
                     'id_kategori'=>$request->edit_kategori,
                     'deskripsi'=>$request->edit_deskripsi,
-                    'link'=>$judul_replace_space
+                    'link'=>$judul_replace_space,
+                    'bahasa'=>$request->edit_bahasa,
+                    'halaman'=>$request->edit_halaman,
                 ]);
             }
         }

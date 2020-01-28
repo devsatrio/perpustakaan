@@ -33,7 +33,9 @@
             <div class="col-xs-12">
                 <div class="counter site-block">
                     <span>Kategori</span>
-                    <small>Pages</small>
+                    @foreach($kategori as $row)
+                    <a href="#" class="btn btn-sm btn-danger">{{$row->nama}} </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -56,7 +58,7 @@
                     <strong>{{ ucwords($row->judul)}}</strong>
                 </h4>
                 <p>{{ substr($row->deskripsi, 0, 500)}}...</p>
-                <button class="btn btn-primary">Detail Ebook</button>
+                <a href="{{ url('/detail-ebook/'.$row->link) }}" class="btn btn-primary">Detail Ebook</a>
             </div>
         </div>
     </div>

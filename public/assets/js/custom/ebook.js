@@ -66,6 +66,8 @@ $(document).ready(function () {
                         $("#input_deskripsi").val('');
                         $("#input_foto").val('');
                         $('#input_pdf').val('');
+                        $("#input_halaman").val('');
+                        $('#input_bahasa').val('');
                     },
                     complete: function (data) {
                         $('#halinput').loading('stop');
@@ -135,6 +137,8 @@ $(document).ready(function () {
                     $('#edit_fotolama').val(value.gambar);
                     $('#edit_filelama').val(value.ebook);
                     $('#edit_kategori').val(value.id_kategori);
+                    $('#edit_halaman').val(value.halaman);
+                    $('#edit_bahasa').val(value.bahasa);
                     if (value.gambar != 'n') {
                         $("#imagebuku").attr("src", "img/buku/" + value.gambar);
                     } else {

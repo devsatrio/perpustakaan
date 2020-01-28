@@ -2,6 +2,7 @@
 //===============================================frontend
 Route::resource('/list','List_buku\ListController');
 Route::get('/daftar-ebook','List_buku\ListController@ebook');
+Route::get('/detail-ebook/{detail}','List_buku\ListController@showebook');
 
 //==============================================auth anggota
 Route::get('login-anggota', 'Auth\anggotaLoginController@showLoginForm');

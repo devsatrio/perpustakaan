@@ -80,6 +80,18 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-hf-email">Jumlah Halaman</label>
+                        <div class="col-md-9">
+                            <input type="number" min="0" id="input_halaman" name="input_halaman" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-hf-email">Bahasa</label>
+                        <div class="col-md-9">
+                            <input type="text" id="input_bahasa" name="input_bahasa" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">Kategori</label>
                         <div class="col-md-9">
                             <select name="input_kategori" id="input_kategori" class="form-control">
@@ -116,7 +128,7 @@
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
                             <button type="submit" class="btn btn-effect-ripple btn-primary" id="simpan">Simpan</button>
-                            <button type="button" class="btn btn-effect-ripple btn-danger" id="kembali">Kembali</button>
+                            <button type="reset" class="btn btn-effect-ripple btn-danger" id="kembali">Kembali</button>
                         </div>
                     </div>
                 </form>
@@ -151,6 +163,18 @@
                         <label class="col-md-3 control-label" for="example-hf-email">ISBN</label>
                         <div class="col-md-9">
                             <input type="text" id="edit_isbn" name="edit_isbn" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-hf-email">Jumlah Halaman</label>
+                        <div class="col-md-9">
+                            <input type="number" min="0" id="edit_halaman" name="edit_halaman" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-hf-email">Bahasa</label>
+                        <div class="col-md-9">
+                            <input type="text" id="edit_bahasa" name="edit_bahasa" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
