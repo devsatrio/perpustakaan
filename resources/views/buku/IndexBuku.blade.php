@@ -151,7 +151,7 @@
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
                             <button type="submit" class="btn btn-effect-ripple btn-primary" id="simpan">Simpan</button>
-                            <button type="button" class="btn btn-effect-ripple btn-danger" id="kembali">Kembali</button>
+                            <button type="reset" class="btn btn-effect-ripple btn-danger" id="kembali">Kembali</button>
                         </div>
                     </div>
                 </form>

@@ -3,6 +3,8 @@
 Route::get('/daftarbuku','List_buku\ListController@index');
 Route::get('/daftar-ebook','List_buku\ListController@ebook');
 Route::get('/detailbuku/{link}/detail','List_buku\ListController@detail');
+Route::get('/detail-ebook/{detail}','List_buku\ListController@showebook');
+
 
 //==============================================auth anggota
 Route::get('login-anggota', 'Auth\anggotaLoginController@showLoginForm');

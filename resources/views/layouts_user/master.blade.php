@@ -215,6 +215,7 @@
             <div class="container">
                 <!-- Footer Links -->
                 <div class="row">
+
                     <div class="col-sm-4">
                        <!--  <h4 class="footer-heading">Company</h4>
                         <ul class="footer-nav ul-breath list-unstyled">
@@ -260,6 +261,10 @@
                                 </div>
                             </div>
                         </form>
+
+                    <div class="col-sm-12 text-center">
+                       
+
                         <h4 class="footer-heading"><a href="http://goo.gl/RcsdAh">AppUI - Frontend</a></h4>
                         <em><span id="year-copy"></span></em> &copy; Crafted with <i
                             class="fa fa-heart text-danger"></i> by <a href="http://goo.gl/vNS3I">pixelcave</a>
