@@ -14,7 +14,8 @@ class LandingController extends Controller
 	public function index(){
 		$users = DB::table('users')->get();
 		$data = DB::table('anggota')->get();
-	return view('landing/IndexLanding',['user'=>$users,'anggota'=>$data]);
+		$page = 'home';
+	return view('landing/IndexLanding',['user'=>$users,'anggota'=>$data,'page'=>$page]);
 	}
 
 }
