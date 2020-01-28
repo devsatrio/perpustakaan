@@ -1,6 +1,6 @@
 <?php
 //===============================================frontend
-Route::resource('/list','List_buku\ListController');
+Route::get('/daftarbuku','List_buku\ListController@index');
 Route::get('/daftar-ebook','List_buku\ListController@ebook');
 Route::get('/detail-ebook/{detail}','List_buku\ListController@showebook');
 
@@ -34,6 +34,7 @@ Route::resource('/ebook','ebook\ebookcontroller');
 //================================================buku
 Route::get('buku/get/json','Buku\BukuController@json');
 Route::resource('/buku','Buku\BukuController');
+
 
 //================================================Anggota
 Route::get('anggota/get/json','Anggota\AnggotaController@json');
