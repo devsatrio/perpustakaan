@@ -57,7 +57,7 @@
             <div class="container">
                 <!-- Site Logo -->
                 <a href="index.html" class="site-logo">
-                    <i class="fa fa-cube"></i> App<strong>UI</strong>
+                    <i class="fa fa-cube"></i> PERPUSTAKAAN<strong></strong>
                 </a>
                 <!-- END Site Logo -->
 
@@ -70,9 +70,37 @@
 
                     <!-- Main Menu -->
                     <ul class="site-nav">
+                        <?php if($page=='home') {?>
                         <li>
-                            <a href="{{url('/')}}" class="active">Home</a>
+                            <a href="{{url('/')}}" class="active" >Home</a>
                         </li>
+                        <?php } else { ?>
+                        <li>
+                            <a href="{{url('/')}}" >Home</a>
+                        </li>    
+                        <?php } ?>
+                        <!--//=========================================================-->
+                        <?php if($page=='buku') {?>
+                        <li>
+                            <a href="{{url('/list')}}" class="active" >Buku</a>
+                        </li>
+                        <?php } else { ?>
+                        <li>
+                            <a href="{{url('/list')}}" >Buku</a> 
+                        </li>   
+                        <?php } ?>
+                        <!--==========================================================-->
+                        <?php if($page=='ebook') {?>
+                        <li>
+                            <a href="{{url('/')}}" class="active" >E-book</a>
+                        </li>
+                        <?php } else { ?>
+                        <li>
+                            <a href="{{url('/')}}" >E-book</a> 
+                        </li>   
+                        <?php } ?>
+                        <!--==========================================================-->
+                        
                         @if(Auth::guard('anggota')->check())
                         <li class="dropdown ">
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
@@ -94,6 +122,9 @@
                             <a href="{{url('/login-anggota')}}">Login</a>
                         </li>
                         @endif
+
+                        
+                        
 
                         <!-- <li>
                                 <a href="pricing.html">Pricing</a>
