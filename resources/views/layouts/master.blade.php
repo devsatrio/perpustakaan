@@ -221,6 +221,10 @@
                                 <a href="{{url('/denda')}}"><i class="fa fa-bomb sidebar-nav-icon"></i><span
                                         class="sidebar-nav-mini-hide">Denda</span></a>
                             </li>
+                            <li>
+                                <a href="{{url('/setting')}}"><i class="fa fa-cogs sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Setting</span></a>
+                            </li>
                         </ul>
                         <!-- END Sidebar Navigation -->
 

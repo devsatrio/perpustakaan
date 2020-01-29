@@ -142,6 +142,11 @@ class PinjamController extends Controller
     //================================================================================= 
     public function simpandenda(Request $request)
     {
+        $data = DB::table('pinjam')->where('id',$request->kode)->first();
+        DB::table('anggota')->where('id',$data->id_anggota)
+        ->update([
+            'status_pinjam'=>'n'
+        ]);
         DB::table('pinjam')
         ->where('id',$request->kode)
         ->update([

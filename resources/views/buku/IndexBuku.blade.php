@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-password">Foto</label>
                         <div class="col-md-9">
-                            <input type="file" id="input_foto" name="input_foto">
+                            <input type="file" id="input_foto" name="input_foto" accept="image/*" >
                         </div>
                     </div>
                     <div class="form-group form-actions">
@@ -262,7 +262,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">Foto</label>
                         <div class="col-md-9">
-                            <input type="file" id="edit_foto" name="edit_foto">
+                            <input type="file" id="edit_foto" name="edit_foto" accept="image/*" >
 
                         </div>
                     </div>

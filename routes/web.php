@@ -22,6 +22,10 @@ Auth::routes();
 //================================================home
 Route::get('/home','Home\HomeController@index');
 
+//================================================Setting
+Route::get('/setting','setting\Settingcontroller@index');
+Route::post('/setting','setting\Settingcontroller@update');
+
 //================================================Kategori
 Route::get('kategori/get/json','Kategori\Kategori@json');
 Route::resource('/kategori','Kategori\Kategori');
