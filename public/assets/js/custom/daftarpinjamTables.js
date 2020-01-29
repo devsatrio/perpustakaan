@@ -32,7 +32,7 @@ var UiTables = function() {
                             if(new Date() <= new Date(row['tgl_harus_kembali'])){
                                 return '<button class="btn btn-success" onclick="updatestatus('+row['id']+')"><i class="fa fa-check"></i></button>';
                             }else{
-                                return '<button class="btn btn-danger" onclick="updatedenda('+row['id']+','+row['id_anggota']+')"><i class="fa fa-check"></i></button>';
+                               return '<button class="btn btn-danger" onclick="updatedenda('+row['id']+','+row['id_anggota']+')"><i class="fa fa-check"></i></button>';
                             }
                                     
                         }else{

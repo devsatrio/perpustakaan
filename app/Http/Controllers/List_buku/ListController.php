@@ -45,6 +45,26 @@ class ListController extends Controller
 		$page = 'ebook';
 		return view('buku.Detailebook',['datalain'=>$datalain,'data'=>$data,'page'=>$page]);
 	}
+
+	//=============================================================================
+	public function readebook($detail){
+		$data = DB::table('buku')
+		->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+		->where([['buku.tipe','Ebook'],['buku.link',$detail]])
+		->orderby('buku.id','desc')
+		->first();
+
+		$newbaca = $data->dibaca + 1;
+
+		DB::table('buku')
+		->where('id',$data->id)
+		->update([
+			'dibaca'=>$newbaca
+		]);
+
+		return view('buku.Bacaebook',['data'=>$data,'page'=>'eboook']);
+	}
 }
 
 ?>

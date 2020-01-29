@@ -3,6 +3,7 @@
 Route::get('/daftarbuku','List_buku\ListController@index');
 Route::get('/daftar-ebook','List_buku\ListController@ebook');
 Route::get('/detail-ebook/{detail}','List_buku\ListController@showebook');
+Route::get('/baca-ebook/{detail}','List_buku\ListController@readebook');
 
 //==============================================auth anggota
 Route::get('login-anggota', 'Auth\anggotaLoginController@showLoginForm');
@@ -43,6 +44,7 @@ Route::resource('/anggota','Anggota\AnggotaController');
 //=================================================peminjaman
 Route::get('/pinjam','Pinjam\PinjamController@pinjam');
 Route::post('/pinjam','Pinjam\PinjamController@store');
+Route::get('/caripeminjaman/{id}','Pinjam\PinjamController@caripeminjaman');
 Route::get('/carianggota','Pinjam\PinjamController@carianggota');
 Route::get('/carihasilanggota/{id}','Pinjam\PinjamController@carihasilanggota');
 Route::get('/caribuku','Pinjam\PinjamController@caribuku');

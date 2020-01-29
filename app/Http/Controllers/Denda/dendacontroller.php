@@ -35,7 +35,7 @@ class dendacontroller extends Controller
         ->whereBetween('pinjam.tgl_kembali', [$request->tgl_satu, $request->tgl_dua])
         ->orderby('pinjam.id','desc')
         ->get();
-        return view('denda.cari',['data'=>$data]);
+        return view('denda.cari',['data'=>$data,'tglsatu'=>$request->tgl_satu,'tgldua'=>$request->tgl_dua]);
     }
 
     /**

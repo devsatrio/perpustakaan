@@ -74,7 +74,8 @@ class PinjamController extends Controller
         ->join('users','users.id','=','pinjam.id_user')
         ->orderby('pinjam.id','desc')
         ->get();
-        return view('peminjaman/daftarpinjam',['data'=>$data]);
+        $setting = DB::table('setting')->orderby('id','desc')->first();
+        return view('peminjaman/daftarpinjam',['data'=>$data,'setting'=>$setting]);
     }
 
     //================================================================================= 
@@ -107,7 +108,10 @@ class PinjamController extends Controller
         ->update([
             'dipinjam'=>$newpijam
         ]);
-        
+        DB::table('anggota')->where('id',$request->kode_anggota)
+        ->update([
+            'status_pinjam'=>'y'
+        ]);
         DB::table('pinjam')
         ->insert([
             'id_user' => $request->kode_user,
@@ -120,6 +124,11 @@ class PinjamController extends Controller
     //================================================================================= 
     public function updatestatus($id)
     {
+        $data = DB::table('pinjam')->where('id',$id)->first();
+        DB::table('anggota')->where('id',$data->id_anggota)
+        ->update([
+            'status_pinjam'=>'n'
+        ]);
         DB::table('pinjam')->where('id',$id)
         ->update([
             'tgl_kembali'=>date('Y-m-d')
@@ -137,7 +146,9 @@ class PinjamController extends Controller
         ->where('id',$request->kode)
         ->update([
             'tgl_kembali'=>date('Y-m-d'),
-            'denda'=>$request->jumlah
+            'denda'=>$request->jumlah,
+            'denda_lain'=>$request->jumlah_lain,
+            'keterangan_denda'=>$request->keterangan,
         ]);
     }
     //================================================================================= 
@@ -150,5 +161,12 @@ class PinjamController extends Controller
         ->orderby('jumlah','desc')
         ->get();
         return view('peminjaman\peminjamaktif',['data'=>$data]);
+    }
+    //=====================================================================================
+    public function caripeminjaman($id){
+        $data = DB::table('pinjam')
+        ->where('id',$id)
+        ->get();
+        return response()->json($data);
     }
 }

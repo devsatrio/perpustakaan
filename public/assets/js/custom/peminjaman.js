@@ -28,10 +28,14 @@ $(document).ready(function () {
 			success: function (data) {
 				return {
 					results: $.map(data, function (item) {
-						$('#kode_anggota').val(item.id);
-						$("#nama_anggota").val(item.nama);
-						$('#alamat_anggota').val(item.alamat);
-						$('#telp_anggota').val(item.notelp);
+						if(item.status_pinjam=='y'){
+							swal('Peringatan','Anggota ini masih meminjam buku, cek di list peminjaman','error');
+						}else{
+							$('#kode_anggota').val(item.id);
+							$("#nama_anggota").val(item.nama);
+							$('#alamat_anggota').val(item.alamat);
+							$('#telp_anggota').val(item.notelp);
+						}
 					})
 				}
 			},
@@ -62,7 +66,7 @@ $(document).ready(function () {
 	});
 
 	//======================================================
-	$('#buku').on('select2:select', function (e) {
+	$('#buku').on('select2:select', function (e){
 		var kode = $(this).val();
 		$('#halinput').loading('toggle');
 		$.ajax({
