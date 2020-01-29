@@ -28,8 +28,9 @@ class LandingController extends Controller
 		$count2 =DB::table('buku')->where('tipe','=','Ebook')->count();
 		$count3 =DB::table('anggota')->count();
 		$kategori = DB::table('kategori_buku')->orderby('id','desc')->get();
+		$setting = DB::table('setting')->select('*')->get();
 		$page = 'home';
-	return view('landing/IndexLanding',['list'=>$list,'list_ebook'=>$list_ebook,'kategori'=>$kategori,'page'=>$page,'count'=>$count1,'count2'=>$count2,'count3'=>$count3]);
+	return view('landing/IndexLanding',['list'=>$list,'list_ebook'=>$list_ebook,'kategori'=>$kategori,'page'=>$page,'count'=>$count1,'count2'=>$count2,'count3'=>$count3,'setting'=>$setting]);
 	}
 
 }

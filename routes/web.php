@@ -4,8 +4,10 @@ Route::get('/daftarbuku','List_buku\ListController@index');
 Route::get('/daftar-ebook','List_buku\ListController@ebook');
 Route::get('/detailbuku/{link}/detail','List_buku\ListController@detail');
 Route::get('/detail-ebook/{detail}','List_buku\ListController@showebook');
-Route:: get('/kategori-buku/{id}','List_buku\ListController@kategori');
+Route::get('/kategori-buku/{id}','List_buku\ListController@kategori');
+Route::get('/kategori-ebook/{id}','List_buku\ListController@kategori_ebook');
 Route::get('/baca-ebook/{detail}','List_buku\ListController@readebook');
+Route::get('/pencarian/cari','List_buku\ListController@cari');
 
 
 //==============================================auth anggota

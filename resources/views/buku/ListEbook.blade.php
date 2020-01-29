@@ -14,7 +14,7 @@
 <section class="site-content site-section themed-background-muted">
     <div class="container">
         <div class="site-block">
-            <form action="search_results.html" method="post">
+            <form action="{{ url('pencarian/cari') }}" method="get">
                 <div class="input-group input-group-lg">
                     <input type="text" id="site-search" name="site-search" class="form-control"
                         placeholder="Cari Berdasarkan Judul / Penerbit / Penulis">
@@ -33,8 +33,9 @@
             <div class="col-xs-12">
                 <div class="counter site-block">
                     <span>Kategori</span>
+                    <br>
                     @foreach($kategori as $row)
-                    <a href="#" class="btn btn-sm btn-danger">{{$row->nama}} </a>
+                    <a href="{{url('/kategori-ebook/'.$row->id)}}" class="btn btn-lg btn-success">{{$row->nama}} </a>
                     @endforeach
                 </div>
             </div>
@@ -69,6 +70,15 @@
         {{ $data->links() }}
     </div>
     </div>
+</section>
+<section class="site-content site-section overflow-hidden border-bottom">
+    <div class="container">
+    <div class="text-center visibility-none" data-toggle="animation-appear"
+                data-animation-class="animation-fadeInRight" data-element-offset="-20">
+          <a onclick="window.history.go(-1);" class="btn btn-danger btn-lg text-white">Kembali</a>
+    </div>
+    </div>
+    <br>
 </section>
 <!-- END Team Member 5 -->
 @endsection

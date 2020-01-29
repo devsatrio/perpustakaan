@@ -4,17 +4,19 @@
     @endsection
     @section('content')
             <section class="site-section site-section-top site-section-light themed-background-dark-default">
+                @foreach($setting as $row)
                 <div class="container">
                     <div class="push text-center">
-                        <h1 class="animation-fadeInQuick2Inv"><strong>Selamat Datang Di Perpustakaan</strong></h1>
-                       <!--  <h2 class="text-light-op animation-fadeInQuickInv push-bit"><strong>Build something amazing.</strong></h2>
-                        <a href="http://goo.gl/RcsdAh" class="btn btn-lg btn-success push-right-left"><strong>Purchase</strong></a>
+                        <h1 class="animation-fadeInQuick2Inv"><strong>{{ucwords($row->landing_text)}}</strong></h1>
+                        <h2 class="text-light-op animation-fadeInQuickInv push-bit"><strong>{{ucwords($row->sublanding_text)}}</strong></h2>
+                       <!--  <a href="http://goo.gl/RcsdAh" class="btn btn-lg btn-success push-right-left"><strong>Purchase</strong></a>
                         <a href="http://demo.pixelcave.com/appui" class="btn btn-lg btn-info push-right-left"><strong>Live Preview</strong></a> -->
                     </div>
                     <div class="site-promo-img visibility-none" data-toggle="animation-appear" data-animation-class="animation-slideUpQuick" data-element-offset="0" align="center">
-                        <img src="{{asset('assets_user/img/placeholders/screenshots/public-library-interior-stack-book-bookshelf-flat_7081-837.jpg')}}" alt="">
+                        <img src="{{asset('img/setting/'.$row->gambar)}}" alt="">
                     </div>
                 </div>
+                @endforeach
             </section>
             <!-- <section class="site-content site-section">
                 <div class="container">
@@ -33,6 +35,22 @@
                     </div>
                 </div>
             </section> -->
+            <section class="site-content site-section themed-background-light">
+                <div class="container">
+                   <!--  <h2 class="site-heading text-center text-dark">Sign up today and receive <strong>30% discount</strong>!</h2> -->
+                    <div class="site-block text-center">
+                        <form action="{{ url('pencarian/cari') }}" method="get">
+                            <div class="input-group input-group-lg">
+
+                                <input type="text" id="site-search" name="cari" class="form-control" placeholder="Cari Berdasarkan Judul / Penerbit / Penulis">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
             <section class="site-content site-section">
                 <div class="container">
                     <div class="row row-items">
@@ -138,17 +156,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 push">
-                            <h2 align="center">Kategori</h2>
+                            <h2 align="center" style="font-family: Agency FB;"><strong>Kategori</strong></h2>
                             <br>
                             @foreach($kategori as $row)
-                            <h3 class="site-heading"><strong>{{ucfirst($row->nama)}}</strong></h3>
+                            <h3 class="site-heading "><a href="{{url('/kategori-buku/'.$row->id)}}" style="color:#434343;"><strong class="fa fa-check-square">&nbsp;&nbsp;{{ucfirst($row->nama)}}</strong></a></h3>
                             <!-- <p class="feature-text text-muted push">Time is of vital importance. <strong>AppUI</strong> will save you hundreds of hours of extra development. Start right away coding your functionality and see your project come to life months sooner.</p> -->
                            <!--  <h2 class="site-heading"><strong>Ready Designed Pages</strong></h2> -->
                             <!-- <p class="feature-text text-muted">15+ ready to use pages. The UI is ready, create the functionality. Dashboard, Login, Register, Social Net, Email Center, Media Box, Invoice, FAQ, Search Results and even more. Check them all out at the live preview.</p> -->
                             @endforeach
                         </div>
                         <div class="col-sm-6 clearfix push">
-                            <img src="{{asset('assets_user/img/placeholders/screenshots/promo_3.png')}}" alt="" class="img-responsive pull-right visibility-none" data-toggle="animation-appear" data-animation-class="animation-fadeInLeft" data-element-offset="-200" style="max-width: 450px; margin-right: -130px;">
+                            <img src="{{asset('assets_user/img/placeholders/screenshots/9cb1d6cfc4603e8a610c3637b2d1aa1504232270.jpg')}}" alt="" class="img-responsive pull-right visibility-none" data-toggle="animation-appear" data-animation-class="animation-fadeInLeft" data-element-offset="-200" style="max-width: 450px; margin-right: -130px;">
                         </div>
                     </div>
                 </div>

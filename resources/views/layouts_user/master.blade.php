@@ -59,9 +59,6 @@
                 <a href="{{url('/')}}" class="site-logo">
                     <i class="fa fa-book"></i>&nbsp;&nbsp;PERPUSTAKAAN<strong></strong>
                 </a>
-                <!-- END Site Logo -->
-
-                <!-- Site Navigation -->
                 <nav>
                     <!-- Menu Toggle -->
                     <!-- Toggles menu on small screens -->
@@ -70,6 +67,7 @@
 
                     <!-- Main Menu -->
                     <ul class="site-nav">
+                        
                         <?php if($page=='home') {?>
                         <li>
                             <a href="{{url('/')}}" class="active" >Home</a>

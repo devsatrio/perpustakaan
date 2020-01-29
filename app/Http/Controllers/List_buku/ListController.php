@@ -56,6 +56,24 @@ class ListController extends Controller
     	$page = 'buku';
     	return view('buku/KategoriBuku',['data'=>$data,'page'=>$page,'kategori'=>$kategori]);    	
     }
+    //==================================================================
+     public function kategori_ebook($id)
+    {
+    	$data = DB::table('buku')
+    	->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+    	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+    	->where([['buku.tipe','Ebook'],['buku.id_kategori',$id]])
+    	->orderby('buku.id','desc')
+    	->paginate(12);
+    	$kategori = DB::table('buku')
+    	->select(DB::raw('buku.*,kategori_buku.nama as kategori'))
+    	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+    	->where([['buku.tipe','Ebook'],['buku.id_kategori',$id]])
+    	->groupby('buku.id_kategori')
+    	->get();
+    	$page = 'buku';
+    	return view('buku/KategoriBuku',['data'=>$data,'page'=>$page,'kategori'=>$kategori]);    	
+    }
 
 	//===================================================================	
 	public function ebook(){
@@ -105,6 +123,20 @@ class ListController extends Controller
 		]);
 
 		return view('buku.Bacaebook',['data'=>$data,'page'=>'eboook']);
+	}
+	//=============================================================================
+	public function cari(Request $request)
+	{
+		$data = $request->cari;
+		$hasil = DB::table('buku')
+		->select(DB::raw('buku.*,kategori_buku.nama as kategori'))
+		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+		->where('judul','like','%'.$data.'%')
+		->orwhere('penulis','like','%'.$data.'%')
+		->orwhere('penerbit','like','%'.$data.'%')->paginate(6);
+		$page='home';
+
+		return view('buku.Pencarian',['hasil'=>$hasil , 'page'=>$page]);
 	}
 }
 
