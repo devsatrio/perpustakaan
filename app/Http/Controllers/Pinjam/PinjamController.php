@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Pinjam;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Exports\pinjamexport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 
@@ -129,15 +131,36 @@ class PinjamController extends Controller
         ->update([
             'status_pinjam'=>'n'
         ]);
+
         DB::table('pinjam')->where('id',$id)
         ->update([
             'tgl_kembali'=>date('Y-m-d')
         ]);    
     }
 
-    public function edit($id)
+    //================================================================================= 
+    public function laporan()
     {
-        //
+        $data = DB::table('pinjam')
+        ->select(DB::raw('pinjam.*,users.username,anggota.nama,buku.judul'))
+        ->join('anggota','anggota.id','=','pinjam.id_anggota')
+        ->join('buku','buku.id','=','pinjam.id_buku')
+        ->join('users','users.id','=','pinjam.id_user')
+        ->orderby('pinjam.id','desc')
+        ->get();
+        return view('peminjaman.laporanpinjam',['data'=>$data]);
+    }
+    //=================================================================================
+    public function carilaporan(Request $request){
+        $data = DB::table('pinjam')
+        ->select(DB::raw('pinjam.*,users.username,anggota.nama,buku.judul'))
+        ->join('anggota','anggota.id','=','pinjam.id_anggota')
+        ->join('buku','buku.id','=','pinjam.id_buku')
+        ->join('users','users.id','=','pinjam.id_user')
+        ->whereBetween('pinjam.tgl_pinjam', [$request->tgl_satu, $request->tgl_dua])
+        ->orderby('pinjam.id','desc')
+        ->get();
+        return view('peminjaman.carilaporanpinjam',['data'=>$data,'tglsatu'=>$request->tgl_satu,'tgldua'=>$request->tgl_dua]);
     }
     //================================================================================= 
     public function simpandenda(Request $request)
@@ -167,11 +190,18 @@ class PinjamController extends Controller
         ->get();
         return view('peminjaman\peminjamaktif',['data'=>$data]);
     }
+    
     //=====================================================================================
     public function caripeminjaman($id){
         $data = DB::table('pinjam')
         ->where('id',$id)
         ->get();
         return response()->json($data);
+    }
+
+    //=====================================================================================
+    public function exportlaporan($tglsatu,$tgldua){
+        $namafile = "peminjaman tgl ".$tglsatu."-".$tgldua.".xlsx";
+        return Excel::download(new pinjamexport($tglsatu,$tgldua),$namafile);
     }
 }
