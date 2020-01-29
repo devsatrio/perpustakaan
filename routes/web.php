@@ -69,3 +69,4 @@ Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');
 //=======================================================denda
 Route::get('/denda','Denda\dendacontroller@index');
 Route::post('/caridenda','Denda\dendacontroller@cari');
+Route::get('/denda/{tglsatu}/{tgldua}','Denda\dendacontroller@exportdenda');

@@ -48,7 +48,8 @@
                 <div class="block-title">
                     <h2>List Denda Dari "{{$tglsatu}}" Sampai "{{$tgldua}}" </h2>
                 </div>
-
+                <a href="{{url('/denda/'.$tglsatu.'/'.$tgldua)}}" class="btn btn-success"><i class="fa fa-download"></i> Export Excel</a>
+                <br><br>
                 <div class="table-responsive">
                     <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                         <thead>
