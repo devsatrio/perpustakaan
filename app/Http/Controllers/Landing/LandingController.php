@@ -12,10 +12,24 @@ class LandingController extends Controller
 {
 
 	public function index(){
-		$users = DB::table('users')->get();
-		$data = DB::table('anggota')->get();
+		$list = DB::table('buku')
+		->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+		->where('buku.tipe','Book')
+		->orderby('buku.id','desc')
+		->paginate(9);
+		$list_ebook = DB::table('buku')
+		->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+		->where('buku.tipe','Ebook')
+		->orderby('buku.id','desc')
+		->paginate(9);
+		$count1 =DB::table('buku')->where('tipe','=','Book')->count();
+		$count2 =DB::table('buku')->where('tipe','=','Ebook')->count();
+		$count3 =DB::table('anggota')->count();
+		$kategori = DB::table('kategori_buku')->orderby('id','desc')->get();
 		$page = 'home';
-	return view('landing/IndexLanding',['user'=>$users,'anggota'=>$data,'page'=>$page]);
+	return view('landing/IndexLanding',['list'=>$list,'list_ebook'=>$list_ebook,'kategori'=>$kategori,'page'=>$page,'count'=>$count1,'count2'=>$count2,'count3'=>$count3]);
 	}
 
 }

@@ -37,7 +37,7 @@
                     <span>Kategori</span>
                    
                     @foreach($kategori as $row)
-                    <a href="#" class="btn btn-lg btn-success">{{ ucfirst($row->nama)}} </a>
+                    <a href="{{url('/kategori-buku/'.$row->id)}}" class="btn btn-lg btn-success">{{ ucfirst($row->nama)}} </a>
                     @endforeach
                 </div>
             </div>
@@ -72,5 +72,4 @@
     </div>
     </div>
 </section>
-//==========================================
 @endsection

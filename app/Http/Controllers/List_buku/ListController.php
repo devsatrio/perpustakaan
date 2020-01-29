@@ -24,19 +24,37 @@ class ListController extends Controller
 	//==================================================================
 	public function detail($link)
     {
-   	$view = DB::table('buku')
+   		$view = DB::table('buku')
 		->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
 		->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
 		->where([['buku.tipe','Book'],['buku.link',$link]])
 		->orderby('buku.id','desc')
 		->first();
-	$datalain = DB::table('buku')
+		$datalain = DB::table('buku')
 		->where('buku.tipe','Book')
 		->inRandomOrder()
 		->inRandomOrder()
 		->get();
-   	$page = 'detail';
+   		$page = 'detail';
     return view('buku/DetailBuku',['view'=>$view,'page'=>$page,'datalain'=>$datalain]);
+    }
+    //===================================================================
+    public function kategori($id)
+    {
+    	$data = DB::table('buku')
+    	->select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+    	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+    	->where([['buku.tipe','Book'],['buku.id_kategori',$id]])
+    	->orderby('buku.id','desc')
+    	->paginate(12);
+    	$kategori = DB::table('buku')
+    	->select(DB::raw('buku.*,kategori_buku.nama as kategori'))
+    	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+    	->where([['buku.tipe','Book'],['buku.id_kategori',$id]])
+    	->groupby('buku.id_kategori')
+    	->get();
+    	$page = 'buku';
+    	return view('buku/KategoriBuku',['data'=>$data,'page'=>$page,'kategori'=>$kategori]);    	
     }
 
 	//===================================================================	
