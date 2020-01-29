@@ -196,7 +196,9 @@
                                     <li>
                                         <a href="{{url('/daftarpinjam')}}">Daftar Peminjaman</a>
                                     </li>
-
+                                    <li>
+                                        <a href="{{url('/laporan-peminjaman')}}">Laporan Peminjaman</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>

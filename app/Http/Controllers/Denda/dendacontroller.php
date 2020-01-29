@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Denda;
 use App\Http\Controllers\Controller;
+use App\Exports\dendaexport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use DB;
 
@@ -38,12 +40,13 @@ class dendacontroller extends Controller
         return view('denda.cari',['data'=>$data,'tglsatu'=>$request->tgl_satu,'tgldua'=>$request->tgl_dua]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //=================================================================================
+    public function exportdenda($tglsatu, $tgldua){
+        $namafile = "denda tgl ".$tglsatu."-".$tgldua.".xlsx";
+        return Excel::download(new dendaexport($tglsatu,$tgldua),$namafile);
+    }
+
+    
     public function store(Request $request)
     {
         //

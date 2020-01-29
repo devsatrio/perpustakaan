@@ -52,6 +52,9 @@ Route::resource('/anggota','Anggota\AnggotaController');
 
 //=================================================peminjaman
 Route::get('/pinjam','Pinjam\PinjamController@pinjam');
+Route::get('/laporan-peminjaman','Pinjam\PinjamController@laporan');
+Route::get('/laporan-peminjaman/{tglsatu}/{tgldua}','Pinjam\PinjamController@exportlaporan');
+Route::post('/laporan-peminjaman','Pinjam\PinjamController@carilaporan');
 Route::post('/pinjam','Pinjam\PinjamController@store');
 Route::get('/caripeminjaman/{id}','Pinjam\PinjamController@caripeminjaman');
 Route::get('/carianggota','Pinjam\PinjamController@carianggota');
@@ -71,3 +74,4 @@ Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');
 //=======================================================denda
 Route::get('/denda','Denda\dendacontroller@index');
 Route::post('/caridenda','Denda\dendacontroller@cari');
+Route::get('/denda/{tglsatu}/{tgldua}','Denda\dendacontroller@exportdenda');

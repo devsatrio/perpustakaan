@@ -18,6 +18,7 @@ class HomeController extends Controller
         $jumlah_buku = DB::table('buku')->where('tipe','Book')->count();
         $jumlah_ebook = DB::table('buku')->where('tipe','Ebook')->count();
         $jumlah_anggota = DB::table('anggota')->count();
-        return view('home',['jumlah_buku'=>$jumlah_buku,'jumlah_ebook'=>$jumlah_ebook,'jumlah_anggota'=>$jumlah_anggota]);
+        $jumlah_pinjam = DB::table('pinjam')->whereNull('tgl_kembali')->count();
+        return view('home',['jumlah_buku'=>$jumlah_buku,'jumlah_ebook'=>$jumlah_ebook,'jumlah_anggota'=>$jumlah_anggota,'jumlah_pinjam'=>$jumlah_pinjam]);
     }
 }

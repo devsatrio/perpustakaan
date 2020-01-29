@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="header-section">
-                    <h1>Denda</h1>
+                    <h1>Laporan Peminjaman</h1>
                 </div>
             </div>
             <div class="col-sm-6 hidden-xs">
@@ -16,14 +16,10 @@
     <div class="row loading-div" id="tabelnya">
         <div class="col-md-12">
             <div class="block full">
-                <!-- Inline Form Title -->
                 <div class="block-title">
-                    <h2>Pilih Berdasarkan Tanggal Pengembalian</h2>
+                    <h2>Pilih Berdasarkan Tanggal Pinjam</h2>
                 </div>
-                <!-- END Inline Form Title -->
-
-                <!-- Inline Form Content -->
-                <form action="{{url('/caridenda')}}" method="POST" class="form-inline">
+                <form action="{{url('/laporan-peminjaman')}}" method="POST" class="form-inline">
                     @csrf
                     <div class="form-group">
                         <label class="sr-only" for="example-if-email">Tanggal Mulai</label>
@@ -46,9 +42,10 @@
             </div>
             <div class="block full">
                 <div class="block-title">
-                    <h2>List Denda Dari "{{$tglsatu}}" Sampai "{{$tgldua}}" </h2>
+                    <h2>List Peminjaman dari tanggal {{$tglsatu}} sampai {{$tgldua}}</h2>
                 </div>
-                <a href="{{url('/denda/'.$tglsatu.'/'.$tgldua)}}" class="btn btn-success"><i class="fa fa-download"></i>
+                <a href="{{url('/laporan-peminjaman/'.$tglsatu.'/'.$tgldua)}}" class="btn btn-success"><i
+                        class="fa fa-download"></i>
                     Export Excel</a>
                 <button type="button" id="cetak" class="btn btn-warning"><i class="fa fa-print"></i>
                     Cetak</button>
@@ -58,13 +55,12 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 50px;">No</th>
-                                <th>Anggota</th>
-                                <th>Judul Buku</th>
-                                <th>Tgl Pengembalian</th>
-                                <th>Tgl Max Pengembalian</th>
-                                <th>Denda Keterlambatan</th>
-                                <th>Denda Lain</th>
-                                <th>Keterangan</th>
+                                <th class="text-center">Peminjam</th>
+                                <th class="text-center">judul</th>
+                                <th class="text-center">Admin</th>
+                                <th class="text-center">Tanggal Pinjam</th>
+                                <th class="text-center">Maksimal Pengembalian</th>
+                                <th class="text-center">Tanggal Pengembalian</th>
                             </tr>
                         </thead>
                         <tbody id="isitabel">
@@ -76,11 +72,10 @@
                                 <td>{{$nomer++}}</td>
                                 <td>{{ $value->nama }}</td>
                                 <td>{{ $value->judul }}</td>
-                                <td>{{ $value->tgl_kembali}}</td>
+                                <td>{{ $value->username }}</td>
+                                <td>{{ $value->tgl_pinjam}}</td>
                                 <td>{{ $value->tgl_harus_kembali}}</td>
-                                <td class="text-right">{{"Rp ". number_format($value->denda,0,',','.')}}</td>
-                                <td class="text-right">{{"Rp ". number_format($value->denda_lain,0,',','.')}}</td>
-                                <td>{{$value->keterangan_denda}}</td>
+                                <td>{{ $value->tgl_kembali}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -91,18 +86,17 @@
     </div>
 </div>
 <div id="hidden_div" style="display: none;">
-    <h4>List Denda Dari "{{$tglsatu}}" Sampai "{{$tgldua}}" </h4>
+    <h2>List Peminjaman dari tanggal {{$tglsatu}} sampai {{$tgldua}}</h2>
     <table border="1">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Anggota</th>
-                <th>Judul Buku</th>
-                <th>Tgl Pengembalian</th>
-                <th>Tgl Max Pengembalian</th>
-                <th>Denda Keterlambatan</th>
-                <th>Denda Lain</th>
-                <th>Keterangan</th>
+                <th class="text-center" style="width: 50px;">No</th>
+                <th class="text-center">Peminjam</th>
+                <th class="text-center">judul</th>
+                <th class="text-center">Admin</th>
+                <th class="text-center">Tanggal Pinjam</th>
+                <th class="text-center">Maksimal Pengembalian</th>
+                <th class="text-center">Tanggal Pengembalian</th>
             </tr>
         </thead>
         <tbody id="isitabel">
@@ -114,11 +108,10 @@
                 <td>{{$nomer++}}</td>
                 <td>{{ $value->nama }}</td>
                 <td>{{ $value->judul }}</td>
-                <td>{{ $value->tgl_kembali}}</td>
+                <td>{{ $value->username }}</td>
+                <td>{{ $value->tgl_pinjam}}</td>
                 <td>{{ $value->tgl_harus_kembali}}</td>
-                <td class="text-right">{{"Rp ". number_format($value->denda,0,',','.')}}</td>
-                <td class="text-right">{{"Rp ". number_format($value->denda_lain,0,',','.')}}</td>
-                <td>{{$value->keterangan_denda}}</td>
+                <td>{{ $value->tgl_kembali}}</td>
             </tr>
             @endforeach
         </tbody>
@@ -130,12 +123,13 @@
 <script>
 $(function() {
     UiTables.init();
-    $('#cetak').click(function(e){
-        var divToPrint=document.getElementById('hidden_div');
-		var newWin=window.open('','Print-Window');
-		newWin.document.open();
-		newWin.document.write('<html><body onload="window.print();window.close()">'+divToPrint.innerHTML+'</body></html>');
-		newWin.document.close();
+    $('#cetak').click(function(e) {
+        var divToPrint = document.getElementById('hidden_div');
+        var newWin = window.open('', 'Print-Window');
+        newWin.document.open();
+        newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
+            .innerHTML + '</body></html>');
+        newWin.document.close();
     });
 });
 </script>
