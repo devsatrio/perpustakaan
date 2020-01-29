@@ -56,9 +56,11 @@
                                 <th class="text-center" style="width: 50px;">No</th>
                                 <th>Anggota</th>
                                 <th>Judul Buku</th>
-                                <th>Tanggal Pengembalian</th>
-                                <th>Tanggal Max Pengembalian</th>
-                                <th>Jumlah Denda</th>
+                                <th>Tgl Pengembalian</th>
+                                <th>Tgl Max Pengembalian</th>
+                                <th>Denda Keterlambatan</th>
+                                <th>Denda Lain</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody id="isitabel">
@@ -73,6 +75,8 @@
                                 <td>{{ $value->tgl_kembali}}</td>
                                 <td>{{ $value->tgl_harus_kembali}}</td>
                                 <td class="text-right">{{"Rp ". number_format($value->denda,0,',','.')}}</td>
+                                <td class="text-right">{{"Rp ". number_format($value->denda_lain,0,',','.')}}</td>
+                                <td>{{$value->keterangan_denda}}</td>
                             </tr>
                             @endforeach
                         </tbody>

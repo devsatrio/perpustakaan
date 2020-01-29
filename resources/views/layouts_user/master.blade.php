@@ -56,7 +56,7 @@
         <header>
             <div class="container">
                 <!-- Site Logo -->
-                <a href="index.html" class="site-logo">
+                <a href="{{url('/')}}" class="site-logo">
                     <i class="fa fa-book"></i>&nbsp;&nbsp;PERPUSTAKAAN<strong></strong>
                 </a>
                 <!-- END Site Logo -->

@@ -59,9 +59,20 @@
             <div class="modal-body">
                 <input type="hidden" id="kode_user">
                 <input type="hidden" id="kode">
+                <input type="hidden" value="{{$setting->denda}}" id="biayadenda">
                 <div class="form-group">
-                    <label for="example-nf-email">Masukan Denda</label>
-                    <input type="text" id="jumlah" class="form-control">
+                    <label for="example-nf-email">Denda Keterlambatan</label>
+                    <input type="number" id="jumlah" class="form-control" readonly>
+                    <span class="text-muted">*Denda keterlambatan pengembalian ({{"Rp ". number_format($setting->denda,0,',','.')}}/hari)</span>
+                </div>
+                <div class="form-group">
+                    <label for="example-nf-email">Denda Lainya</label>
+                    <input type="number" min="0" id="jumlah_lain" class="form-control" value="0">
+                    <span class="text-muted">*Denda buku cacat / buku hilang</span>
+                </div>
+                <div class="form-group">
+                    <label for="example-nf-email">Keterangan Denda</label>
+                    <textarea name="keterangan" id="keterangan" class="form-control"></textarea>
                 </div>
             </div>
             <div class="modal-footer">

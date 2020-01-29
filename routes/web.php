@@ -5,6 +5,7 @@ Route::get('/daftar-ebook','List_buku\ListController@ebook');
 Route::get('/detailbuku/{link}/detail','List_buku\ListController@detail');
 Route::get('/detail-ebook/{detail}','List_buku\ListController@showebook');
 Route:: get('/kategori-buku/{id}','List_buku\ListController@kategori');
+Route::get('/baca-ebook/{detail}','List_buku\ListController@readebook');
 
 
 //==============================================auth anggota
@@ -21,6 +22,10 @@ Auth::routes();
 
 //================================================home
 Route::get('/home','Home\HomeController@index');
+
+//================================================Setting
+Route::get('/setting','setting\Settingcontroller@index');
+Route::post('/setting','setting\Settingcontroller@update');
 
 //================================================Kategori
 Route::get('kategori/get/json','Kategori\Kategori@json');
@@ -46,6 +51,7 @@ Route::resource('/anggota','Anggota\AnggotaController');
 //=================================================peminjaman
 Route::get('/pinjam','Pinjam\PinjamController@pinjam');
 Route::post('/pinjam','Pinjam\PinjamController@store');
+Route::get('/caripeminjaman/{id}','Pinjam\PinjamController@caripeminjaman');
 Route::get('/carianggota','Pinjam\PinjamController@carianggota');
 Route::get('/carihasilanggota/{id}','Pinjam\PinjamController@carihasilanggota');
 Route::get('/caribuku','Pinjam\PinjamController@caribuku');

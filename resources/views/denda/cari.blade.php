@@ -18,7 +18,7 @@
             <div class="block full">
                 <!-- Inline Form Title -->
                 <div class="block-title">
-                    <h2>Pilih Berdasarkan Tanggal</h2>
+                    <h2>Pilih Berdasarkan Tanggal Pengembalian</h2>
                 </div>
                 <!-- END Inline Form Title -->
 
@@ -28,12 +28,12 @@
                     <div class="form-group">
                         <label class="sr-only" for="example-if-email">Tanggal Mulai</label>
                         <input type="text" name="tgl_satu" class="form-control input-datepicker"
-                                data-date-format="yyyy-mm-dd" placeholder="tanggal mulai" required>
+                            data-date-format="yyyy-mm-dd" placeholder="tanggal mulai" required>
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="example-if-password">Sampai Tanggal</label>
                         <input type="text" name="tgl_dua" class="form-control input-datepicker"
-                                data-date-format="yyyy-mm-dd" placeholder="tanggal selesai" required>
+                            data-date-format="yyyy-mm-dd" placeholder="tanggal selesai" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-effect-ripple btn-primary"
@@ -46,7 +46,7 @@
             </div>
             <div class="block full">
                 <div class="block-title">
-                    <h2>List Denda</h2>
+                    <h2>List Denda Dari "{{$tglsatu}}" Sampai "{{$tgldua}}" </h2>
                 </div>
 
                 <div class="table-responsive">
@@ -56,9 +56,11 @@
                                 <th class="text-center" style="width: 50px;">No</th>
                                 <th>Anggota</th>
                                 <th>Judul Buku</th>
-                                <th>Tanggal Pengembalian</th>
-                                <th>Tanggal Max Pengembalian</th>
-                                <th>Jumlah Denda</th>
+                                <th>Tgl Pengembalian</th>
+                                <th>Tgl Max Pengembalian</th>
+                                <th>Denda Keterlambatan</th>
+                                <th>Denda Lain</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody id="isitabel">
@@ -73,6 +75,8 @@
                                 <td>{{ $value->tgl_kembali}}</td>
                                 <td>{{ $value->tgl_harus_kembali}}</td>
                                 <td class="text-right">{{"Rp ". number_format($value->denda,0,',','.')}}</td>
+                                <td class="text-right">{{"Rp ". number_format($value->denda_lain,0,',','.')}}</td>
+                                <td>{{$value->keterangan_denda}}</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -34,10 +34,29 @@ $(document).ready(function () {
     window.updatestatus = updatestatus;
     //==================================================================
     function updatedenda(id, id_anggota) {
-        $('#jumlah').val('');
-        $('#modal-fade').modal('show');
         $('#kode_user').val(id_anggota);
         $('#kode').val(id);
+        $('#jumlah_lain').val('');
+        $('#keterangan').val('');
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: 'caripeminjaman/' + id,
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    var tgl = value.tgl_harus_kembali;
+                    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                    const firstDate = new Date();
+                    const secondDate = new Date(tgl);
+                    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+                    var denda = diffDays*parseInt($('#biayadenda').val());
+                    $('#jumlah').val(denda);
+                });
+                $('#modal-fade').modal('show');
+            }, error: function () {
+                alert('error');
+            }
+        });
     }
     window.updatedenda = updatedenda;
     //================================================================
@@ -57,7 +76,9 @@ $(document).ready(function () {
                 data: {
                     'kode': $('#kode').val(),
                     'kode_user': $('#kode_user').val(),
-                    'jumlah': $('#jumlah').val()
+                    'jumlah': $('#jumlah').val(),
+                    'jumlah_lain': $('#jumlah_lain').val(),
+                    'keterangan': $('#keterangan').val(),
                 },
                 success: function () {
                     $('#modal-fade').modal('hide');

@@ -38,42 +38,50 @@
                                 <p>{{$data->deskripsi}}</p>
                             </div>
                             <div class="tab-pane" id="tabs-detail">
-                               <table>
-                                   <tr>
-                                       <td>ISBN</td>
-                                       <td>&nbsp;:&nbsp;</td>
-                                       <td><b> {{$data->isbn}}</b></td>
-                                   </tr>
-                                   <tr>
-                                       <td>Penerbit</td>
-                                       <td>&nbsp;:&nbsp;</td>
-                                       <td><b> {{$data->penerbit}}</b></td>
-                                   </tr>
-                                   <tr>
-                                       <td>Tanggal Terbit </td>
-                                       <td>&nbsp;:&nbsp;</td>
-                                       <td><b> {{$data->tanggal_terbit}}</b></td>
-                                   </tr>
-                                   <tr>
-                                       <td>Jumlah Halaman</td>
-                                       <td>&nbsp;:&nbsp;</td>
-                                       <td><b> {{$data->halaman}}</b></td>
-                                   </tr>
-                                   <tr>
-                                       <td>Bahasa </td>
-                                       <td>&nbsp;:&nbsp;</td>
-                                       <td><b> {{$data->bahasa}}</b></td>
-                                   </tr>
-                               </table>
+                                <table>
+                                    <tr>
+                                        <td>ISBN</td>
+                                        <td>&nbsp;:&nbsp;</td>
+                                        <td><b> {{$data->isbn}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penerbit</td>
+                                        <td>&nbsp;:&nbsp;</td>
+                                        <td><b> {{$data->penerbit}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Terbit </td>
+                                        <td>&nbsp;:&nbsp;</td>
+                                        <td><b> {{$data->tanggal_terbit}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jumlah Halaman</td>
+                                        <td>&nbsp;:&nbsp;</td>
+                                        <td><b> {{$data->halaman}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bahasa </td>
+                                        <td>&nbsp;:&nbsp;</td>
+                                        <td><b> {{$data->bahasa}}</b></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-
-
                 </article>
+                @if(Auth::guard('anggota')->check())
+                <a href="{{url('/baca-ebook/'.$data->link)}}" class="btn btn-lg btn-primary">Baca Ebook</a>
+                <button type="button" onclick="history.go(-1)" class="btn btn-lg btn-danger">Kembali</button>
+                @else
+                <div class="alert alert-warning alert-dismissable site-block">
+                    <h4><strong>Peringatan</strong></h4>
+                    <p>Harap <a href="{{url('/login-anggota')}}" class="alert-link">Login</a> untuk dapat membaca Ebook ini!</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>
+    <br>
 </section>
 <!-- END Post -->
 
