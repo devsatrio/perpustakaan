@@ -21,7 +21,7 @@
                     <div class="row row-items">
                     	@foreach($data as $row)
                         <div class="col-md-4">
-                            <a href="{{ url('/detailbuku/'.$row->link.'/detail') }}" class="post">
+                            <a href="{{ url('/detail-ebook/'.$row->link) }}" class="post">
                                 <div class="post-image">
                                     <img src="{{asset('img/buku/'.$row->gambar)}}" alt="" class="img-responsive">
                                 </div>
@@ -35,7 +35,7 @@
                         @endforeach
                         
                     </div>
-                    <div class="text-center">
+                    <div class="col-md-12 text-center">
                         <ul class="pagination">
                             <!-- <li class="active"><a href="javascript:void(0)">1</a></li>
                             <li><a href="javascript:void(0)">2</a></li>
@@ -44,7 +44,8 @@
                             <li><a href="javascript:void(0)">20</a></li>
                             <li><a href="javascript:void(0)"><i class="fa fa-chevron-right"></i></a></li> -->
                             {{$data->links()}}
-                        </ul>
+                        </ul><br>
+                        <a onclick="window.history.go(-1);" class="btn btn-danger btn-lg text-white">Kembali</a>
                     </div>
                 </div>
             </section>
