@@ -8,6 +8,7 @@
                 <div class="container">
                     <div class="push text-center">
                         <h1 class="animation-fadeInQuick2Inv"><strong>{{ucwords($row->landing_text)}}</strong></h1>
+                        <!-- ucwords membesarkan Tulisan Diawal kata -->
                         <h2 class="text-light-op animation-fadeInQuickInv push-bit"><strong>{{ucwords($row->sublanding_text)}}</strong></h2>
                        <!--  <a href="http://goo.gl/RcsdAh" class="btn btn-lg btn-success push-right-left"><strong>Purchase</strong></a>
                         <a href="http://demo.pixelcave.com/appui" class="btn btn-lg btn-info push-right-left"><strong>Live Preview</strong></a> -->
