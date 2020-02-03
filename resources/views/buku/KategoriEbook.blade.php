@@ -21,7 +21,7 @@
                     <div class="row row-items">
                     	@foreach($data as $row)
                         <div class="col-md-4">
-                            <a href="{{ url('/detailbuku/'.$row->link.'/detail') }}" class="post">
+                            <a href="{{ url('/detail-ebook/'.$row->link) }}" class="post">
                                 <div class="post-image">
                                     <img src="{{asset('img/buku/'.$row->gambar)}}" alt="" class="img-responsive">
                                 </div>

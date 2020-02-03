@@ -97,7 +97,7 @@
         <div class="row row-items">
             @foreach($datalain as $row)
             <div class="col-md-3">
-                <a href="{{url('/detail-ebook/'.$row->link)}}" class="post">
+                <a href="{{url('/detailbuku/'.$row->link.'/detail')}}" class="post">
                     <div class="post-image">
                         <img src="{{asset('img/buku/'.$row->gambar)}}" alt="" class="img-responsive">
                     </div>

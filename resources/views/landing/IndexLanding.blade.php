@@ -152,17 +152,14 @@
                     </div>
                 </div>
             </section> -->
-            <section class="site-section site-content border-bottom overflow-hidden">
+            <!-- <section class="site-section site-content border-bottom overflow-hidden">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 push">
                             <h2 align="center" style="font-family: Agency FB;"><strong>Kategori</strong></h2>
                             <br>
                             @foreach($kategori as $row)
-                            <h3 class="site-heading "><a href="{{url('/kategori-buku/'.$row->id)}}" style="color:#434343;"><strong class="fa fa-check-square">&nbsp;&nbsp;{{ucfirst($row->nama)}}</strong></a></h3>
-                            <!-- <p class="feature-text text-muted push">Time is of vital importance. <strong>AppUI</strong> will save you hundreds of hours of extra development. Start right away coding your functionality and see your project come to life months sooner.</p> -->
-                           <!--  <h2 class="site-heading"><strong>Ready Designed Pages</strong></h2> -->
-                            <!-- <p class="feature-text text-muted">15+ ready to use pages. The UI is ready, create the functionality. Dashboard, Login, Register, Social Net, Email Center, Media Box, Invoice, FAQ, Search Results and even more. Check them all out at the live preview.</p> -->
+                            <h3 class="site-heading "><a href="{{url('/kategori/'.$row->id)}}" style="color:#434343;"><strong class="fa fa-check-square">&nbsp;&nbsp;{{ucfirst($row->nama)}}</strong></a></h3>
                             @endforeach
                         </div>
                         <div class="col-sm-6 clearfix push">
@@ -171,7 +168,7 @@
                     </div>
                 </div>
             </section>
-            <!-- <section class="site-content site-section themed-background-muted">
+ -->            <!-- <section class="site-content site-section themed-background-muted">
                 <div class="container">
                     <div id="testimonials-carousel" class="carousel slide carousel-html" data-ride="carousel" data-interval="4000">
                         <div class="carousel-inner text-center">

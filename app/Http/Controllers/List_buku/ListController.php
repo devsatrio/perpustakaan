@@ -71,8 +71,8 @@ class ListController extends Controller
     	->where([['buku.tipe','Ebook'],['buku.id_kategori',$id]])
     	->groupby('buku.id_kategori')
     	->get();
-    	$page = 'buku';
-    	return view('buku/KategoriBuku',['data'=>$data,'page'=>$page,'kategori'=>$kategori]);    	
+    	$page = 'ebook';
+    	return view('buku/KategoriEbook',['data'=>$data,'page'=>$page,'kategori'=>$kategori]);    	
     }
 
 	//===================================================================	
