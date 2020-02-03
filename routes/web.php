@@ -30,8 +30,8 @@ Route::get('/setting','setting\Settingcontroller@index');
 Route::post('/setting','setting\Settingcontroller@update');
 
 //================================================Kategori
-Route::get('kategori/get/json','Kategori\Kategori@json');
-Route::resource('/kategori','Kategori\Kategori');
+Route::get('kategori/get/json','Kategori\kategori@json');
+Route::resource('/kategori','Kategori\kategori');
 
 //================================================user
 Route::get('user/get/json','User\UserController@json');

@@ -188,7 +188,7 @@ class PinjamController extends Controller
         ->groupby('pinjam.id_anggota')
         ->orderby('jumlah','desc')
         ->get();
-        return view('peminjaman\peminjamaktif',['data'=>$data]);
+        return view('peminjaman.peminjamaktif',['data'=>$data]);
     }
     
     //=====================================================================================
