@@ -113,19 +113,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="counter site-block">
-                                <span data-toggle="countTo" data-to="{{$count}}" data-after=" Buku"></span>
+                                <span data-toggle="countTo" data-to="{{$count}}"></span>
                                 <small>Total Buku</small>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="counter site-block">
-                                <span data-toggle="countTo" data-to="{{$count2}}" data-after=" E-book"></span>
+                                <span data-toggle="countTo" data-to="{{$count2}}"></span>
                                 <small>Total E-book</small>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="counter site-block">
-                                <span data-toggle="countTo" data-to="{{$count3}}" data-after=" User"></span>
+                                <span data-toggle="countTo" data-to="{{$count3}}"></span>
                                 <small>Total User</small>
                             </div>
                         </div>
