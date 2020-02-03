@@ -35,7 +35,7 @@ CREATE TABLE `anggota` (
   `notelp` varchar(50) DEFAULT NULL,
   `username` varchar(150) DEFAULT NULL,
   `password` text DEFAULT NULL,
-  `gambar` text DEFAULT 'n',
+  `gambar` varchar(500) DEFAULT 'n',
   `remember_token` text DEFAULT NULL,
   `status_pinjam` enum('y','n') DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -65,20 +65,15 @@
     </div>
 </section>
 @endforeach
-<section class="site-content site-section">
-    <div class="text-center">
-        {{ $data->links() }}
-    </div>
-    </div>
-</section>
 <section class="site-content site-section overflow-hidden border-bottom">
     <div class="container">
-    <div class="text-center visibility-none" data-toggle="animation-appear"
-                data-animation-class="animation-fadeInRight" data-element-offset="-20">
-          <a onclick="window.history.go(-1);" class="btn btn-danger btn-lg text-white">Kembali</a>
-    </div>
+        <div class="text-center">
+            {{ $data->links() }}
+            <br>
+            <a onclick="window.history.go(-1);" class="btn btn-danger btn-lg text-white">Kembali</a>
+            
+        </div>
     </div>
     <br>
 </section>
-<!-- END Team Member 5 -->
 @endsection

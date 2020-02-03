@@ -33,7 +33,7 @@ class anggotaLoginController extends Controller
     
     public function showLoginForm()
     {
-        return view('auth.anggotaLogin');
+        return view('auth.anggotalogin');
     }
     
     protected function credentials(Request $request){
