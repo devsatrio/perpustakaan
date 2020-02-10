@@ -14,7 +14,7 @@ $(document).ready(function () {
                     $('#tabelnya').loading('toggle');
                     $.ajax({
                         type: 'GET',
-                        url: '/updatestatus/' + id,
+                        url: 'updatestatus/' + id,
                         success: function () {
                             $.bootstrapGrowl('<h4><strong>Pemberitahuan</strong></h4> <p>Pembaharuan berhasi disimpan</p>', {
                                 type: 'success',
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 }
             });
             $.ajax({
-                url: '/simpandenda',
+                url: 'simpandenda',
                 type: 'POST',
                 data: {
                     'kode': $('#kode').val(),

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	$('#cari_anggota').select2({
 		ajax: {
-			url: '/carianggota',
+			url: 'carianggota',
 			dataType: 'json',
 			delay: 250,
 			processResults: function (data) {
@@ -24,7 +24,7 @@ $(document).ready(function () {
 		var kode = $(this).val();
 		$.ajax({
 			type: 'GET',
-			url: '/carihasilanggota/' + kode,
+			url: 'carihasilanggota/' + kode,
 			success: function (data) {
 				return {
 					results: $.map(data, function (item) {
@@ -47,7 +47,7 @@ $(document).ready(function () {
 	//======================================================
 	$('#buku').select2({
 		ajax: {
-			url: '/caribuku',
+			url: 'caribuku',
 			dataType: 'json',
 			delay: 250,
 			processResults: function (data) {
@@ -71,7 +71,7 @@ $(document).ready(function () {
 		$('#halinput').loading('toggle');
 		$.ajax({
 			type: 'GET',
-			url: '/carihasilbuku/' + kode,
+			url: 'carihasilbuku/' + kode,
 			success: function (data) {
 				return {
 					results: $.map(data, function (item) {
@@ -107,7 +107,7 @@ $(document).ready(function () {
 			});
 			$.ajax({
 				type: 'POST',
-				url: '/pinjam',
+				url: 'pinjam',
 				data: {
 					'kode_anggota': $('#kode_anggota').val(),
 					'kode_buku': $('#kode_buku').val(),

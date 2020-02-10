@@ -19,7 +19,11 @@ class BukuController extends Controller
     public function json(){
         return Datatables::of(BukuModel::select(DB::raw('buku.*,kategori_buku.nama as namakategori'))->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')->where('buku.tipe','Book')->get())->make(true);
     }
-    
+    //=================================================================================
+    public function carikode($kode){
+        $data = BukuModel::where('kode',$kode)->count();
+        return response()->json($data);
+    }
     //=================================================================================
     public function index(Request $request)
     {
@@ -54,6 +58,9 @@ class BukuController extends Controller
                 'lebar'=>$request->input_lebar,
                 'deskripsi'=>$request->input_deskripsi,
                 'id_kategori'=>$request->input_kategori,
+                'kode'=>$request->input_kode,
+                'jumlah'=>$request->input_jumlah,
+                'lokasi'=>$request->input_lokasi,
                 'gambar'=>$finalname,
                 'link'=>$judul_replace_space
             ]);
@@ -113,6 +120,9 @@ class BukuController extends Controller
                 'lebar'=>$request->edit_lebar,
                 'deskripsi'=>$request->edit_deskripsi,
                 'id_kategori'=>$request->edit_kategori,
+                'kode'=>$request->edit_kode,
+                'jumlah'=>$request->edit_jumlah,
+                'lokasi'=>$request->edit_lokasi,
                 'gambar'=>$finalname,
                 'link'=>$judul_replace_space
             ]);
@@ -128,6 +138,9 @@ class BukuController extends Controller
                 'penerbit'=>$request->edit_penerbit,
                 'berat'=>$request->edit_berat,
                 'lebar'=>$request->edit_lebar,
+                'kode'=>$request->edit_kode,
+                'jumlah'=>$request->edit_jumlah,
+                'lokasi'=>$request->edit_lokasi,
                 'id_kategori'=>$request->edit_kategori,
                 'deskripsi'=>$request->edit_deskripsi,
                 'link'=>$judul_replace_space

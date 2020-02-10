@@ -43,7 +43,7 @@ $(document).ready(function () {
                 });
 
                 $.ajax({
-                    url: '/ebook',
+                    url: 'ebook',
                     type: 'POST',
                     data: formData,
                     cache: false,
@@ -184,7 +184,7 @@ $(document).ready(function () {
                     }
                 });
                 $.ajax({
-                    url: '/ebook/' + kode,
+                    url: 'ebook/' + kode,
                     type: 'POST',
                     data: formData,
                     cache: false,

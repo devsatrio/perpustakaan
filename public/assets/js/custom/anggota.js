@@ -87,7 +87,7 @@ $(document).ready(function () {
                         }
                     });
                     $.ajax({
-                        url: '/anggota',
+                        url: 'anggota',
                         type: 'POST',
                         data: formData,
                         cache: false,
@@ -182,7 +182,7 @@ $(document).ready(function () {
                         }
                     });
                     $.ajax({
-                        url: '/anggota/' + kode,
+                        url: 'anggota/' + kode,
                         type: 'POST',
                         data: formData,
                         cache: false,
@@ -219,7 +219,7 @@ $(document).ready(function () {
                             }
                         });
                         $.ajax({
-                            url: '/anggota/' + kode,
+                            url: 'anggota/' + kode,
                             type: 'POST',
                             data: formData,
                             cache: false,
