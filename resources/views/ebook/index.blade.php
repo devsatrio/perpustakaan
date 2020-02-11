@@ -114,6 +114,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Untuk Umum</label>
+                        <div class="col-md-9">
+                            <div class="checkbox">
+                                <label for="example-checkbox1">
+                                    <input type="checkbox" id="input_umum" name="input_umum"
+                                        value="ya"> ya
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-password">Foto</label>
                         <div class="col-md-9">
                             <input type="file" id="input_foto" name="input_foto" accept="image/*" >
@@ -200,9 +211,20 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Untuk Umum</label>
+                        <div class="col-md-9">
+                            <div class="checkbox">
+                                <label for="example-checkbox1">
+                                    <input type="checkbox" id="edit_umum" name="edit_umum"
+                                        value="ya"> ya
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email"></label>
                         <div class="col-md-9">
-                            <img id="imagebuku" src="{{asset('img/default/noimage.jpg')}}" style="max-width:100%;">
+                            <img id="imagebuku" src="{{asset('img/default/noimage.jpg')}}" style="max-width:200px;">
                         </div>
                     </div>
                     <div class="form-group">

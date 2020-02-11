@@ -33,7 +33,11 @@ class ebookcontroller extends Controller
         $judulasli = $request->input_judul;
         $judul_lower_name=strtolower($judulasli);
         $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
-
+        if($request->input_umum==''){
+            $umum = 'tidak';
+        }else{
+            $umum = 'ya';
+        }
         if($request->hasFile('input_pdf')){
             $namepdfland=$request->file('input_pdf')->
             getClientOriginalname();
@@ -64,6 +68,7 @@ class ebookcontroller extends Controller
                 'tipe'=>'Ebook',
                 'gambar'=>$finalname,
                 'ebook'=>$finalpdfname,
+                'umum'=>$umum,
                 'link'=>$judul_replace_space,
                 'bahasa'=>$request->input_bahasa,
                 'halaman'=>$request->input_halaman,
@@ -78,6 +83,7 @@ class ebookcontroller extends Controller
                 'id_kategori'=>$request->input_kategori,
                 'tipe'=>'Ebook',
                 'ebook'=>$finalpdfname,
+                'umum'=>$umum,
                 'link'=>$judul_replace_space,
                 'bahasa'=>$request->input_bahasa,
                 'halaman'=>$request->input_halaman,
@@ -92,7 +98,11 @@ class ebookcontroller extends Controller
         $judulasli = $request->edit_judul;
         $judul_lower_name=strtolower($judulasli);
         $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
-
+        if($request->edit_umum==''){
+            $umum = 'tidak';
+        }else{
+            $umum = 'ya';
+        }
         if($request->hasFile('edit_pdf')){
             File::delete('fileebook/'.$request->edit_filelama);
             $namepdfland=$request->file('edit_pdf')->
@@ -124,6 +134,7 @@ class ebookcontroller extends Controller
                     'id_kategori'=>$request->edit_kategori,
                     'gambar'=>$finalname,
                     'ebook'=>$finalpdfname,
+                    'umum'=>$umum,
                     'link'=>$judul_replace_space,
                     'bahasa'=>$request->edit_bahasa,
                     'halaman'=>$request->edit_halaman,
@@ -138,6 +149,7 @@ class ebookcontroller extends Controller
                     'id_kategori'=>$request->edit_kategori,
                     'deskripsi'=>$request->edit_deskripsi,
                     'ebook'=>$finalpdfname,
+                    'umum'=>$umum,
                     'link'=>$judul_replace_space,
                     'bahasa'=>$request->edit_bahasa,
                     'halaman'=>$request->edit_halaman,
@@ -163,6 +175,7 @@ class ebookcontroller extends Controller
                     'deskripsi'=>$request->edit_deskripsi,
                     'id_kategori'=>$request->edit_kategori,
                     'gambar'=>$finalname,
+                    'umum'=>$umum,
                     'link'=>$judul_replace_space,
                     'bahasa'=>$request->edit_bahasa,
                     'halaman'=>$request->edit_halaman,
@@ -177,6 +190,7 @@ class ebookcontroller extends Controller
                     'id_kategori'=>$request->edit_kategori,
                     'deskripsi'=>$request->edit_deskripsi,
                     'link'=>$judul_replace_space,
+                    'umum'=>$umum,
                     'bahasa'=>$request->edit_bahasa,
                     'halaman'=>$request->edit_halaman,
                 ]);
@@ -190,5 +204,14 @@ class ebookcontroller extends Controller
     public function destroy($id)
     {
         //
+    }
+    //=================================================================================
+    public function detailebook($id)
+    {
+        $data = BukuModel::select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+    	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+    	->where('buku.id',$id)
+        ->first();
+        return view('ebook.show',['data'=>$data]);
     }
 }

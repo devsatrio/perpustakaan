@@ -39,6 +39,7 @@ Route::resource('/user','User\UserController');
 
 //================================================ebuku
 Route::get('ebook/get/json','ebook\ebookcontroller@json');
+Route::get('ebook/detail/{kode}','ebook\ebookcontroller@detailebook');
 Route::resource('/ebook','ebook\ebookcontroller');
 
 //================================================buku

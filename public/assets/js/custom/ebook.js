@@ -64,6 +64,7 @@ $(document).ready(function () {
                         $("#input_isbn").val('');
                         $("#input_penerbit").val('');
                         $("#input_deskripsi").val('');
+                        $("#input_umum").prop('checked',false);
                         $("#input_foto").val('');
                         $('#input_pdf').val('');
                         $("#input_halaman").val('');
@@ -114,6 +115,12 @@ $(document).ready(function () {
     window.hapusdata = hapusdata;
     //==========================================================
 
+    function showdetail(id) {
+        window.location.href="ebook/detail/"+id;
+    }
+    window.showdetail = showdetail;
+    //==========================================================
+    
     function editdata(id) {
         caridata(id);
         $("#tabelnya").hide(700);
@@ -139,6 +146,11 @@ $(document).ready(function () {
                     $('#edit_kategori').val(value.id_kategori);
                     $('#edit_halaman').val(value.halaman);
                     $('#edit_bahasa').val(value.bahasa);
+                    if(value.umum=='ya'){
+                        $("#edit_umum").prop('checked',true);
+                    }else{
+                        $("#edit_umum").prop('checked',false);
+                    }
                     if (value.gambar != 'n') {
                         $("#imagebuku").attr("src", "img/buku/" + value.gambar);
                     } else {
