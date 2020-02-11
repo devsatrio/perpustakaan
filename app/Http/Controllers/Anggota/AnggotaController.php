@@ -43,6 +43,7 @@ class AnggotaController extends Controller
                     'username'=>$request->input_user,
                     'alamat'=>$request->input_alamat,
                     'notelp'=>$request->input_notelp,
+                    'status_anggota'=>$request->input_status,
                     'gambar'=>$finalname
                 ]);
             }else{
@@ -51,6 +52,7 @@ class AnggotaController extends Controller
                     'password'=>Hash::make($request->input_pass),
                     'username'=>$request->input_user,
                     'alamat'=>$request->input_alamat,
+                    'status_anggota'=>$request->input_status,
                     'notelp'=>$request->input_notelp,
                 ]);
             }
@@ -85,6 +87,7 @@ class AnggotaController extends Controller
                     'nama'=>$request->edit_nama,
                     'alamat'=>$request->edit_alamat,
                     'notelp'=>$request->edit_notelp,
+                    'status_anggota'=>$request->edit_status,
                     'gambar'=>$finalname
                 ]);
             }else{
@@ -94,6 +97,7 @@ class AnggotaController extends Controller
                     'nama'=>$request->edit_nama,
                     'alamat'=>$request->edit_alamat,
                     'notelp'=>$request->edit_notelp,
+                    'status_anggota'=>$request->edit_status,
                     'password'=>Hash::make($request->edit_password),
                     'gambar'=>$finalname
                 ]);
@@ -106,6 +110,7 @@ class AnggotaController extends Controller
                     'username'=>$request->edit_username,
                     'nama'=>$request->edit_nama,
                     'alamat'=>$request->edit_alamat,
+                    'status_anggota'=>$request->edit_status,
                     'notelp'=>$request->edit_notelp
                 ]);
             }else{
@@ -115,6 +120,7 @@ class AnggotaController extends Controller
                     'nama'=>$request->edit_nama,
                     'notelp'=>$request->edit_notelp,
                     'alamat'=>$request->edit_alamat,
+                    'status_anggota'=>$request->edit_status,
                     'password'=>Hash::make($request->edit_password)
                 ]);
             }

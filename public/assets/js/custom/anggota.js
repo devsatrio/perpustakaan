@@ -107,6 +107,7 @@ $(document).ready(function () {
                             $("#input_alamat").val('');
                             $("#input_notelp").val('');
                             $("#input_user").val('');
+                            $('#input_status').val('Umum');
                             $("#input_pass").val('');
                             $("#input_kpass").val('');
                             $('#input_foto').val('');
@@ -139,6 +140,7 @@ $(document).ready(function () {
                     $('#edit_alamat').val(value.alamat);
                     $('#edit_notelp').val(value.notelp);
                     $('#kode_edit').val(value.id);
+                    $('#edit_status').val(value.status_anggota);
                     $('#edit_fotolama').val(value.gambar);
                     if (value.gambar != 'n') {
                         $("#imageuser").attr("src", "img/anggota/" + value.gambar);
@@ -201,6 +203,7 @@ $(document).ready(function () {
                             $('#edit_foto').val('');
                             $('#edit_password').val('');
                             $('#edit_kpassword').val('');
+                            $('#edit_status').val('Umum');
                         }, complete: function () {
                             $('#haledit').loading('stop');
                         }

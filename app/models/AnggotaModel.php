@@ -15,7 +15,7 @@ class AnggotaModel extends Authenticatable
     public $timestamps = false;
     protected $table = 'anggota';
     protected $fillable = [
-        'nama', 'username', 'alamat','gambar','notelp'
+        'nama', 'username', 'alamat','gambar','notelp','status_anggota'
     ];
     protected $guarded = ['id'];
     protected $hidden = [

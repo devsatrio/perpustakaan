@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use App\models\BukuModel;
 use App\models\kategoriModel;
 use DataTables;
+use QrCode;
 use DB;
 class BukuController extends Controller
 {
@@ -37,6 +38,11 @@ class BukuController extends Controller
         $judulasli = $request->input_judul;
         $judul_lower_name=strtolower($judulasli);
         $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
+        if($request->input_umum==''){
+            $umum = 'tidak';
+        }else{
+            $umum = 'ya';
+        }
         if($request->hasFile('input_foto')){
             $nameland=$request->file('input_foto')->
             getClientOriginalname();
@@ -62,6 +68,7 @@ class BukuController extends Controller
                 'jumlah'=>$request->input_jumlah,
                 'lokasi'=>$request->input_lokasi,
                 'gambar'=>$finalname,
+                'umum'=>$umum,
                 'link'=>$judul_replace_space
             ]);
         }else{
@@ -77,6 +84,7 @@ class BukuController extends Controller
                 'lebar'=>$request->input_lebar,
                 'id_kategori'=>$request->input_kategori,
                 'deskripsi'=>$request->input_deskripsi,
+                'umum'=>$umum,
                 'link'=>$judul_replace_space
             ]);
         }
@@ -96,7 +104,11 @@ class BukuController extends Controller
         $judulasli = $request->edit_judul;
         $judul_lower_name=strtolower($judulasli);
         $judul_replace_space=str_replace(' ', '-', $judul_lower_name);
-
+        if($request->edit_umum==''){
+            $umum = 'tidak';
+        }else{
+            $umum = 'ya';
+        }
          if($request->hasFile('edit_foto')){
             File::delete('img/buku/'.$request->edit_fotolama);
             $nameland=$request->file('edit_foto')->
@@ -123,6 +135,7 @@ class BukuController extends Controller
                 'kode'=>$request->edit_kode,
                 'jumlah'=>$request->edit_jumlah,
                 'lokasi'=>$request->edit_lokasi,
+                'umum'=>$umum,
                 'gambar'=>$finalname,
                 'link'=>$judul_replace_space
             ]);
@@ -141,6 +154,7 @@ class BukuController extends Controller
                 'kode'=>$request->edit_kode,
                 'jumlah'=>$request->edit_jumlah,
                 'lokasi'=>$request->edit_lokasi,
+                'umum'=>$umum,
                 'id_kategori'=>$request->edit_kategori,
                 'deskripsi'=>$request->edit_deskripsi,
                 'link'=>$judul_replace_space
@@ -159,5 +173,19 @@ class BukuController extends Controller
             File::delete('fileebook/'.$data->ebook);
         }
         BukuModel::destroy($id);
+    }
+
+    public function detailbuku($kode){
+        $data = BukuModel::select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
+    	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
+    	->where('buku.id',$kode)
+        ->first();
+        $peminjam = DB::table('pinjam')
+        ->select(DB::raw('pinjam.*,anggota.nama as namaanggota, anggota.gambar,anggota.notelp, anggota.status_anggota'))
+        ->leftjoin('anggota','anggota.id','=','pinjam.id_anggota')
+        ->where('pinjam.id_buku',$kode)
+        ->orderby('id','desc')
+        ->get();
+        return view('buku.Showbuku',['data'=>$data,'peminjam'=>$peminjam]);
     }
 }

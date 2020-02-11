@@ -73,6 +73,10 @@ $(document).ready(function () {
                         $("#input_halaman").val('');
                         $("#input_tgl").val('');
                         $("#input_isbn").val('');
+                        $("#input_kode").val('');
+                        $("#input_jumlah").val('');
+                        $("#input_lokasi").val('');
+                        $("#input_umum").prop('checked',false);
                         $("#input_bahasa").val('');
                         $("#input_penerbit").val('');
                         $("#input_berat").val('');
@@ -125,6 +129,12 @@ $(document).ready(function () {
     window.hapusdata = hapusdata;
     //==========================================================
 
+    function showdetail(id) {
+        window.location.href="buku/detail/"+id;
+    }
+    window.showdetail = showdetail;
+    //==========================================================
+
     function editdata(id) {
         caridata(id);
         $("#tabelnya").hide(700);
@@ -154,6 +164,11 @@ $(document).ready(function () {
                     $("#edit_lokasi").val(value.lokasi);
                     $('#kode_edit').val(value.id);
                     $('#edit_kode_lama').val(value.kode);
+                    if(value.umum=='ya'){
+                        $("#edit_umum").prop('checked',true);
+                    }else{
+                        $("#edit_umum").prop('checked',false);
+                    }
                     $('#edit_fotolama').val(value.gambar);
                     var url = '../perpustakaan/public/img/buku/';
                     console.log(url);

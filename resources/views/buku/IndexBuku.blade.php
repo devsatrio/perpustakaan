@@ -43,7 +43,7 @@
                                 <th>Penulis</th>
                                 <th>Kategori</th>
                                 <th>Penerbit</th>
-                                <th>Tgl Terbit</th>
+                                <th>Jumlah</th>
                                 <th class="text-center" style="width: 100px;">Aksi</th>
                             </tr>
                         </thead>
@@ -52,7 +52,6 @@
             </div>
         </div>
     </div>
-
     <div class="row loading-div" style="display: none;" id="halinput">
         <div class="col-md-12">
             <div class="block">
@@ -160,6 +159,17 @@
                         <label class="col-md-3 control-label" for="example-hf-email">Deskripsi</label>
                         <div class="col-md-9">
                             <textarea id="input_deskripsi" name="input_deskripsi" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Untuk Umum</label>
+                        <div class="col-md-9">
+                            <div class="checkbox">
+                                <label for="example-checkbox1">
+                                    <input type="checkbox" id="input_umum" name="input_umum"
+                                        value="ya"> ya
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -294,7 +304,17 @@
                             <textarea name="edit_deskripsi" id="edit_deskripsi" class="form-control"></textarea>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Untuk Umum</label>
+                        <div class="col-md-9">
+                            <div class="checkbox">
+                                <label for="example-checkbox1">
+                                    <input type="checkbox" id="edit_umum" name="edit_umum"
+                                        value="ya"> ya
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email"></label>
                         <div class="col-md-9">
