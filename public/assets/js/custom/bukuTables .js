@@ -21,6 +21,7 @@ var UiTables = function() {
                     { data: 'id', render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
+                    { data: 'kode', name: 'kode' },
                     { data: 'isbn', name: 'isbn' },
                     { data: 'judul', name: 'judul' },
                     { data: 'penulis', name: 'penulis'},

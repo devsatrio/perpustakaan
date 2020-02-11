@@ -32,12 +32,15 @@
                 <button type="button" class="btn btn-effect-ripple btn-primary"
                     style="overflow: hidden; position: relative;" id="tambah"><i class="fa fa-pencil"></i> Tambah
                     Data</button>
+                    <a href="{{ url('cetakkodebuku') }}" class="btn btn-effect-ripple btn-success"><i class="fa fa-tags"></i> Cetak kode QR
+                    Data</a>
                 <br><br>
                 <div class="table-responsive" id="listdata">
                     <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Kode</th>
                                 <th>ISBN</th>
                                 <th>Judul</th>
                                 <th>Penulis</th>

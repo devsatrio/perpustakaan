@@ -123,29 +123,17 @@
                                 </div>
                             </form>
                         </div>
-                        <!-- END Settings -->
                     </div>
-                    <!-- END Sidebar Content -->
                 </div>
-                <!-- END Wrapper for scrolling functionality -->
             </div>
-            <!-- END Alternative Sidebar -->
-
-            <!-- Main Sidebar -->
             <div id="sidebar">
-                <!-- Sidebar Brand -->
                 <div id="sidebar-brand" class="themed-background">
                     <a href="{{url('/home')}}" class="sidebar-title">
                         <i class="fa fa-book"></i> <span class="sidebar-nav-mini-hide">Perpustakaan</span>
                     </a>
                 </div>
-                <!-- END Sidebar Brand -->
-
-                <!-- Wrapper for scrolling functionality -->
                 <div id="sidebar-scroll">
-                    <!-- Sidebar Content -->
                     <div class="sidebar-content">
-                        <!-- Sidebar Navigation -->
                         <ul class="sidebar-nav">
                             <li>
                                 <a href="{{url('/home')}}"><i class="gi gi-compass sidebar-nav-icon"></i><span

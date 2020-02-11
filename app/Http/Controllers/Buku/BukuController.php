@@ -175,6 +175,7 @@ class BukuController extends Controller
         BukuModel::destroy($id);
     }
 
+    //=================================================================================
     public function detailbuku($kode){
         $data = BukuModel::select(DB::raw('buku.*,kategori_buku.nama as namakategori'))
     	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
@@ -185,7 +186,14 @@ class BukuController extends Controller
         ->leftjoin('anggota','anggota.id','=','pinjam.id_anggota')
         ->where('pinjam.id_buku',$kode)
         ->orderby('id','desc')
+        ->limit(15)
         ->get();
         return view('buku.Showbuku',['data'=>$data,'peminjam'=>$peminjam]);
+    }
+    //=================================================================================
+    public function cetakkodebuku(){
+        $data = BukuModel::where('tipe','Book')->orderby('buku.id','desc')
+        ->paginate(16);
+        return view('buku.cetakqr',['data'=>$data]);
     }
 }

@@ -64,12 +64,13 @@
                         <li><a href="#profile-followers">Kode QR</a></li>
                     </ul>
                 </div>
-                <!-- END Block Tabs Title -->
-
-                <!-- Tabs Content -->
                 <div class="tab-content">
                     <!-- Activity -->
                     <div class="tab-pane active" id="profile-activity">
+                        <div class="text-center">
+
+                            <p class="text-muted">15 Peminjam terakhir</p>
+                        </div>
                         <div class="block-content-full">
                             <table class="table table-striped table-borderless table-vcenter remove-margin-bottom">
                                 <tbody>
@@ -99,34 +100,25 @@
                             </table>
                         </div>
                     </div>
-                    <!-- END Activity -->
-
-                    <!-- Gallery -->
                     <div class="tab-pane" id="profile-gallery">
                         {{$data->deskripsi}}
                     </div>
-                    <!-- END Gallery -->
-
-                    <!-- Followers -->
                     <div class="tab-pane text-center" id="profile-followers">
-                        @php 
+                        @php
                         $qrdata = "kode buku : ".$data->kode."\nISBN : ".$data->isbn."\njudul : ".$data->judul;
                         @endphp
                         {!! QrCode::size(400)->generate($qrdata) !!}
                         <br>
                         <button type="button" id="cetak" class="btn btn-warning"><i class="fa fa-print"></i>
-                    Cetak</button>
+                            Cetak</button>
                     </div>
-                    <!-- END Followers -->
                 </div>
-                <!-- END Tabs Content -->
             </div>
         </div>
     </div>
-    <!-- END User Profile Row -->
 </div>
 <div id="hidden_div" style="display: none;">
-{!! QrCode::size(150)->generate($qrdata) !!}
+    {!! QrCode::size(150)->generate($qrdata) !!}
 </div>
 @endsection
 @section('js')

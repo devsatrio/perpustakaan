@@ -42,6 +42,7 @@ Route::get('ebook/get/json','ebook\ebookcontroller@json');
 Route::resource('/ebook','ebook\ebookcontroller');
 
 //================================================buku
+Route::get('cetakkodebuku','Buku\BukuController@cetakkodebuku');
 Route::get('buku/get/json','Buku\BukuController@json');
 Route::get('bukukode/{kode}','Buku\BukuController@carikode');
 Route::get('buku/detail/{kode}','Buku\BukuController@detailbuku');
