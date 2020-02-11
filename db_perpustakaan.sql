@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 11, 2020 at 05:11 PM
+-- Generation Time: Feb 11, 2020 at 08:22 PM
 -- Server version: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.3.14-6+ubuntu18.04.1+deb.sury.org+1
 
@@ -45,8 +45,32 @@ CREATE TABLE `anggota` (
 
 INSERT INTO `anggota` (`id`, `nama`, `alamat`, `notelp`, `username`, `password`, `gambar`, `remember_token`, `status_pinjam`, `status_anggota`) VALUES
 (11, 'mirna sumarsih hari', 'mojoroto kota kediri', '0854321', 'mirna', '$2y$10$1b7HEeFGDDusMIFYpI6ZveJ4zeXlkKaO02uwbVqgoLPh0rebrf12O', '1579828872-6.jpg', NULL, 'n', 'Umum'),
-(14, 'satrio damara', 'gurah', '0324838', 'satrio', '$2y$10$bBxU6nwe1BJbJ/GF450U/eejlxAxZGPrDGDJb0/N3Knee/kF/izxy', '1581361194-user.png', 'XiUdSODQTQFaROOloM7nXTDKr5MG2Q300WiO2EcSO96LKh9otvCHWONT1xnd', 'n', 'Umum'),
+(14, 'satrio damara', 'gurah', '0324838', 'satrio', '$2y$10$xJ1B3spyStqg7twAvqJhfOUNS4vIuVQup1sgOypvsqFqYh/rEf0o6', '1581361194-user.png', 'wgsmcyZh2llNuFiosvCN4A0Su2Y9yivkFwaZnyaIT1O4QRQvyc1OxXlIjsTo', 'n', 'Umum'),
 (15, 'deni', 'kediri', '023890', 'deni', NULL, '1581362053-7.jpg', NULL, 'n', 'Karyawan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `baca`
+--
+
+CREATE TABLE `baca` (
+  `id` int(11) NOT NULL,
+  `id_anggota` int(11) DEFAULT NULL,
+  `id_ebook` int(11) DEFAULT NULL,
+  `tanggal` timestamp NULL DEFAULT NULL,
+  `browser` varchar(150) DEFAULT NULL,
+  `ip` varchar(150) DEFAULT NULL,
+  `tipe` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `baca`
+--
+
+INSERT INTO `baca` (`id`, `id_anggota`, `id_ebook`, `tanggal`, `browser`, `ip`, `tipe`) VALUES
+(1, 14, 27, '2020-02-11 03:51:29', 'Chrome', 'IP tidak dikenali', 'pc/laptop'),
+(2, 14, 27, '2020-02-11 03:52:22', 'Chrome', 'IP tidak dikenali', 'pc/laptop');
 
 -- --------------------------------------------------------
 
@@ -85,15 +109,13 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`id`, `kode`, `judul`, `penulis`, `halaman`, `jumlah`, `lokasi`, `tanggal_terbit`, `isbn`, `bahasa`, `penerbit`, `berat`, `lebar`, `deskripsi`, `tipe`, `id_kategori`, `dibaca`, `dipinjam`, `gambar`, `ebook`, `link`, `umum`) VALUES
 (25, NULL, 'ebook satu', NULL, 230, 0, '', '2020-01-01', 'eb123', 'japanese', 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis!', 'Ebook', 2, 1, 0, '1580184622-satu.jpg', '1580184622-satu.pdf', 'ebook-satu', 'tidak'),
-(26, NULL, 'ebook dua', NULL, 150, 0, '', '2020-01-03', '23432kjfksf', 'indonesia', 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 5, 6, 0, '1580185306-dua.jpg', '1580185306-dua.pdf', 'ebook-dua', 'tidak'),
-(27, NULL, 'ebook tiga', NULL, 200, 0, '', '2020-01-30', 'sadfsadf', 'indo', 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 5, 14, 0, '1580191280-tiga.jpg', '1580191280-tiga.pdf', 'ebook-tiga', 'tidak'),
-(28, NULL, 'ebook empat', NULL, 212, 0, '', '2020-01-31', 'sadfsadf', 'jawa', 'Elexmedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 2, 13, 0, '1580195786-empat.jpg', '1580195786-empat.pdf', 'ebook-empat', 'ya'),
+(26, NULL, 'ebook dua', NULL, 150, 0, '', '2020-01-03', '23432kjfksf', 'indonesia', 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 5, 6, 0, '1580185306-dua.jpg', '1580185306-dua.pdf', 'ebook-dua', 'ya'),
+(27, NULL, 'ebook tiga', NULL, 200, 0, '', '2020-01-30', 'sadfsadf', 'indo', 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 5, 18, 0, '1580191280-tiga.jpg', '1580191280-tiga.pdf', 'ebook-tiga', 'tidak'),
+(28, NULL, 'ebook empat', NULL, 212, 0, '', '2020-01-31', 'sadfsadf', 'jawa', 'Elexmedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci atque at, eligendi cumque earum ea nesciunt, molestias tempore veritatis commodi a corrupti delectus, sit exercitationem minus harum itaque voluptatum reiciendis', 'Ebook', 2, 13, 0, '1580195786-empat.jpg', '1580195786-empat.pdf', 'ebook-empat', 'tidak'),
 (34, NULL, 'ebook enam', NULL, 21, 0, '', '2020-01-29', '12sss', 'indonesia', 'gramedia', NULL, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit placeat eligendi magnam molestias dolor hic, incidunt sequi eaque obcaecati nostrum dolore quibusdam consectetur numquam fuga vitae error a ipsum consequatur?', 'Ebook', 5, 0, 0, '1580715262-buku6.jpeg', '1580715181-penyusunan_laporan_hasil_penelitian_tindakan_kelas.pdf', 'ebook-enam', 'ya'),
-(42, 'b01', 'coba buku', 'askdf', 10, 1, 'sdf', '2020-02-11', 'sadfsadf', 'asdf', 'asdf', '1', '1', 'sadf', 'Book', 7, 0, 2, '1581360550-programmer.jpg', 'n', 'coba-buku', 'ya'),
+(42, 'b01', 'coba buku', 'askdf', 10, 3, 'sdf', '2020-02-11', 'sadfsadf', 'asdf', 'asdf', '1', '1', 'sadf', 'Book', 7, 0, 3, '1581360550-programmer.jpg', 'n', 'coba-buku', 'ya'),
 (43, 'b02', 'buku dua', 'hendri', 20, 30, 'gurah', '2020-02-11', 'slkdafj', 'indonesia', 'gramedia', '1', '20', 'alksdfj asdkfjlksdaf adskdfjlk', 'Book', 7, 0, 0, '1581409873-10.jpg', 'n', 'buku-dua', 'tidak'),
-(44, 'b03', 'coba lagi', 'sadklf', 1, 1, '1', '2020-02-11', '1', '1', '1', '1', '1', '1', 'Book', 7, 0, 0, '1581414091-10.jpg', 'n', 'coba-lagi', 'ya'),
-(45, '2', '2', '2', 2, 2, '2', '2020-02-11', '2', '2', '2', '2', '2', '2', 'Book', 7, 0, 0, '1581414137-3.jpg', 'n', '2', 'tidak'),
-(46, '3', '3', '3', 3, 3, '3', '2020-02-11', '3', '3', '3', '3', '3', '3', 'Book', 7, 0, 0, '1581414154-1.jpg', 'n', '3', 'tidak');
+(44, 'b03', 'coba lagi', 'sadklf', 1, 5, '1', '2020-02-11', '1', '1', '1', '1', '1', '1', 'Book', 7, 0, 0, '1581414091-10.jpg', 'n', 'coba-lagi', 'ya');
 
 -- --------------------------------------------------------
 
@@ -146,7 +168,8 @@ INSERT INTO `pinjam` (`id`, `id_user`, `id_anggota`, `id_buku`, `tgl_pinjam`, `t
 (4, 41, 14, 24, '2020-01-28', '2020-01-29', '2020-01-14', 30000, NULL, NULL),
 (5, 41, 11, 30, '2020-02-10', '2020-02-10', '2020-02-12', NULL, 0, NULL),
 (6, 41, 11, 42, '2020-02-10', '2020-02-10', '2020-02-11', NULL, 0, NULL),
-(7, 41, 14, 42, '2020-02-10', '2020-02-10', '2020-02-20', NULL, 0, NULL);
+(7, 41, 14, 42, '2020-02-10', '2020-02-10', '2020-02-20', NULL, 0, NULL),
+(8, 41, 11, 42, '2020-02-11', '2020-02-11', '2020-02-12', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,7 +218,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `username`, `remember_token`, `alamat`, `notelp`, `level`, `foto`) VALUES
-(41, 'deva satrio', 'satriosuklusn@gmail.com', '$2y$10$MTevkOlRRT/y/CQxDInEp.2VBkD0rICDsB3ynGSCP2LgrRYzCdX7W', '2020-01-23 02:27:38', '2020-01-24 21:58:59', 'devasatrio', 'J9zv4djtvaVtVmldutJvCnl02pn3mjjMkYGLhZu9aocwf2MbLJfHyRvsBSXn', 'gurah kediri pga', '203984902', 'Super Admin', '1579928339-13.jpg'),
+(41, 'deva satrio', 'satriosuklusn@gmail.com', '$2y$10$MTevkOlRRT/y/CQxDInEp.2VBkD0rICDsB3ynGSCP2LgrRYzCdX7W', '2020-01-23 02:27:38', '2020-01-24 21:58:59', 'devasatrio', 'NE07l2TH3Y2vhHX3dIMSsgcCnkmgM6maDci6mI0NegQw8LTQzp43aq9UsOIH', 'gurah kediri pga', '203984902', 'Super Admin', '1579928339-13.jpg'),
 (42, 'jianfitri', 'satriosuklun@gmial.com', '$2y$10$adhI55.PEyPCTUjeI7ydM.8McxKDuHqChkDXLpv3FCejUN5enlec.', '2020-02-10 06:42:12', '2020-02-10 06:42:12', 'jianfitri', NULL, 'kediri', '3028902', 'Super Admin', '1581342132-4.jpg');
 
 --
@@ -206,6 +229,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 -- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `baca`
+--
+ALTER TABLE `baca`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -248,6 +277,11 @@ ALTER TABLE `users`
 ALTER TABLE `anggota`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
+-- AUTO_INCREMENT for table `baca`
+--
+ALTER TABLE `baca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
@@ -261,7 +295,7 @@ ALTER TABLE `kategori_buku`
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `setting`
 --

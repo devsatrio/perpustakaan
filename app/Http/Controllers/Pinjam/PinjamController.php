@@ -106,9 +106,12 @@ class PinjamController extends Controller
     {
         $databuku = DB::table('buku')->find($request->kode_buku);
         $newpijam = $databuku->dipinjam + 1;
+        $newjumlah = $databuku->jumlah - 1;
+
         DB::table('buku')->where('id',$request->kode_buku)
         ->update([
-            'dipinjam'=>$newpijam
+            'dipinjam'=>$newpijam,
+            'jumlah'=>$newjumlah,
         ]);
         DB::table('anggota')->where('id',$request->kode_anggota)
         ->update([
@@ -127,6 +130,13 @@ class PinjamController extends Controller
     public function updatestatus($id)
     {
         $data = DB::table('pinjam')->where('id',$id)->first();
+        $databuku = DB::table('buku')->where('id',$data->id_buku)->first();
+        $newjumlah = $databuku->jumlah + 1;
+        DB::table('buku')->where('id',$data->id_buku)
+        ->update([
+            'jumlah'=>$newjumlah,
+        ]);
+        
         DB::table('anggota')->where('id',$data->id_anggota)
         ->update([
             'status_pinjam'=>'n'

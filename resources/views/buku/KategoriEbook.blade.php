@@ -37,15 +37,11 @@
                     </div>
                     <div class="col-md-12 text-center">
                         <ul class="pagination">
-                            <!-- <li class="active"><a href="javascript:void(0)">1</a></li>
-                            <li><a href="javascript:void(0)">2</a></li>
-                            <li><a href="javascript:void(0)">3</a></li>
-                            <li><span>...</span></li>
-                            <li><a href="javascript:void(0)">20</a></li>
-                            <li><a href="javascript:void(0)"><i class="fa fa-chevron-right"></i></a></li> -->
                             {{$data->links()}}
                         </ul><br>
                         <a onclick="window.history.go(-1);" class="btn btn-danger btn-lg text-white">Kembali</a>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </section>

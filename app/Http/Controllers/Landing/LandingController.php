@@ -74,8 +74,6 @@ class LandingController extends Controller
 				->paginate(9);
 			}
 		}
-		
-		
 		$count1 =DB::table('buku')->where('tipe','=','Book')->count();
 		$count2 =DB::table('buku')->where('tipe','=','Ebook')->count();
 		$count3 =DB::table('anggota')->count();
