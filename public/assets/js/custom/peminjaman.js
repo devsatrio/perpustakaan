@@ -82,18 +82,27 @@ $(document).ready(function () {
 			success: function (data) {
 				return {
 					results: $.map(data, function (item) {
-						
-						if($('#status_anggota').val()!=''){
-							if($('#status_anggota').val()=='Umum'){
-								if(item.umum=='tidak'){
-									swal('Peringatan','Maaf, buku ini tidak untuk anggota umum','error');
-									$('#buku').empty();
-									$('#kode_buku').val('');
-									$('#judul_buku').val('');
-									$('#penulis_buku').val('');
-									$('#isbn_buku').val('');
-									$('#jumlah_buku').val('');
-									$('#penerbit_buku').val('');
+						if(parseInt(item.jumlah)>0){
+							if($('#status_anggota').val()!=''){
+								if($('#status_anggota').val()=='Umum'){
+									if(item.umum=='tidak'){
+										swal('Peringatan','Maaf, buku ini tidak untuk anggota umum','error');
+										$('#buku').empty();
+										$('#kode_buku').val('');
+										$('#judul_buku').val('');
+										$('#penulis_buku').val('');
+										$('#isbn_buku').val('');
+										$('#jumlah_buku').val('');
+										$('#penerbit_buku').val('');
+									}else{
+										$('#kode_buku').val(item.id);
+										$('#judul_buku').val(item.judul);
+										$('#penulis_buku').val(item.penulis);
+										$('#jumlah_buku').val(item.jumlah);
+										$('#isbn_buku').val(item.isbn);
+										$('#penerbit_buku').val(item.penerbit);
+	
+									}
 								}else{
 									$('#kode_buku').val(item.id);
 									$('#judul_buku').val(item.judul);
@@ -101,13 +110,28 @@ $(document).ready(function () {
 									$('#jumlah_buku').val(item.jumlah);
 									$('#isbn_buku').val(item.isbn);
 									$('#penerbit_buku').val(item.penerbit);
-
 								}
+							}else{
+								swal('Peringatan','Maaf, pilih anggota terlebih dahulu','error');
+								$('#buku').empty();
+								$('#kode_buku').val('');
+										$('#judul_buku').val('');
+										$('#penulis_buku').val('');
+										$('#isbn_buku').val('');
+										$('#jumlah_buku').val('');
+										$('#penerbit_buku').val('');
 							}
 						}else{
-							swal('Peringatan','Maaf, pilih anggota terlebih dahulu','error');
+							swal('Peringatan','Maaf, Jumlah buku kosong','error');
 							$('#buku').empty();
+										$('#kode_buku').val('');
+										$('#judul_buku').val('');
+										$('#penulis_buku').val('');
+										$('#isbn_buku').val('');
+										$('#jumlah_buku').val('');
+										$('#penerbit_buku').val('');
 						}
+						
 					})
 				}
 			},
@@ -127,7 +151,8 @@ $(document).ready(function () {
 				offset: { from: 'top', amount: 20 }
 			});
 		} else {
-			$('#halinput').loading('toggle');
+			if(parseInt($('#jumlah_buku').val())>0){
+				$('#halinput').loading('toggle');
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -165,6 +190,10 @@ $(document).ready(function () {
 				function () {
 					$('#halinput').loading('stop');
 				});
+			}else{
+				swal('Peringatan','Maaf, Jumlah buku kosong','error');
+			}
+			
 		}
 	});
 });

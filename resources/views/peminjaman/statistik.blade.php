@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="header-section">
-                    <h1>Grafik Tanggal {{$tgl_satu}} Sampai {{$tgl_dua}</h1>
+                    <h1>Grafik Tanggal {{$tgl_satu}} Sampai {{$tgl_dua}}</h1>
                 </div>
             </div>
         </div>
@@ -90,13 +90,14 @@ var CompCharts = function() {
                 for ($i ; $i >= 0; $i--) {
                     $minus = strtotime("-".$i." days", $waktu);
                     $hasil = date('Y-m-d', $minus);
-                    echo "[".$nomornya++.",'".$hasil."'],";
+                    $newDate = date("d / m / y", strtotime($hasil));  
+                    echo "[".$nomornya++.",'".$newDate."'],";
                 }
                 @endphp
             ];
             $.plot(chartClassic,
                 [{
-                        label: 'Ebook',
+                        label: 'Buku',
                         data: dataEarnings,
                         lines: {
                             show: true,
@@ -115,7 +116,7 @@ var CompCharts = function() {
                         }
                     },
                     {
-                        label: 'Buku',
+                        label: 'Ebook',
                         data: dataSales,
                         lines: {
                             show: true,
@@ -170,9 +171,9 @@ var CompCharts = function() {
                             y = item.datapoint[1];
 
                         if (item.seriesIndex === 0) {
-                            ttlabel = '<strong>' + y + ' Pembaca</strong>';
-                        } else if (item.seriesIndex === 1) {
                             ttlabel = '<strong>' + y + ' Peminjaman</strong>';
+                        } else if (item.seriesIndex === 1) {
+                            ttlabel = '<strong>' + y + ' Pembaca</strong>';
                         }
 
                         $('<div id="chart-tooltip" class="chart-tooltip">' + ttlabel + '</div>')
