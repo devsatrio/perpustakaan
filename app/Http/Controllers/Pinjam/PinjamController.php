@@ -79,21 +79,37 @@ class PinjamController extends Controller
         $setting = DB::table('setting')->orderby('id','desc')->first();
         return view('peminjaman/daftarpinjam',['data'=>$data,'setting'=>$setting]);
     }
-
+    //================================================================================= 
+    public function logbuku($id){
+        $data = DB::table('pinjam')
+        ->select(DB::raw('pinjam.*,anggota.nama,anggota.notelp'))
+        ->leftjoin('anggota','anggota.id','pinjam.id_anggota')
+        ->where('pinjam.id_buku',$id)
+        ->orderby('pinjam.id','desc')
+        ->get();
+        $buku = DB::table('buku')
+        ->where('buku.id',$id)
+        ->first();
+        return view('peminjaman.logbuku',['buku'=>$buku,'data'=>$data]);
+    }
+    //================================================================================= 
+    public function logebook($id){
+        $data = DB::table('baca')
+        ->select(DB::raw('baca.*,anggota.nama,anggota.notelp'))
+        ->leftjoin('anggota','anggota.id','baca.id_anggota')
+        ->where('baca.id_ebook',$id)
+        ->orderby('baca.id','desc')
+        ->get();
+        $ebook = DB::table('buku')
+        ->where('buku.id',$id)
+        ->first();
+        return view('peminjaman.logebook',['ebook'=>$ebook,'data'=>$data]);
+    }
     //================================================================================= 
     public function daftarfavorit()
     {
-        // $data = DB::table('pinjam')
-        // ->select(DB::raw('pinjam.id_buku,pinjam.tgl_pinjam,MONTH(pinjam.tgl_pinjam) as bulan, YEAR(pinjam.tgl_pinjam) as tahun,buku.judul,buku.penulis,COUNT(*) as jumlah'))
-        // ->join('buku','buku.id','=','pinjam.id_buku')
-        // ->groupby('pinjam.id_buku')
-        // ->groupby('bulan')
-        // ->groupby('tahun')
-        // ->orderby('pinjam.tgl_pinjam','desc')
-        // ->get();
-
         $data = DB::table('buku')->where('tipe','Book')->orderby('dipinjam','desc')->get();
-        return view('peminjaman/favorit',['data'=>$data]);
+        return view('peminjaman.favorit',['data'=>$data]);
     }
     //================================================================================= 
     public function daftarebookfavorit()
@@ -213,5 +229,21 @@ class PinjamController extends Controller
     public function exportlaporan($tglsatu,$tgldua){
         $namafile = "peminjaman tgl ".$tglsatu."-".$tgldua.".xlsx";
         return Excel::download(new pinjamexport($tglsatu,$tgldua),$namafile);
+    }
+
+    //=====================================================================================
+    public function statistikbulan(){
+        return view('peminjaman.caristatistik');
+    }
+
+    //=====================================================================================
+    public function tampilstatistikbulan(Request $request){
+        $datapinjam = DB::table('pinjam')
+        ->whereBetween('tgl_pinjam',[$request->tgl_satu,$request->tgl_dua])
+        ->get();
+        $databaca = DB::table('baca')
+        ->whereBetween('tanggal',[$request->tgl_satu,$request->tgl_dua])
+        ->get();
+        return view('peminjaman.statistik',['datapinjam'=>$datapinjam,'databaca'=>$databaca,'tgl_satu'=>$request->tgl_satu,'tgl_dua'=>$request->tgl_dua]);
     }
 }

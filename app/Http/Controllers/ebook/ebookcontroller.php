@@ -212,6 +212,12 @@ class ebookcontroller extends Controller
     	->leftjoin('kategori_buku','kategori_buku.id','=','buku.id_kategori')
     	->where('buku.id',$id)
         ->first();
-        return view('ebook.show',['data'=>$data]);
+        $datapembaca = DB::table('baca')->select(DB::raw('baca.*,anggota.gambar,anggota.nama,anggota.notelp,anggota.status_anggota'))
+    	->leftjoin('anggota','anggota.id','=','baca.id_anggota')
+    	->where('baca.id_ebook',$id)
+        ->orderby('baca.id','desc')
+        ->limit(15)
+        ->get();
+        return view('ebook.show',['data'=>$data,'pembaca'=>$datapembaca]);
     }
 }

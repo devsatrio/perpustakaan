@@ -74,6 +74,10 @@ Route::get('/daftarfavorit','Pinjam\PinjamController@daftarfavorit');
 Route::get('/daftarebookfavorit','Pinjam\PinjamController@daftarebookfavorit');
 Route::post('/simpandenda','Pinjam\PinjamController@simpandenda');
 Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');
+Route::get('/logbuku/{id}','Pinjam\PinjamController@logbuku');
+Route::get('/logebook/{id}','Pinjam\PinjamController@logebook');
+Route::get('/statistik/bulan','Pinjam\PinjamController@statistikbulan');
+Route::post('/statistik/bulan','Pinjam\PinjamController@tampilstatistikbulan');
 
 //=======================================================denda
 Route::get('/denda','Denda\dendacontroller@index');
