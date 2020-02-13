@@ -27,7 +27,6 @@
                                 <th>ISBN</th>
                                 <th>Judul</th>
                                 <th>Penerbit</th>
-                                <th>Penulis</th>
                                 <th>Jumlah Dibaca</th>
                             </tr>
                         </thead>
@@ -41,8 +40,7 @@
                                 <td>{{ $value->isbn }}</td>
                                 <td>{{ $value->judul }}</td>
                                 <td>{{ $value->penerbit}}</td>
-                                <td>{{ $value->penulis}}</td>
-                                <td>{{ $value->dibaca}} Kali Dibaca</td>
+                                <td><a href="{{url('logebook/'.$value->id)}}">{{ $value->dibaca}} Kali Dibaca</a></td>
                             </tr>
                             @endforeach
                         </tbody>

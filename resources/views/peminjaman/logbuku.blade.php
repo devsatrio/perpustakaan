@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="header-section">
-                    <h1>Statistik</h1>
+                    <h1>Log History Buku</h1>
                 </div>
             </div>
             <div class="col-sm-6 hidden-xs">
@@ -17,18 +17,17 @@
         <div class="col-md-12">
             <div class="block full">
                 <div class="block-title">
-                    <h2>Buku Favorit</h2>
+                    <h2>{{$buku->judul}}</h2>
                 </div>
                 <div class="table-responsive">
                     <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 50px;">No</th>
-                                <th>ISBN</th>
-                                <th>Judul</th>
-                                <th>Penerbit</th>
-                                <th>Penulis</th>
-                                <th>Jumlah Peminjaman</th>
+                                <th>Nama</th>
+                                <th>Telp</th>
+                                <th>Tgl Pinjam</th>
+                                <th>Tgl Kembali</th>
                             </tr>
                         </thead>
                         <tbody id="isitabel">
@@ -38,11 +37,10 @@
                             @foreach ($data as $value)
                             <tr>
                                 <td>{{$nomer++}}</td>
-                                <td>{{ $value->isbn }}</td>
-                                <td>{{ $value->judul }}</td>
-                                <td>{{ $value->penerbit}}</td>
-                                <td>{{ $value->penulis}}</td>
-                                <td><a href="{{url('logbuku/'.$value->id)}}">{{ $value->dipinjam}} Kali Peminjaman</a></td>
+                                <td>{{ $value->nama }}</td>
+                                <td>{{ $value->notelp }}</td>
+                                <td>{{ $value->tgl_pinjam }}</td>
+                                <td>{{ $value->tgl_kembali}}</td>
                             </tr>
                             @endforeach
                         </tbody>

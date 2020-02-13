@@ -17,6 +17,9 @@ $(document).ready(function () {
     //=========================================================
     $("#simpan").click(function (e) {
         var judul = $("#input_judul").val();
+        var kode = $("#input_kode").val();
+        var jumlah = $("#input_jumlah").val();
+        var lokasi = $("#input_lokasi").val();
         var penulis = $("#input_penulis").val();
         var halaman = $("#input_halaman").val();
         var tgl = $("#input_tgl").val();
@@ -27,7 +30,8 @@ $(document).ready(function () {
         var lebar = $("#input_lebar").val();
         var deskripsi = $('#input_deskripsi').val();
         var foto = $('#input_foto').val();
-        if (judul == '' || penulis == '' || penerbit == '' || foto == '' || halaman == '' || deskripsi == '' || tgl == '' || isbn == '' || bahasa == '' || berat == '' || lebar == '') {
+
+        if (lokasi == '' || jumlah == '' || kode == '' || judul == '' || penulis == '' || penerbit == '' || foto == '' || halaman == '' || deskripsi == '' || tgl == '' || isbn == '' || bahasa == '' || berat == '' || lebar == '') {
             $.bootstrapGrowl('<h4><strong>Pemberitahuan</strong></h4> <p>Maaf, Data tidak boleh kosong</p>', {
                 type: 'danger',
                 delay: 3000,
@@ -37,7 +41,6 @@ $(document).ready(function () {
             return false;
         } else {
             $('#halinput').loading('toggle');
-
             $("#forminput").submit(function (e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -49,7 +52,7 @@ $(document).ready(function () {
                 });
 
                 $.ajax({
-                    url: '/buku',
+                    url: 'buku',
                     type: 'POST',
                     data: formData,
                     cache: false,
@@ -70,6 +73,10 @@ $(document).ready(function () {
                         $("#input_halaman").val('');
                         $("#input_tgl").val('');
                         $("#input_isbn").val('');
+                        $("#input_kode").val('');
+                        $("#input_jumlah").val('');
+                        $("#input_lokasi").val('');
+                        $("#input_umum").prop('checked',false);
                         $("#input_bahasa").val('');
                         $("#input_penerbit").val('');
                         $("#input_berat").val('');
@@ -122,6 +129,12 @@ $(document).ready(function () {
     window.hapusdata = hapusdata;
     //==========================================================
 
+    function showdetail(id) {
+        window.location.href="buku/detail/"+id;
+    }
+    window.showdetail = showdetail;
+    //==========================================================
+
     function editdata(id) {
         caridata(id);
         $("#tabelnya").hide(700);
@@ -146,8 +159,19 @@ $(document).ready(function () {
                     $("#edit_berat").val(value.berat);
                     $("#edit_lebar").val(value.lebar);
                     $("#edit_deskripsi").val(value.deskripsi);
+                    $("#edit_kode").val(value.kode);
+                    $("#edit_jumlah").val(value.jumlah);
+                    $("#edit_lokasi").val(value.lokasi);
                     $('#kode_edit').val(value.id);
+                    $('#edit_kode_lama').val(value.kode);
+                    if(value.umum=='ya'){
+                        $("#edit_umum").prop('checked',true);
+                    }else{
+                        $("#edit_umum").prop('checked',false);
+                    }
                     $('#edit_fotolama').val(value.gambar);
+                    var url = '../perpustakaan/public/img/buku/';
+                    console.log(url);
                     $('#edit_kategori').val(value.id_kategori);
                     if (value.gambar != 'n') {
                         $("#imagebuku").attr("src", "img/buku/" + value.gambar);
@@ -167,8 +191,61 @@ $(document).ready(function () {
         $("#haledit").hide(700);
     });
     //===================================================================
+    $("#input_kode").keyup(function(){
+
+        var kode = $(this).val().trim();
+  
+        if(kode != ''){
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'bukukode/' + kode,
+                success: function (data) {
+                    if(data>0){
+                        $("#error_kode").html('Kode telah dipakai,coba yang lain');
+                        $("#input_kode").val('');
+                    }else{
+                        $("#error_kode").html('');
+                    }
+                }, error: function () {
+    
+                    alert('error');
+                }
+            });
+        }
+  
+      });
+    //===================================================================
+    $("#edit_kode").keyup(function(){
+
+        var kode = $(this).val().trim();
+  
+        if(kode != '' && kode != $('#edit_kode_lama').val()){
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'bukukode/' + kode,
+                success: function (data) {
+                    if(data>0){
+                        $("#error_edit_kode").html('Kode telah dipakai,coba yang lain');
+                        $("#edit_kode").val('');
+                    }else{
+                        $("#error_edit_kode").html('');
+                    }
+                }, error: function () {
+    
+                    alert('error');
+                }
+            });
+        }
+  
+      });
+    //===================================================================
     $('#btnedit').click(function (e) {
         var judul = $('#edit_judul').val();
+        var kodebuku = $("#edit_kode").val();
+        var jumlah = $("#edit_jumlah").val();
+        var lokasi = $("#edit_lokasi").val();
         var penulis = $("#edit_penulis").val();
         var kode = $('#kode_edit').val();
         var halaman = $("#edit_halaman").val();
@@ -179,7 +256,7 @@ $(document).ready(function () {
         var berat = $("#edit_berat").val();
         var lebar = $("#edit_lebar").val();
         var deskripsi = $("#edit_deskripsi").val();
-        if (judul == '' || penulis == '' || halaman == '' || tgl == '' || isbn == '' || bahasa == '' || penerbit == '' || berat == '' || lebar == '' || deskripsi == '') {
+        if (lokasi==''||jumlah==''||kodebuku==''||judul == '' || penulis == '' || halaman == '' || tgl == '' || isbn == '' || bahasa == '' || penerbit == '' || berat == '' || lebar == '' || deskripsi == '') {
             $.bootstrapGrowl('<h4><strong>Pemberitahuan</strong></h4> <p>Maaf, Data tidak boleh kosong</p>', {
                 type: 'danger',
                 delay: 3000,
@@ -199,7 +276,7 @@ $(document).ready(function () {
                     }
                 });
                 $.ajax({
-                    url: '/buku/' + kode,
+                    url: 'buku/' + kode,
                     type: 'POST',
                     data: formData,
                     cache: false,

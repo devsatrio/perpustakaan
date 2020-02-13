@@ -24,7 +24,7 @@ $(document).ready(function () {
                 });
 
                 $.ajax({
-                    url: '/kategori',
+                    url: 'kategori',
                     type: 'POST',
                     data: formData,
                     cache: false,

@@ -118,7 +118,7 @@ $(document).ready(function () {
                         }
                     });
                     $.ajax({
-                        url: '/user/' + kode,
+                        url: 'user/' + kode,
                         type: 'POST',
                         data: formData,
                         cache: false,
@@ -155,7 +155,7 @@ $(document).ready(function () {
                             }
                         });
                         $.ajax({
-                            url: '/user/' + kode,
+                            url: 'user/' + kode,
                             type: 'POST',
                             data: formData,
                             cache: false,
@@ -232,7 +232,7 @@ $(document).ready(function () {
                         }
                     });
                     $.ajax({
-                        url: '/user',
+                        url: 'user',
                         type: 'POST',
                         data: formData,
                         cache: false,

@@ -23,6 +23,7 @@ var UiTables = function() {
                     }},
                     { data: 'nama', name: 'nama' },
                     { data: 'username', name: 'username' },
+                    { data: 'status_anggota', name: 'status_anggota' },
                     { data: 'alamat', name: 'alamat' },
                     { data: 'notelp', name: 'notelp' },
                     { render: function (data, type, row) {

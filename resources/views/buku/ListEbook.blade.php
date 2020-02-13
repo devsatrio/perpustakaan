@@ -71,9 +71,10 @@
             {{ $data->links() }}
             <br>
             <a onclick="window.history.go(-1);" class="btn btn-danger btn-lg text-white">Kembali</a>
-            
+
         </div>
     </div>
     <br>
 </section>
-<!-- @endsection -->
+@endsection
+

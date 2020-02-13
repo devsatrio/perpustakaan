@@ -39,10 +39,14 @@ Route::resource('/user','User\UserController');
 
 //================================================ebuku
 Route::get('ebook/get/json','ebook\ebookcontroller@json');
+Route::get('ebook/detail/{kode}','ebook\ebookcontroller@detailebook');
 Route::resource('/ebook','ebook\ebookcontroller');
 
 //================================================buku
+Route::get('cetakkodebuku','Buku\BukuController@cetakkodebuku');
 Route::get('buku/get/json','Buku\BukuController@json');
+Route::get('bukukode/{kode}','Buku\BukuController@carikode');
+Route::get('buku/detail/{kode}','Buku\BukuController@detailbuku');
 Route::resource('/buku','Buku\BukuController');
 
 
@@ -70,6 +74,10 @@ Route::get('/daftarfavorit','Pinjam\PinjamController@daftarfavorit');
 Route::get('/daftarebookfavorit','Pinjam\PinjamController@daftarebookfavorit');
 Route::post('/simpandenda','Pinjam\PinjamController@simpandenda');
 Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');
+Route::get('/logbuku/{id}','Pinjam\PinjamController@logbuku');
+Route::get('/logebook/{id}','Pinjam\PinjamController@logebook');
+Route::get('/statistik/bulan','Pinjam\PinjamController@statistikbulan');
+Route::post('/statistik/bulan','Pinjam\PinjamController@tampilstatistikbulan');
 
 //=======================================================denda
 Route::get('/denda','Denda\dendacontroller@index');

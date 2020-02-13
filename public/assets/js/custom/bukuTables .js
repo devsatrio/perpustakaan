@@ -21,14 +21,15 @@ var UiTables = function() {
                     { data: 'id', render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
+                    { data: 'kode', name: 'kode' },
                     { data: 'isbn', name: 'isbn' },
                     { data: 'judul', name: 'judul' },
                     { data: 'penulis', name: 'penulis'},
                     { data: 'namakategori', name: 'namakategori'},
                     { data: 'penerbit', name: 'penerbit' },
-                    { data: 'tanggal_terbit', name: 'tanggal_terbit' },
+                    { data: 'jumlah', name: 'jumlah' },
                     { render: function (data, type, row) {
-                        return '<button class="btn btn-success btn-sm" onclick="editdata('+ row['id'] +')"><i class="fa fa-wrench"></i></button> <button class="btn btn-danger btn-sm" onclick="hapusdata('+ row['id'] +')"><i class="fa fa-trash"></i></button>'
+                        return '<button class="btn btn-warning btn-sm" onclick="showdetail('+ row['id'] +')"><i class="fa fa-eye"></i></button> <button class="btn btn-success btn-sm" onclick="editdata('+ row['id'] +')"><i class="fa fa-wrench"></i></button> <button class="btn btn-danger btn-sm" onclick="hapusdata('+ row['id'] +')"><i class="fa fa-trash"></i></button>'
                     },
                         "className": 'text-center',
                         "orderable": false,

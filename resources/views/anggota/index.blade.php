@@ -38,6 +38,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Username</th>
+                                <th>Status</th>
                                 <th>Alamat</th>
                                 <th>No. Telp</th>
                                 <th>Aksi</th>
@@ -74,6 +75,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-hf-email">Status Anggota</label>
+                        <div class="col-md-9">
+                            <select name="input_status" class="form-control" id="input_status">
+                                <option value="Umum">Umum</option>
+                                <option value="Karyawan">Karyawan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-password">Username</label>
                         <div class="col-md-9">
                             <input type="text" id="input_user" name="input_user" class="form-control">
@@ -94,13 +104,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-password">Foto</label>
                         <div class="col-md-9">
-                            <input type="file" id="input_foto" name="input_foto" accept="image/*" >
+                            <input type="file" id="input_foto" name="input_foto" accept="image/*">
                         </div>
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
                             <button type="submit" class="btn btn-effect-ripple btn-primary" id="simpan">Simpan</button>
-                            <button type="button" class="btn btn-effect-ripple btn-danger" id="kembali">Kembali</button>
+                            <button type="reset" class="btn btn-effect-ripple btn-danger" id="kembali">Kembali</button>
                         </div>
                     </div>
                 </form>
@@ -142,6 +152,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-hf-email">Status Anggota</label>
+                        <div class="col-md-9">
+                            <select name="edit_status" class="form-control" id="edit_status">
+                                <option value="Umum">Umum</option>
+                                <option value="Karyawan">Karyawan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">*Password Baru</label>
                         <div class="col-md-9">
                             <input type="password" id="edit_password" name="edit_password" class="form-control"
@@ -164,7 +183,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-hf-email">*Foto</label>
                         <div class="col-md-9">
-                            <input type="file" id="edit_foto" name="edit_foto" accept="image/*" >
+                            <input type="file" id="edit_foto" name="edit_foto" accept="image/*">
                             <span class="text-muted">isi apabila ingin mengganti foto</span>
                         </div>
                     </div>

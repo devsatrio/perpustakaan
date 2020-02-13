@@ -45,11 +45,15 @@
                         <input type="hidden" id="kode_buku">
                         <input type="hidden" id="kodeuser" value="{{ Auth::user()->id }}">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="example-nf-email">Alamat</label>
                         <input type="text" id="alamat_anggota" class="form-control" readonly>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
+                        <label for="example-nf-email">Status Anggota</label>
+                        <input type="text" id="status_anggota" class="form-control" readonly>
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="example-nf-email">No. Telpon</label>
                         <input type="text" id="telp_anggota" class="form-control" readonly>
                     </div>
@@ -77,7 +81,11 @@
                         <input type="text" id="penulis_buku" class="form-control" readonly>
 
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
+                        <label for="example-nf-email">Jumlah</label>
+                        <input type="text" id="jumlah_buku" class="form-control" readonly>
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="example-nf-email">Tanggal Pinjam</label>
                         <input type="text" id="tanggal_pinjam" class="form-control" readonly value="{{date('Y-m-d')}}">
                     </div>
@@ -98,8 +106,6 @@
             </div>
         </div>
     </div>
-
-    <!-- END Datatables Block -->
 </div>
 @endsection
 @section('js')
