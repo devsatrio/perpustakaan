@@ -95,11 +95,39 @@ class ListController extends Controller
 		->where([['buku.tipe','Book'],['buku.link',$link]])
 		->orderby('buku.id','desc')
 		->first();
-		$datalain = DB::table('buku')
-		->where('buku.tipe','Book')
-		->inRandomOrder()
-		->inRandomOrder()
-		->get();
+		if(Auth::check()){
+			$datalain = DB::table('buku')
+				->where('buku.tipe','Book')
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+		}else{
+			if(Auth::guard('anggota')->check()){
+				if(Auth::guard('anggota')->user()->status_anggota=='Umum'){
+					$datalain = DB::table('buku')
+				->where([['buku.tipe','Book'],['buku.umum','ya']])
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+				}else{
+					$datalain = DB::table('buku')
+				->where('buku.tipe','Book')
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+				}
+			}else{
+				$datalain = DB::table('buku')
+				->where([['buku.tipe','Book'],['buku.umum','ya']])
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+			}
+		}
    		$page = 'detail';
     return view('buku/DetailBuku',['view'=>$view,'page'=>$page,'datalain'=>$datalain]);
     }
@@ -244,11 +272,40 @@ class ListController extends Controller
 		->where([['buku.tipe','Ebook'],['buku.link',$detail]])
 		->orderby('buku.id','desc')
 		->first();
-		$datalain = DB::table('buku')
-		->where('buku.tipe','Ebook')
-		->inRandomOrder()
-		->inRandomOrder()
-		->get();
+		if(Auth::check()){
+			$datalain = DB::table('buku')
+				->where('buku.tipe','EBook')
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+		}else{
+			if(Auth::guard('anggota')->check()){
+				if(Auth::guard('anggota')->user()->status_anggota=='Umum'){
+					$datalain = DB::table('buku')
+				->where([['buku.tipe','EBook'],['buku.umum','ya']])
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+				}else{
+					$datalain = DB::table('buku')
+				->where('buku.tipe','EBook')
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+				}
+			}else{
+				$datalain = DB::table('buku')
+				->where([['buku.tipe','EBook'],['buku.umum','ya']])
+				->inRandomOrder()
+				->inRandomOrder()
+				->limit(4)
+				->get();
+			}
+		}
+		
 		$page = 'ebook';
 		return view('buku.Detailebook',['datalain'=>$datalain,'data'=>$data,'page'=>$page]);
 	}
