@@ -35,13 +35,20 @@
                 <div class="widget-content text-dark">
                     <div class="row text-center">
                         <button class="btn btn-block btn-success cetakkode" data-kode="{{$row->kode}}"><i
-                                class="fa fa-print"></i> Cetak</button>
+                                class="fa fa-print"></i> Cetak Sekali</button>
+                        <button class="btn btn-block btn-warning cetakkodebanyak" data-kode="{{$row->kode}}"><i
+                                class="fa fa-print"></i> Cetak Sejumlah Buku</button>
                     </div>
                 </div>
             </div>
         </div>
         <div id="hidden_div{{$row->kode}}" style="display: none;">
             {!! QrCode::size(150)->generate($qrdata) !!}
+        </div>
+        <div id="hidden_div_banyak{{$row->kode}}" style="display: none;">
+            @php for($i=0;$i<$row->jumlah;$i++){ @endphp
+                {!! QrCode::size(150)->generate($qrdata) !!}
+                @php } @endphp
         </div>
         @endforeach
         <div class="col-md-12 text-center">
@@ -57,23 +64,23 @@
                 @endphp
 
                 @foreach($data as $i => $row)
-                <td align="center">
+                @php for($y=0;$y<$row->jumlah;$y++){ @endphp
+
+                    <td align="center">
+                        @php
+
+                        $qrdata = "kode buku : ".$row->kode."\nISBN : ".$row->isbn."\njudul : ".$row->judul;
+                        @endphp
+                        {!! QrCode::size(180)->generate($qrdata) !!}
+                        <br>
+                        {{$row->judul}} ({{$row->kode}})
+                    </td>
+
                     @php
-                    $qrdata = "kode buku : ".$row->kode."\nISBN : ".$row->isbn."\njudul : ".$row->judul;
-                    @endphp
-                    {!! QrCode::size(180)->generate($qrdata) !!}
-                    <br>
-                    {{$row->judul}} ({{$row->kode}})
-                </td>
-
-                @php
-                $i++;
-                if($i != $count && $i >= $columns && $i % $columns == 0){
-                    echo '</tr><tr>';
-                }
-                @endphp
-
-            
+                    $i++;
+                    if($i != $count && $i >= $columns && $i % $columns == 0){
+                    echo '</tr><tr>'; } @endphp
+                @php } @endphp
                 @endforeach
             </tr>
         </table>
@@ -85,6 +92,15 @@
             $('.cetakkode').click(function(e) {
                 var kode = $(this).attr('data-kode');
                 var divToPrint = document.getElementById('hidden_div' + kode);
+                var newWin = window.open('', 'Print-Window');
+                newWin.document.open();
+                newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
+                    .innerHTML + '</body></html>');
+                newWin.document.close();
+            });
+            $('.cetakkodebanyak').click(function(e) {
+                var kode = $(this).attr('data-kode');
+                var divToPrint = document.getElementById('hidden_div_banyak' + kode);
                 var newWin = window.open('', 'Print-Window');
                 newWin.document.open();
                 newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
