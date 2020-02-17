@@ -196,10 +196,10 @@
                                         class="sidebar-nav-mini-hide">Statistik</span></a>
                                 <ul>
                                     <li>
-                                        <a href="{{url('/daftarfavorit')}}">Buku Favorit</a>
+                                        <a href="{{url('/daftarfavorit')}}">Log History Buku</a>
                                     </li>
                                     <li>
-                                        <a href="{{url('/daftarebookfavorit')}}">Ebook Favorit</a>
+                                        <a href="{{url('/daftarebookfavorit')}}">Log History Ebook</a>
                                     </li>
                                     
                                     <li>

@@ -30,8 +30,7 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('input_foto')){
-            $nameland=$request->file('input_foto')->
-            getClientOriginalname();
+            $nameland=$request->file('input_foto')->getClientOriginalname();
             $lower_file_name=strtolower($nameland);
             $replace_space=str_replace(' ', '-', $lower_file_name);
             $finalname=time().'-'.$replace_space;
@@ -44,7 +43,7 @@ class AnggotaController extends Controller
                     'alamat'=>$request->input_alamat,
                     'notelp'=>$request->input_notelp,
                     'status_anggota'=>$request->input_status,
-                    'gambar'=>$finalname
+                    'gambar'=>$finalname,
                 ]);
             }else{
                 AnggotaModel::create([

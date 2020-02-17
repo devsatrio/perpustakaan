@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="block full">
                 <div class="block-title">
-                    <h2>Buku Favorit</h2>
+                    <h2>Log History Buku</h2>
                 </div>
                 <div class="table-responsive">
                     <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
