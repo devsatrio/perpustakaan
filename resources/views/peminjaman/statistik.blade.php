@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="header-section">
-                    <h1>Grafik Tanggal {{$tgl_satu}} Sampai {{$tgl_dua}</h1>
+                    <h1>Grafik Tanggal {{$tgl_satu}} Sampai {{$tgl_dua}}</h1>
                 </div>
             </div>
         </div>
