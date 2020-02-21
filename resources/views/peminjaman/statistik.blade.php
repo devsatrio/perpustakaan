@@ -33,67 +33,60 @@ var CompCharts = function() {
             var chartClassic = $('#chart-classic');
             var chartPie = $('#chart-pie');
             var dataEarnings = [
-                @php
-
-                $date = $tgl_satu;
-                $limitdate = $tgl_dua;
+                <?php
+                $nomornya=1;
+                $a = $tgl_satu;
+                $b = $tgl_dua;
                 
-                $newdate = strtotime($date);
-                $newdatedua = strtotime($limitdate);
-                $jumlah = $newdatedua - $newdate;
-                $i = round($jumlah/(60 * 60 * 24));
-
-                $waktu = strtotime($limitdate);
-                $nomornya = 1;
-                for ($i ; $i >= 0; $i--) {
-                    $minus = strtotime("-".$i." days", $waktu);
-                    $hasil = date('Y-m-d', $minus);
-                    $jumlah = DB::table('pinjam')->where('tgl_pinjam', $hasil)->count();
+                $i = date("Ym", strtotime($a));
+                while($i <= date("Ym", strtotime($b))){
+                    $jumlah = 
+                    DB::table('pinjam')
+                    ->whereMonth('tgl_pinjam',substr($i,4))
+                    ->whereYear('tgl_pinjam',substr($i,0,4))
+                    ->count();
                     echo "[".$nomornya++.",".$jumlah."],";
-                }
-                @endphp
+                    if(substr($i, 4, 2) == "12")
+                        $i = (date("Y", strtotime($i."01")) + 1)."01";
+                    else
+                        $i++;
+                }?>
             ];
             var dataSales = [
-                @php
-
-                $date = $tgl_satu;
-                $limitdate = $tgl_dua;
+                <?php
+                $nomornya=1;
+                $a = $tgl_satu;
+                $b = $tgl_dua;
                 
-                $newdate = strtotime($date);
-                $newdatedua = strtotime($limitdate);
-                $jumlah = $newdatedua - $newdate;
-                $i = round($jumlah/(60 * 60 * 24));
-
-                $waktu = strtotime($limitdate);
-                $nomornya = 1;
-                for ($i ; $i >= 0; $i--) {
-                    $minus = strtotime("-".$i." days", $waktu);
-                    $hasil = date('Y-m-d', $minus);
-                    $jumlah = DB::table('baca')->whereDate('tanggal', $hasil)->count();
+                $i = date("Ym", strtotime($a));
+                while($i <= date("Ym", strtotime($b))){
+                    $jumlah = 
+                    DB::table('baca')
+                    ->whereMonth('tanggal',substr($i,4))
+                    ->whereYear('tanggal',substr($i,0,4))
+                    ->count();
                     echo "[".$nomornya++.",".$jumlah."],";
-                }
-                @endphp
+                    if(substr($i, 4, 2) == "12")
+                        $i = (date("Y", strtotime($i."01")) + 1)."01";
+                    else
+                        $i++;
+                }?>
             ];
             var dataMonths = [
-                @php
-
-                $date = $tgl_satu;
-                $limitdate = $tgl_dua;
+                <?php
+                $nomornya=1;
+                $a = $tgl_satu;
+                $b = $tgl_dua;
                 
-                $newdate = strtotime($date);
-                $newdatedua = strtotime($limitdate);
-                $jumlah = $newdatedua - $newdate;
-                $i = round($jumlah/(60 * 60 * 24));
-
-                $waktu = strtotime($limitdate);
-                $nomornya = 1;
-                for ($i ; $i >= 0; $i--) {
-                    $minus = strtotime("-".$i." days", $waktu);
-                    $hasil = date('Y-m-d', $minus);
-                    $newDate = date("d / m / y", strtotime($hasil));  
+                $i = date("Ym", strtotime($a));
+                while($i <= date("Ym", strtotime($b))){
+                    $newDate = substr($i,4)."-".substr($i,0,4);
                     echo "[".$nomornya++.",'".$newDate."'],";
-                }
-                @endphp
+                    if(substr($i, 4, 2) == "12")
+                        $i = (date("Y", strtotime($i."01")) + 1)."01";
+                    else
+                        $i++;
+                }?>
             ];
             $.plot(chartClassic,
                 [{

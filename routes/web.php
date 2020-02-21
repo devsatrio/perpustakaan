@@ -44,6 +44,9 @@ Route::resource('/ebook','ebook\ebookcontroller');
 
 //================================================buku
 Route::get('cetakkodebuku','Buku\BukuController@cetakkodebuku');
+Route::get('cetakkodebukubanyak/{kode}','Buku\BukuController@cetakbanyakkodebuku');
+Route::get('cetakkodebuku/{kode}/cetak','Buku\BukuController@cetaksatukodebuku');
+Route::get('cetakkodebuku/all','Buku\BukuController@cetaksemuakodebuku');
 Route::get('buku/get/json','Buku\BukuController@json');
 Route::get('bukukode/{kode}','Buku\BukuController@carikode');
 Route::get('buku/detail/{kode}','Buku\BukuController@detailbuku');
@@ -76,7 +79,7 @@ Route::post('/simpandenda','Pinjam\PinjamController@simpandenda');
 Route::get('/peminjamaktif','Pinjam\PinjamController@peminjamaktif');
 Route::get('/logbuku/{id}','Pinjam\PinjamController@logbuku');
 Route::get('/logebook/{id}','Pinjam\PinjamController@logebook');
-Route::get('/statistik/bulan','Pinjam\PinjamController@statistikbulan');
+Route::get('/statistik/cari','Pinjam\PinjamController@statistikbulan');
 Route::post('/statistik/bulan','Pinjam\PinjamController@tampilstatistikbulan');
 
 //=======================================================denda

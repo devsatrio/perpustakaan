@@ -15,7 +15,7 @@ var UiTables = function() {
             $('#example-datatable').dataTable({
                 processing: true,
                 serverSide: true,
-                order: [[0, "desc" ]],
+                order: [[6, "asc" ],[5,"desc"]],
                 ajax: 'daftarpinjam/get/json',
                 columns: [
                     { data: 'id', render: function (data, type, row, meta) {

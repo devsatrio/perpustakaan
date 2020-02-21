@@ -196,4 +196,23 @@ class BukuController extends Controller
         ->paginate(16);
         return view('buku.cetakqr',['data'=>$data]);
     }
+    //================================================================================
+    public function cetaksemuakodebuku(){
+        $data = BukuModel::where('tipe','Book')->orderby('buku.id','desc')
+        ->get();
+        return view('buku.cetaksemuaqr',['data'=>$data]);
+    }
+
+    public function cetaksatukodebuku($kode){
+        $data = BukuModel::where('tipe','Book')->where('kode',$kode)
+        ->first();
+        return view('buku.cetaksatuqr',['data'=>$data]);
+
+    }
+
+    public function cetakbanyakkodebuku($kode){
+        $data = BukuModel::where('tipe','Book')->where('kode',$kode)
+        ->first();
+        return view('buku.cetakbanyakqr',['data'=>$data]);
+    }
 }

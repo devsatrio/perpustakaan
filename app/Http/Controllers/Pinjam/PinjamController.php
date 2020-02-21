@@ -239,10 +239,20 @@ class PinjamController extends Controller
     //=====================================================================================
     public function tampilstatistikbulan(Request $request){
         $datapinjam = DB::table('pinjam')
+        ->select(DB::raw("COUNT(*) as jumlahnya,MONTH(tgl_pinjam) as bulan,YEAR(tgl_pinjam) as tahun"))
         ->whereBetween('tgl_pinjam',[$request->tgl_satu,$request->tgl_dua])
+        ->orderBy('tgl_pinjam','asc')
+        ->groupBy(DB::raw("MONTH(tgl_pinjam)"))
+        ->groupBy(DB::raw("YEAR(tgl_pinjam)"))
         ->get();
+        
+
         $databaca = DB::table('baca')
+        ->select(DB::raw("COUNT(*) as jumlahnya,MONTH(tanggal) as bulan,YEAR(tanggal) as tahun"))
         ->whereBetween('tanggal',[$request->tgl_satu,$request->tgl_dua])
+        ->orderBy('tanggal','asc')
+        ->groupBy(DB::raw("MONTH(tanggal)"))
+        ->groupBy(DB::raw("YEAR(tanggal)"))
         ->get();
         return view('peminjaman.statistik',['datapinjam'=>$datapinjam,'databaca'=>$databaca,'tgl_satu'=>$request->tgl_satu,'tgl_dua'=>$request->tgl_dua]);
     }

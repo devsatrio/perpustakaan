@@ -18,7 +18,7 @@
     </div>
     <div class="row" id="tabelnya">
         <div class="col-md-12">
-            <button id="cetaksemua" class="btn btn-warning"><i class="fa fa-print"></i> Cetak Semua</button>
+            <a href="{{url('cetakkodebuku/all')}}" target="blank()" class="btn btn-warning">Cetak Semua</a>
         </div><br><br>
         @foreach($data as $row)
         <div class="col-sm-3">
@@ -34,87 +34,43 @@
                 </div>
                 <div class="widget-content text-dark">
                     <div class="row text-center">
-                        <button class="btn btn-block btn-success cetakkode" data-kode="{{$row->kode}}"><i
-                                class="fa fa-print"></i> Cetak Sekali</button>
-                        <button class="btn btn-block btn-warning cetakkodebanyak" data-kode="{{$row->kode}}"><i
-                                class="fa fa-print"></i> Cetak Sejumlah Buku</button>
+                        <a href="{{url('cetakkodebuku/'.$row->kode.'/cetak')}}" target="blank()" class="btn btn-block btn-success"><i
+                                class="fa fa-print"></i> Cetak Sekali</a>
+                        <a href="{{url('cetakkodebukubanyak/'.$row->kode)}}" target="blank()" class="btn btn-block btn-warning"><i
+                                class="fa fa-print"></i> Cetak Sejumlah Buku</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="hidden_div{{$row->kode}}" style="display: none;">
-            {!! QrCode::size(150)->generate($qrdata) !!}
-        </div>
-        <div id="hidden_div_banyak{{$row->kode}}" style="display: none;">
-            @php for($i=0;$i<$row->jumlah;$i++){ @endphp
-                {!! QrCode::size(150)->generate($qrdata) !!}
-                @php } @endphp
-        </div>
+
         @endforeach
         <div class="col-md-12 text-center">
             {{$data->links()}}
         </div>
     </div>
-    <div id="hidden_divall" style="display: none;">
-        <table>
-            <tr>
-                @php
-                $count = count($data);
-                $columns = 4;
-                @endphp
-
-                @foreach($data as $i => $row)
-                @php for($y=0;$y<$row->jumlah;$y++){ @endphp
-
-                    <td align="center">
-                        @php
-
-                        $qrdata = "kode buku : ".$row->kode."\nISBN : ".$row->isbn."\njudul : ".$row->judul;
-                        @endphp
-                        {!! QrCode::size(180)->generate($qrdata) !!}
-                        <br>
-                        {{$row->judul}} ({{$row->kode}})
-                    </td>
-
-                    @php
-                    $i++;
-                    if($i != $count && $i >= $columns && $i % $columns == 0){
-                    echo '</tr><tr>'; } @endphp
-                @php } @endphp
-                @endforeach
-            </tr>
-        </table>
-
-        @endsection
-        @section('js')
-        <script>
-        $(function() {
-            $('.cetakkode').click(function(e) {
-                var kode = $(this).attr('data-kode');
-                var divToPrint = document.getElementById('hidden_div' + kode);
-                var newWin = window.open('', 'Print-Window');
-                newWin.document.open();
-                newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
-                    .innerHTML + '</body></html>');
-                newWin.document.close();
-            });
-            $('.cetakkodebanyak').click(function(e) {
-                var kode = $(this).attr('data-kode');
-                var divToPrint = document.getElementById('hidden_div_banyak' + kode);
-                var newWin = window.open('', 'Print-Window');
-                newWin.document.open();
-                newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
-                    .innerHTML + '</body></html>');
-                newWin.document.close();
-            });
-            $('#cetaksemua').click(function(e) {
-                var divToPrint = document.getElementById('hidden_divall');
-                var newWin = window.open('', 'Print-Window');
-                newWin.document.open();
-                newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
-                    .innerHTML + '</body></html>');
-                newWin.document.close();
-            });
+   
+    @endsection
+    @section('js')
+    <script>
+    $(function() {
+        $('.cetakkode').click(function(e) {
+            var kode = $(this).attr('data-kode');
+            var divToPrint = document.getElementById('hidden_div' + kode);
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
+                .innerHTML + '</body></html>');
+            newWin.document.close();
         });
-        </script>
-        @endsection
+        $('.cetakkodebanyak').click(function(e) {
+            var kode = $(this).attr('data-kode');
+            var divToPrint = document.getElementById('hidden_div_banyak' + kode);
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print();window.close()">' + divToPrint
+                .innerHTML + '</body></html>');
+            newWin.document.close();
+        });
+    });
+    </script>
+    @endsection

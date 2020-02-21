@@ -206,7 +206,7 @@
                                         <a href="{{url('/peminjamaktif')}}">Peminjam Teraktif</a>
                                     </li>
                                     <li>
-                                        <a href="{{url('/statistik/bulan')}}">Statistik Bulanan</a>
+                                        <a href="{{url('/statistik/cari')}}">Statistik</a>
                                     </li>
                                 </ul>
                             </li>

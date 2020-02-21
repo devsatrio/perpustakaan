@@ -41,7 +41,7 @@
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary"
                                     id="simpan">Tampilkan</button>
-                                <button type="reset" class="btn btn-effect-ripple btn-warning">Bersih</button>
+                                <button type="reset" onclick="history.go(-1)" class="btn btn-effect-ripple btn-danger">Kembali</button>
                             </div>
                         </div>
                     </form>
